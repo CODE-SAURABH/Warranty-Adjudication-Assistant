@@ -1,0 +1,247 @@
+<div class="detail-page">
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="pulse-loader"></div>
+    <p>Retrieving adjudication result…</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="loadError" class="error-state">
+    <span class="error-icon">⚠️</span>
+    <p>{{ loadError }}</p>
+    <button routerLink="/dashboard" class="btn-back-link">← Back to Dashboard</button>
+  </div>
+
+  <!-- Claim Result -->
+  <div *ngIf="claim && !isLoading" class="detail-container">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <button class="btn-back" routerLink="/dashboard">← Dashboard</button>
+      <span class="separator">/</span>
+      <span class="current-crumb">Claim {{ claim.claimId }}</span>
+    </div>
+
+    <!-- Override Success Banner -->
+    <div *ngIf="overrideSuccess" class="alert alert-success">
+      <span>✓</span> Assessor override submitted successfully. Disposition updated.
+    </div>
+
+    <!-- Result Hero Card -->
+    <div class="result-hero" [ngClass]="'hero-' + claim.disposition.toLowerCase()">
+      <div class="hero-left">
+        <div class="hero-disposition-icon">
+          <span *ngIf="claim.disposition === 'APPROVED'">✓</span>
+          <span *ngIf="claim.disposition === 'REJECTED'">✕</span>
+          <span *ngIf="claim.disposition === 'PENDING'">⏳</span>
+        </div>
+        <div class="hero-text">
+          <div class="hero-label">Claim Disposition</div>
+          <div class="hero-disposition">
+            {{ claim.disposition === 'APPROVED' ? 'Approved' : claim.disposition === 'REJECTED' ? 'Rejected' : 'Pending Human Review' }}
+          </div>
+          <div class="hero-claim-id">Claim ID: {{ claim.claimId }}</div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="confidence-ring">
+          <div class="confidence-number" [ngClass]="getConfidenceClass(claim.confidenceScore)">
+            {{ (claim.confidenceScore * 100).toFixed(0) }}%
+          </div>
+          <div class="confidence-label">{{ getConfidenceLabel(claim.confidenceScore) }} Confidence</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-body">
+      <div class="left-column">
+
+        <!-- Justification -->
+        <div class="detail-card">
+          <div class="card-title">
+            <span class="card-icon">📄</span> Justification
+          </div>
+          <p class="justification-text">{{ claim.justification }}</p>
+        </div>
+
+        <!-- Cited Policy Clauses -->
+        <div class="detail-card">
+          <div class="card-title">
+            <span class="card-icon">📌</span>
+            Cited Policy Clauses
+            <span class="clause-count">{{ claim.citedClauses.length }}</span>
+          </div>
+          <div *ngIf="claim.citedClauses.length === 0" class="empty-state">
+            No policy clauses cited.
+          </div>
+          <div *ngFor="let clause of claim.citedClauses" class="clause-item">
+            <div class="clause-header">
+              <span class="clause-id">{{ clause.clauseId }}</span>
+              <span class="clause-section">{{ clause.section }}</span>
+              <span *ngIf="clause.relevanceScore" class="clause-relevance">
+                {{ (clause.relevanceScore * 100).toFixed(0) }}% relevant
+              </span>
+            </div>
+            <p class="clause-text">"{{ clause.text }}"</p>
+          </div>
+        </div>
+
+        <!-- Missing Information (if PENDING) -->
+        <div *ngIf="claim.missingInfo && claim.missingInfo.length > 0" class="detail-card missing-card">
+          <div class="card-title">
+            <span class="card-icon">🔍</span> Missing / Required Information
+          </div>
+          <div *ngFor="let info of claim.missingInfo" class="missing-item">
+            <div class="missing-field">{{ info.field }}</div>
+            <p class="missing-desc">{{ info.description }}</p>
+            <span *ngIf="info.clauseReference" class="missing-clause-ref">
+              Per {{ info.clauseReference }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Assessor Notes (if any) -->
+        <div *ngIf="claim.assessorNotes" class="detail-card assessor-notes-card">
+          <div class="card-title">
+            <span class="card-icon">🗒️</span> Assessor Notes
+          </div>
+          <p class="notes-text">{{ claim.assessorNotes }}</p>
+        </div>
+
+        <!-- Override Panel -->
+        <div class="detail-card override-card">
+          <div class="card-title">
+            <span class="card-icon">✏️</span> Assessor Override
+          </div>
+          <p class="override-hint">Override the AI disposition if you disagree. Your rationale will be logged for audit.</p>
+
+          <button
+            *ngIf="!showOverridePanel"
+            class="btn-override-toggle"
+            (click)="showOverridePanel = true"
+          >
+            Open Override Panel
+          </button>
+
+          <div *ngIf="showOverridePanel" class="override-form">
+            <div class="form-field">
+              <label>Override Disposition</label>
+              <div class="disposition-radio-group">
+                <label
+                  *ngFor="let opt of dispositionOptions"
+                  class="radio-option"
+                  [class.selected]="overrideDisposition === opt.value"
+                >
+                  <input type="radio" [(ngModel)]="overrideDisposition" [value]="opt.value" />
+                  {{ opt.label }}
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label>Rationale <span class="required">*</span></label>
+              <textarea
+                [formControl]="overrideRationale"
+                rows="4"
+                placeholder="Explain why you are overriding the AI's decision. This note is mandatory and will be audited."
+                [class.invalid]="overrideRationale.invalid && overrideRationale.touched"
+              ></textarea>
+              <span
+                class="field-error"
+                *ngIf="overrideRationale.invalid && overrideRationale.touched"
+              >
+                Rationale is required (minimum 10 characters).
+              </span>
+            </div>
+
+            <div *ngIf="overrideError" class="alert alert-error">
+              <span>⚠️</span> {{ overrideError }}
+            </div>
+
+            <div class="override-actions">
+              <button class="btn-secondary" (click)="showOverridePanel = false" [disabled]="isSubmittingOverride">
+                Cancel
+              </button>
+              <button class="btn-danger" (click)="submitOverride()" [disabled]="isSubmittingOverride">
+                <span *ngIf="isSubmittingOverride" class="spinner"></span>
+                {{ isSubmittingOverride ? 'Submitting…' : 'Submit Override' }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="right-column">
+
+        <!-- Claim Summary -->
+        <div class="detail-card">
+          <div class="card-title">
+            <span class="card-icon">🚗</span> Claim Summary
+          </div>
+          <div class="summary-grid">
+            <div class="summary-row">
+              <span class="summary-key">VIN</span>
+              <span class="summary-val mono">{{ claim.submission.vin }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">In-Service Date</span>
+              <span class="summary-val">{{ claim.submission.inServiceDate | date:'mediumDate' }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Odometer Reading</span>
+              <span class="summary-val">{{ claim.submission.currentOdometerReading | number }} km</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Repair Code</span>
+              <span class="summary-val mono">{{ claim.submission.repairCode }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Labor Hours</span>
+              <span class="summary-val">{{ claim.submission.laborHours }} hrs</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Submitted</span>
+              <span class="summary-val">{{ claim.timestamp | date:'medium' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parts -->
+        <div class="detail-card">
+          <div class="card-title">
+            <span class="card-icon">🔩</span> Parts Used
+          </div>
+          <p class="parts-text">{{ claim.submission.parts }}</p>
+        </div>
+
+        <!-- Failure Description -->
+        <div class="detail-card">
+          <div class="card-title">
+            <span class="card-icon">📝</span> Failure Description
+          </div>
+          <p class="failure-text">{{ claim.submission.failureDescription }}</p>
+        </div>
+
+        <!-- Service History -->
+        <div *ngIf="claim.submission.serviceHistory && claim.submission.serviceHistory.length > 0" class="detail-card">
+          <div class="card-title">
+            <span class="card-icon">📋</span>
+            Service History
+            <span class="clause-count">{{ claim.submission.serviceHistory.length }}</span>
+          </div>
+          <div *ngFor="let entry of claim.submission.serviceHistory" class="history-entry">
+            <div class="history-header">
+              <span class="history-code mono">{{ entry.repairCode }}</span>
+              <span class="history-date">{{ entry.date | date:'shortDate' }}</span>
+              <span class="history-odometer">{{ entry.odometerReading | number }} km</span>
+            </div>
+            <p class="history-desc">{{ entry.description }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
