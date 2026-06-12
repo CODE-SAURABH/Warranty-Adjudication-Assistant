@@ -1,0 +1,211 @@
+<div class="form-page">
+  <div class="form-container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <button class="btn-back" routerLink="/dashboard">← Back to Dashboard</button>
+      <div>
+        <h1>Submit Warranty Claim</h1>
+        <p class="subtitle">Complete all required fields for accurate adjudication</p>
+      </div>
+    </div>
+
+    <form [formGroup]="claimForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Vehicle Information -->
+      <div class="form-card">
+        <div class="card-header">
+          <span class="card-icon">🚗</span>
+          <h2>Vehicle Information</h2>
+        </div>
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label for="vin">VIN <span class="required">*</span></label>
+            <input
+              id="vin"
+              type="text"
+              formControlName="vin"
+              placeholder="e.g. 1HGBH41JXMN109186"
+              maxlength="17"
+              [class.invalid]="isFieldInvalid('vin')"
+            />
+            <span class="field-hint">17-character Vehicle Identification Number</span>
+            <span class="field-error" *ngIf="isFieldInvalid('vin')">{{ getFieldError('vin') }}</span>
+          </div>
+
+          <div class="form-field">
+            <label for="inServiceDate">In-Service Date <span class="required">*</span></label>
+            <input
+              id="inServiceDate"
+              type="date"
+              formControlName="inServiceDate"
+              [class.invalid]="isFieldInvalid('inServiceDate')"
+            />
+            <span class="field-error" *ngIf="isFieldInvalid('inServiceDate')">{{ getFieldError('inServiceDate') }}</span>
+          </div>
+
+          <div class="form-field">
+            <label for="currentOdometerReading">Odometer Reading (km) <span class="required">*</span></label>
+            <input
+              id="currentOdometerReading"
+              type="number"
+              formControlName="currentOdometerReading"
+              placeholder="e.g. 45000"
+              min="0"
+              [class.invalid]="isFieldInvalid('currentOdometerReading')"
+            />
+            <span class="field-hint">Current odometer reading in kilometres</span>
+            <span class="field-error" *ngIf="isFieldInvalid('currentOdometerReading')">{{ getFieldError('currentOdometerReading') }}</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Damage Location — Interactive Vehicle Zone Selector -->
+      <div class="form-card zone-card">
+        <div class="card-header">
+          <span class="card-icon">🎯</span>
+          <h2>Damage Location</h2>
+          <span class="card-badge">360° Vehicle View</span>
+        </div>
+        <p class="zone-instruction">
+          Select the <strong>vehicle type</strong>, rotate to the affected side, then <strong>click a zone</strong>
+          to pick the issue — this will auto-fill the repair code and failure description below.
+        </p>
+        <app-vehicle-zone-selector (zoneSelected)="onZoneSelected($event)"></app-vehicle-zone-selector>
+      </div>
+
+      <!-- Repair Details -->
+      <div class="form-card">
+        <div class="card-header">
+          <span class="card-icon">🔧</span>
+          <h2>Repair Details</h2>
+        </div>
+        <div class="form-grid">
+
+          <div class="form-field">
+            <label for="repairCode">Repair / Labor Operation Code <span class="required">*</span></label>
+            <select
+              id="repairCode"
+              formControlName="repairCode"
+              [class.invalid]="isFieldInvalid('repairCode')"
+            >
+              <option value="" disabled>Select repair code…</option>
+              <option *ngFor="let r of repairCodes" [value]="r.code">{{ r.code }} – {{ r.label }}</option>
+            </select>
+            <span class="field-hint">Auto-filled when you click a zone above, or select manually.</span>
+            <span class="field-error" *ngIf="isFieldInvalid('repairCode')">{{ getFieldError('repairCode') }}</span>
+          </div>
+
+          <div class="form-field">
+            <label for="laborHours">Labor Hours <span class="required">*</span></label>
+            <input
+              id="laborHours"
+              type="number"
+              formControlName="laborHours"
+              placeholder="e.g. 2.5"
+              min="0.1"
+              step="0.1"
+              [class.invalid]="isFieldInvalid('laborHours')"
+            />
+            <span class="field-error" *ngIf="isFieldInvalid('laborHours')">{{ getFieldError('laborHours') }}</span>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="parts">Parts Used <span class="required">*</span></label>
+            <input
+              id="parts"
+              type="text"
+              formControlName="parts"
+              placeholder="e.g. Gasket Set P/N 12345, Oil Pan P/N 67890"
+              [class.invalid]="isFieldInvalid('parts')"
+            />
+            <span class="field-hint">Comma-separated part numbers and descriptions</span>
+            <span class="field-error" *ngIf="isFieldInvalid('parts')">{{ getFieldError('parts') }}</span>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="failureDescription">Failure Description <span class="required">*</span></label>
+            <textarea
+              id="failureDescription"
+              formControlName="failureDescription"
+              rows="5"
+              placeholder="Auto-filled from zone selection above, or describe the failure mode, symptoms, and diagnostic findings…"
+              [class.invalid]="isFieldInvalid('failureDescription')"
+            ></textarea>
+            <span class="field-hint">
+              {{ claimForm.get('failureDescription')?.value?.length || 0 }}/2000 characters (min 20)
+            </span>
+            <span class="field-error" *ngIf="isFieldInvalid('failureDescription')">{{ getFieldError('failureDescription') }}</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Prior Service History (optional) -->
+      <div class="form-card">
+        <div class="card-header">
+          <span class="card-icon">📋</span>
+          <h2>Prior Service History <span class="optional">(Optional)</span></h2>
+          <button type="button" class="btn-add-history" (click)="addServiceHistory()">
+            + Add Entry
+          </button>
+        </div>
+        <p class="section-hint">Include relevant prior repairs that may affect adjudication.</p>
+
+        <div formArrayName="serviceHistory">
+          <div
+            *ngFor="let entry of serviceHistoryArray.controls; let i = index"
+            [formGroupName]="i"
+            class="history-entry"
+          >
+            <div class="history-entry-header">
+              <span class="history-entry-num">Entry #{{ i + 1 }}</span>
+              <button type="button" class="btn-remove" (click)="removeServiceHistory(i)">Remove</button>
+            </div>
+            <div class="form-grid history-grid">
+              <div class="form-field">
+                <label>Date</label>
+                <input type="date" formControlName="date" />
+              </div>
+              <div class="form-field">
+                <label>Odometer Reading (km)</label>
+                <input type="number" formControlName="odometerReading" placeholder="Odometer reading at service" min="0" />
+              </div>
+              <div class="form-field">
+                <label>Repair Code</label>
+                <input type="text" formControlName="repairCode" placeholder="e.g. ENG-001" />
+              </div>
+              <div class="form-field full-width">
+                <label>Description</label>
+                <input type="text" formControlName="description" placeholder="Brief description of work performed" />
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="serviceHistoryArray.length === 0" class="empty-history">
+            No prior service history added. Click "+ Add Entry" to include relevant repairs.
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Alert -->
+      <div class="alert alert-error" *ngIf="submitError">
+        <span class="alert-icon">⚠️</span>
+        <span>{{ submitError }}</span>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" (click)="onReset()" [disabled]="isSubmitting">
+          Clear Form
+        </button>
+        <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+          <span *ngIf="isSubmitting" class="spinner"></span>
+          {{ isSubmitting ? 'Adjudicating…' : 'Submit Claim' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="dashboard-page">
+  <div class="dashboard-container">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h1>Claim Queue</h1>
+        <p class="subtitle">Review and manage warranty adjudication results</p>
+      </div>
+      <button class="btn-new-claim" routerLink="/claims/new">+ New Claim</button>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-row">
+      <div class="stat-card stat-total">
+        <div class="stat-number">{{ stats.total }}</div>
+        <div class="stat-label">Total Claims</div>
+      </div>
+      <div class="stat-card stat-approved" (click)="setFilter('APPROVED')" [class.active-filter]="filterDisposition === 'APPROVED'">
+        <div class="stat-number">{{ stats.approved }}</div>
+        <div class="stat-label">✓ Approved</div>
+      </div>
+      <div class="stat-card stat-rejected" (click)="setFilter('REJECTED')" [class.active-filter]="filterDisposition === 'REJECTED'">
+        <div class="stat-number">{{ stats.rejected }}</div>
+        <div class="stat-label">✕ Rejected</div>
+      </div>
+      <div class="stat-card stat-pending" (click)="setFilter('PENDING')" [class.active-filter]="filterDisposition === 'PENDING'">
+        <div class="stat-number">{{ stats.pending }}</div>
+        <div class="stat-label">⏳ Pending Review</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-bar">
+      <div class="filter-tabs">
+        <button
+          *ngFor="let f of [{val: 'ALL', label: 'All'}, {val: 'APPROVED', label: 'Approved'}, {val: 'REJECTED', label: 'Rejected'}, {val: 'PENDING', label: 'Pending'}]"
+          class="filter-tab"
+          [class.active]="filterDisposition === f.val"
+          (click)="setFilter(f.val)"
+        >
+          {{ f.label }}
+        </button>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          [(ngModel)]="searchVin"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Search by VIN…"
+        />
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="skeleton-row" *ngFor="let i of [1,2,3]"></div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="loadError && !isLoading && claims.length === 0" class="error-banner">
+      <span>⚠️</span> {{ loadError }}
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && claims.length === 0 && !loadError" class="empty-state">
+      <div class="empty-icon">📋</div>
+      <h3>No claims yet</h3>
+      <p>Submit your first warranty claim to get started.</p>
+      <button routerLink="/claims/new" class="btn-new-claim">+ Submit Claim</button>
+    </div>
+
+    <!-- Empty filtered state -->
+    <div *ngIf="!isLoading && claims.length > 0 && filteredClaims.length === 0" class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <h3>No matching claims</h3>
+      <p>Try adjusting your filters or search term.</p>
+      <button class="btn-clear-filter" (click)="setFilter('ALL'); searchVin = ''">Clear Filters</button>
+    </div>
+
+    <!-- Claims Table -->
+    <div *ngIf="!isLoading && filteredClaims.length > 0" class="claims-table-wrapper">
+      <table class="claims-table">
+        <thead>
+          <tr>
+            <th>Claim ID</th>
+            <th>VIN</th>
+            <th>Repair Code</th>
+            <th>Disposition</th>
+            <th>Confidence</th>
+            <th>Submitted</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let claim of filteredClaims; trackBy: trackByClaim"
+            class="claim-row"
+            [routerLink]="['/claims', claim.claimId]"
+          >
+            <td class="cell-id">
+              <span class="claim-id-badge">{{ claim.claimId }}</span>
+              <span *ngIf="claim.assessorOverridden" class="override-tag">Overridden</span>
+            </td>
+            <td class="cell-vin mono">{{ claim.vin }}</td>
+            <td class="cell-code mono">{{ claim.repairCode }}</td>
+            <td>
+              <app-disposition-badge [disposition]="claim.disposition"></app-disposition-badge>
+            </td>
+            <td>
+              <div class="confidence-bar-wrap">
+                <div
+                  class="confidence-bar"
+                  [ngClass]="claim.confidenceScore >= 0.85 ? 'bar-high' : claim.confidenceScore >= 0.6 ? 'bar-med' : 'bar-low'"
+                  [style.width.%]="claim.confidenceScore * 100"
+                ></div>
+                <span class="confidence-pct">{{ (claim.confidenceScore * 100).toFixed(0) }}%</span>
+              </div>
+            </td>
+            <td class="cell-date">{{ claim.timestamp | date:'MMM d, y, h:mm a' }}</td>
+            <td class="cell-action">
+              <span class="view-link">View →</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
