@@ -31,6 +31,7 @@ class Settings:
     db_auto_create_schema: bool
     policy_upload_dir: Path
     policy_max_upload_mb: int
+    cors_allowed_origins: tuple[str, ...]
     data_dir: Path
     clauses_dir: Path
     claim_file: Path
@@ -38,6 +39,19 @@ class Settings:
 
 def _env_flag(name: str, default: str = "false") -> bool:
     return os.getenv(name, default).strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _env_list(name: str, default: tuple[str, ...] = ()) -> tuple[str, ...]:
+    raw_value = os.getenv(name, "").strip()
+    if not raw_value:
+        return default
+
+    normalized: list[str] = []
+    for item in raw_value.split(","):
+        cleaned = item.strip().rstrip("/")
+        if cleaned:
+            normalized.append(cleaned)
+    return tuple(normalized)
 
 
 def _build_database_url(data_dir: Path) -> str:
@@ -77,6 +91,19 @@ def get_settings() -> Settings:
         ),
         policy_upload_dir=(Path(os.getenv("POLICY_UPLOAD_DIR", str(DATA_DIR / "policy_corpus")))).resolve(),
         policy_max_upload_mb=int(os.getenv("POLICY_MAX_UPLOAD_MB", "15").strip()),
+        cors_allowed_origins=_env_list(
+            "CORS_ALLOWED_ORIGINS",
+            default=(
+                "http://localhost:5173",
+                "http://127.0.0.1:5173",
+                "http://localhost:4173",
+                "http://127.0.0.1:4173",
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+                "http://localhost:4200",
+                "http://127.0.0.1:4200",
+            ),
+        ),
         data_dir=DATA_DIR,
         clauses_dir=CLAUSES_DIR,
         claim_file=CLAIM_FILE,

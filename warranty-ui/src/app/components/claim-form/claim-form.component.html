@@ -45,6 +45,17 @@
           </div>
 
           <div class="form-field">
+            <label for="repairOrderDate">Repair Order Date <span class="required">*</span></label>
+            <input
+              id="repairOrderDate"
+              type="date"
+              formControlName="repairOrderDate"
+              [class.invalid]="isFieldInvalid('repairOrderDate')"
+            />
+            <span class="field-error" *ngIf="isFieldInvalid('repairOrderDate')">{{ getFieldError('repairOrderDate') }}</span>
+          </div>
+
+          <div class="form-field">
             <label for="currentOdometerReading">Odometer Reading (km) <span class="required">*</span></label>
             <input
               id="currentOdometerReading"
@@ -85,16 +96,24 @@
 
           <div class="form-field">
             <label for="repairCode">Repair / Labor Operation Code <span class="required">*</span></label>
-            <select
-              id="repairCode"
+            <app-repair-code-combobox
               formControlName="repairCode"
-              [class.invalid]="isFieldInvalid('repairCode')"
-            >
-              <option value="" disabled>Select repair code…</option>
-              <option *ngFor="let r of repairCodes" [value]="r.code">{{ r.code }} – {{ r.label }}</option>
-            </select>
+            ></app-repair-code-combobox>
             <span class="field-hint">Auto-filled when you click a zone above, or select manually.</span>
             <span class="field-error" *ngIf="isFieldInvalid('repairCode')">{{ getFieldError('repairCode') }}</span>
+          </div>
+
+          <div class="form-field">
+            <label for="causalPart">Causal Part <span class="required">*</span></label>
+            <input
+              id="causalPart"
+              type="text"
+              formControlName="causalPart"
+              placeholder="e.g. water pump"
+              [class.invalid]="isFieldInvalid('causalPart')"
+            />
+            <span class="field-hint">Auto-filled from the selected repair code. Adjust only if needed.</span>
+            <span class="field-error" *ngIf="isFieldInvalid('causalPart')">{{ getFieldError('causalPart') }}</span>
           </div>
 
           <div class="form-field">
@@ -111,17 +130,18 @@
             <span class="field-error" *ngIf="isFieldInvalid('laborHours')">{{ getFieldError('laborHours') }}</span>
           </div>
 
-          <div class="form-field full-width">
-            <label for="parts">Parts Used <span class="required">*</span></label>
+          <div class="form-field">
+            <label for="partsCostEur">Parts Cost (EUR) <span class="required">*</span></label>
             <input
-              id="parts"
-              type="text"
-              formControlName="parts"
-              placeholder="e.g. Gasket Set P/N 12345, Oil Pan P/N 67890"
-              [class.invalid]="isFieldInvalid('parts')"
+              id="partsCostEur"
+              type="number"
+              formControlName="partsCostEur"
+              placeholder="e.g. 230"
+              min="0"
+              step="0.01"
+              [class.invalid]="isFieldInvalid('partsCostEur')"
             />
-            <span class="field-hint">Comma-separated part numbers and descriptions</span>
-            <span class="field-error" *ngIf="isFieldInvalid('parts')">{{ getFieldError('parts') }}</span>
+            <span class="field-error" *ngIf="isFieldInvalid('partsCostEur')">{{ getFieldError('partsCostEur') }}</span>
           </div>
 
           <div class="form-field full-width">

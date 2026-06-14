@@ -69,6 +69,7 @@
 
 .form-field { display: flex; flex-direction: column; gap: 6px; }
 .form-field.full-width { grid-column: 1 / -1; }
+app-repair-code-combobox { display: block; }
 
 label {
   font-size: 13px;

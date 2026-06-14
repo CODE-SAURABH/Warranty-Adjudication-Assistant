@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClaimFormComponent } from './components/claim-form/claim-form.component';
 import { ClaimDetailComponent } from './components/claim-detail/claim-detail.component';
 import { DispositionBadgeComponent } from './components/disposition-badge/disposition-badge.component';
+import { RepairCodeComboboxComponent } from './components/repair-code-combobox/repair-code-combobox.component';
 import { VehicleZoneSelectorComponent } from './components/vehicle-zone-selector/vehicle-zone-selector.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { VehicleZoneSelectorComponent } from './components/vehicle-zone-selector
     ClaimFormComponent,
     ClaimDetailComponent,
     DispositionBadgeComponent,
+    RepairCodeComboboxComponent,
     VehicleZoneSelectorComponent,
   ],
   imports: [

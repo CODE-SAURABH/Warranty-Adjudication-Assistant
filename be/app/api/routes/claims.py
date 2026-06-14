@@ -2,11 +2,29 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from ...schemas.claims import ClaimInput
-from ...services.adjudication import adjudicate_claim_async
+from ...schemas.database import (
+    AdjudicationUiResponseSchema,
+    ClaimDeleteResponseSchema,
+    ClaimOverrideRequestSchema,
+    ClaimQueueItemSchema,
+    ClaimResultSchema,
+)
+from ...repositories.database_store import (
+    delete_claim_decision_records,
+    list_claim_decision_records,
+    load_claim_decision_record,
+    save_claim_decision_record,
+)
+from ...services.adjudication import adjudicate_claim_async, extract_ui_adjudication_response
 from ...services.claim_builder import build_claim_from_input
+from ...services.claim_records import (
+    apply_override_to_claim_record,
+    build_claim_result_record,
+    build_queue_item,
+)
 from ...services.rule_engine import run_rule_engine
 
 
@@ -24,3 +42,57 @@ async def adjudicate_claim(payload: ClaimInput) -> dict[str, Any]:
     claim = build_claim_from_input(payload.model_dump())
     return await adjudicate_claim_async(claim)
 
+
+@router.post("/adjudicate/ui", response_model=AdjudicationUiResponseSchema)
+async def adjudicate_claim_ui(payload: ClaimInput) -> AdjudicationUiResponseSchema:
+    claim = build_claim_from_input(payload.model_dump())
+    response = await adjudicate_claim_async(claim)
+    ui_response = extract_ui_adjudication_response(
+        response.get("agent_output", {}),
+        fallback_claim_id=response.get("rule_engine_output", {}).get("claim_id"),
+    )
+    save_claim_decision_record(build_claim_result_record(payload.model_dump(), ui_response))
+    return ui_response
+
+
+@router.get("/claims", response_model=list[ClaimQueueItemSchema])
+def list_claims() -> list[ClaimQueueItemSchema]:
+    items: list[dict[str, Any]] = []
+    for row in list_claim_decision_records():
+        payload = row.get("payload", {})
+        if not isinstance(payload, dict):
+            continue
+        items.append(build_queue_item(payload))
+    return items
+
+
+@router.get("/claims/{claim_id}", response_model=ClaimResultSchema)
+def get_claim(claim_id: str) -> ClaimResultSchema:
+    record = load_claim_decision_record(claim_id)
+    if not record or not isinstance(record.get("payload"), dict):
+        raise HTTPException(status_code=404, detail="Claim not found.")
+    payload = record["payload"]
+    return ClaimResultSchema.model_validate(payload)
+
+
+@router.post("/claims/{claim_id}/override", response_model=ClaimResultSchema)
+def override_claim(claim_id: str, override: ClaimOverrideRequestSchema) -> ClaimResultSchema:
+    if claim_id != override.claimId:
+        raise HTTPException(status_code=400, detail="Path claim_id does not match request claimId.")
+
+    record = load_claim_decision_record(claim_id)
+    if not record or not isinstance(record.get("payload"), dict):
+        raise HTTPException(status_code=404, detail="Claim not found.")
+
+    payload = record["payload"]
+    if "submission" not in payload:
+        raise HTTPException(status_code=404, detail="Claim not found.")
+    return ClaimResultSchema.model_validate(updated_payload)
+
+
+@router.delete("/claims/{claim_id}", response_model=ClaimDeleteResponseSchema)
+def delete_claim(claim_id: str) -> ClaimDeleteResponseSchema:
+    deleted_count = delete_claim_decision_records(claim_id)
+    if deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Claim not found.")
+    return ClaimDeleteResponseSchema(claimId=claim_id, deleted=True)

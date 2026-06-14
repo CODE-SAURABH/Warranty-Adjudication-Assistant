@@ -18,17 +18,16 @@ export class DashboardComponent implements OnInit {
   constructor(private warrantyService: WarrantyService) {}
 
   ngOnInit(): void {
-    // Subscribe to local queue (fed by submissions in this session)
+    // Subscribe to locally cached claim results.
     this.warrantyService.claimQueue$.subscribe((queue) => {
       this.claims = queue;
       this.applyFilters();
     });
 
-    // Also fetch from API to hydrate the queue
+    // Load any cached claims persisted by the submit flow.
     this.warrantyService.getClaimQueue().subscribe({
       next: () => { this.isLoading = false; },
       error: (err: Error) => {
-        // Non-fatal: queue may be populated via local submissions
         this.isLoading = false;
         if (this.claims.length === 0) {
           this.loadError = err.message;

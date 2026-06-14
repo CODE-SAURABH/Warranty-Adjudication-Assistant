@@ -142,6 +142,7 @@ def seed_database() -> None:
 def ensure_database_ready() -> None:
     engine = get_engine()
     existing_tables = set(inspect(engine).get_table_names())
+    required_tables = set(Base.metadata.tables.keys())
 
     if settings.db_auto_create_schema:
         Base.metadata.create_all(bind=engine)
@@ -150,6 +151,13 @@ def ensure_database_ready() -> None:
         raise RuntimeError(
             "Database schema is not initialized. Run 'python -m alembic upgrade head' before starting the app."
         )
+    else:
+        missing_tables = sorted(required_tables - existing_tables)
+        if missing_tables:
+            raise RuntimeError(
+                "Database schema is out of date. Missing tables: "
+                f"{', '.join(missing_tables)}. Run 'python -m alembic upgrade head' before starting the app."
+            )
 
     if settings.db_seed_on_startup:
         seed_database()

@@ -241,6 +241,17 @@ class AssessorUiSchema(BaseModel):
     override_capability: OverrideCapabilitySchema
 
 
+class OverrideCapabilityUiSchema(BaseModel):
+    allowed: bool
+    required_fields: list[str] = Field(default_factory=list)
+
+
+class AssessorUiResponseSchema(BaseModel):
+    claim_queue: AssessorClaimQueueSchema
+    decision_detail: AssessorDecisionDetailSchema
+    override_capability: OverrideCapabilityUiSchema
+
+
 class ClaimDecisionPayloadSchema(BaseModel):
     claim_id: str
     disposition_per_claim: DecisionDispositionSchema
@@ -262,6 +273,105 @@ class ClaimDecisionPayloadSchema(BaseModel):
         if len(value) > 50:
             raise ValueError("Tool payload contains too many collection items.")
         return value
+
+
+class AdjudicationUiResponseSchema(BaseModel):
+    claim_id: str
+    disposition_per_claim: DecisionDispositionSchema
+    cited_justification: list[CitationSchema] = Field(default_factory=list)
+    missing_information: list[MissingInformationSchema] = Field(default_factory=list)
+    assessor_ui: AssessorUiResponseSchema
+
+    @field_validator("claim_id")
+    @classmethod
+    def validate_claim_id(cls, value: str) -> str:
+        cleaned = value.strip()
+        if not cleaned:
+            raise ValueError("claim_id must not be empty.")
+        return cleaned
+
+
+class ClaimDispositionUiSchema(str):
+    pass
+
+
+class StoredClaimSubmissionSchema(BaseModel):
+    vin: str
+    inServiceDate: str = ""
+    repairOrderDate: str = ""
+    currentOdometerReading: int | float | None = None
+    repairCode: str = ""
+    causalPart: str = ""
+    partsCostEur: int | float | None = None
+    laborHours: int | float | None = None
+    failureDescription: str = ""
+    serviceHistory: list[dict[str, Any]] = Field(default_factory=list)
+
+
+class PolicyClauseUiSchema(BaseModel):
+    clauseId: str
+    section: str
+    text: str
+    relevanceScore: float | None = None
+
+
+class MissingInfoUiSchema(BaseModel):
+    field: str
+    description: str
+    clauseReference: str | None = None
+
+
+class ClaimResultSchema(BaseModel):
+    claimId: str
+    disposition: Literal["APPROVED", "REJECTED", "PENDING"]
+    confidenceScore: float
+    justification: str
+    citedClauses: list[PolicyClauseUiSchema] = Field(default_factory=list)
+    missingInfo: list[MissingInfoUiSchema] = Field(default_factory=list)
+    assessorNotes: str | None = None
+    timestamp: str
+    submission: StoredClaimSubmissionSchema
+    assessorOverridden: bool = False
+
+
+class ClaimQueueItemSchema(BaseModel):
+    claimId: str
+    vin: str
+    disposition: Literal["APPROVED", "REJECTED", "PENDING"]
+    confidenceScore: float
+    repairCode: str
+    timestamp: str
+    assessorOverridden: bool = False
+
+
+class ClaimOverrideRequestSchema(BaseModel):
+    claimId: str
+    originalDisposition: Literal["APPROVED", "REJECTED", "PENDING"]
+    overrideDisposition: Literal["APPROVED", "REJECTED", "PENDING"]
+    assessorRationale: str
+    assessorId: str
+    timestamp: str
+
+    @field_validator("claimId", "assessorId", "timestamp")
+    @classmethod
+    def validate_non_empty_string(cls, value: str) -> str:
+        cleaned = value.strip()
+        if not cleaned:
+            raise ValueError("field must not be empty.")
+        return cleaned
+
+    @field_validator("assessorRationale")
+    @classmethod
+    def validate_rationale(cls, value: str) -> str:
+        cleaned = value.strip()
+        if len(cleaned) < 10:
+            raise ValueError("assessorRationale must be at least 10 characters long.")
+        return cleaned
+
+
+class ClaimDeleteResponseSchema(BaseModel):
+    claimId: str
+    deleted: bool
 
 
 class PolicyCorpusUploadResponseSchema(BaseModel):

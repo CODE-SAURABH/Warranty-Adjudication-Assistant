@@ -59,6 +59,50 @@ def _tool_error(message: str) -> ValueError:
     return ValueError(message)
 
 
+def _format_legacy_clause(record: dict[str, Any]) -> dict[str, Any]:
+    clause_id = str(record.get("clause_id") or "").strip()
+    source_name = str(record.get("source_name") or settings.data_dir.joinpath("clauses.json").name).strip()
+    clause_quote = str(record.get("clause_quote") or "").strip()
+    return {
+        "clause_id": clause_id,
+        "section": record.get("section"),
+        "title": record.get("section") or clause_id,
+        "clause_text": clause_quote,
+        "clause_quote": clause_quote,
+        "clause_link": f"{source_name}#{clause_id}" if clause_id else source_name,
+        "source_name": source_name,
+        "retrieval_source": "legacy_policy_clause_db",
+    }
+
+
+def _search_legacy_policy_clauses(query: str, top_k: int) -> list[dict[str, Any]]:
+    query_terms = [term.strip().lower() for term in query.split() if term.strip()]
+    if not query_terms:
+        return []
+
+    scored: list[tuple[int, dict[str, Any]]] = []
+    for record in load_policy_clauses(None, None):
+        payload = _sanitize_record(record)
+        if payload is None:
+            continue
+
+        haystack = " ".join(
+            [
+                str(payload.get("clause_id", "")),
+                str(payload.get("section", "")),
+                str(payload.get("clause_quote", "")),
+            ]
+        ).lower()
+        score = sum(3 for term in query_terms if term in str(payload.get("clause_id", "")).lower())
+        score += sum(2 for term in query_terms if term in str(payload.get("section", "")).lower())
+        score += sum(1 for term in query_terms if term in haystack)
+        if score > 0:
+            scored.append((score, _format_legacy_clause(payload)))
+
+    scored.sort(key=lambda item: (-item[0], item[1].get("clause_id") or "", item[1].get("source_name") or ""))
+    return [item[1] for item in scored[:top_k]]
+
+
 @tool
 def retrieve_policy_clauses(clauses_doc_ref: str | None = None, clause_ids: list[str] | None = None) -> dict[str, Any]:
     """Retrieve exact policy clauses for citation."""
@@ -168,9 +212,14 @@ def search_policy_clauses(query: str, policy_id: str | None = None, top_k: int =
     normalized_policy_id = policy_id.strip() if isinstance(policy_id, str) and policy_id.strip() else None
 
     clauses = _sanitize_records(search_policy_corpus_clauses(normalized_query, normalized_policy_id, normalized_top_k))
+    retrieval_source = "policy_corpus"
+    if not clauses:
+        clauses = _search_legacy_policy_clauses(normalized_query, normalized_top_k)
+        retrieval_source = "legacy_policy_clause_db"
     return {
         "policy_id": normalized_policy_id,
         "query": normalized_query,
+        "retrieval_source": retrieval_source,
         "count": len(clauses),
         "clauses": clauses,
     }
@@ -182,9 +231,14 @@ def get_policy_clauses_by_ids(policy_id: str, clause_ids: list[str]) -> dict[str
     normalized_policy_id = _normalize_text(policy_id, field_name="policy_id")
     normalized_ids = _normalize_id_list(clause_ids, field_name="clause_ids")
     clauses = _sanitize_records(load_policy_corpus_clauses_by_ids(normalized_policy_id, normalized_ids))
+    retrieval_source = "policy_corpus"
+    if not clauses:
+        clauses = [_format_legacy_clause(record) for record in _sanitize_records(load_policy_clauses(None, normalized_ids))]
+        retrieval_source = "legacy_policy_clause_db"
     return {
         "policy_id": normalized_policy_id,
         "requested_clause_ids": normalized_ids,
+        "retrieval_source": retrieval_source,
         "count": len(clauses),
         "clauses": clauses,
     }
@@ -203,6 +257,15 @@ def save_claim_decision(decision: dict[str, Any] | str) -> dict[str, Any]:
 
     if not isinstance(payload, dict):
         raise _tool_error("Decision payload must be a JSON object.")
+
+    if not str(payload.get("claim_id", "")).strip():
+        claim_queue = payload.get("assessor_ui")
+        if isinstance(claim_queue, dict):
+            claim_queue = claim_queue.get("claim_queue")
+        if isinstance(claim_queue, dict):
+            nested_claim_id = str(claim_queue.get("claim_id", "")).strip()
+            if nested_claim_id:
+                payload = {**payload, "claim_id": nested_claim_id}
 
     try:
         validated_payload = ClaimDecisionPayloadSchema.model_validate(payload)

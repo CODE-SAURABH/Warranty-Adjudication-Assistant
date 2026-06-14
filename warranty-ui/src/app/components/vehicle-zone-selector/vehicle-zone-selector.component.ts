@@ -3,8 +3,8 @@ import {
   Output,
   EventEmitter,
   HostListener,
-  ElementRef,
 } from '@angular/core';
+import { getRepairCodeEntry } from '../../data/repair-codes.data';
 import { VehicleType, VehicleView, VehicleZone, SelectedZone } from '../../models/claim.model';
 
 interface ZoneIssue {
@@ -19,6 +19,18 @@ interface ZonePopup {
   x: number;
   y: number;
   issues: ZoneIssue[];
+}
+
+function zoneIssue(repairCode: string, label: string, description: string): ZoneIssue {
+  const entry = getRepairCodeEntry(repairCode);
+  if (!entry) {
+    throw new Error(`Unknown repair code in zoneIssueMap: ${repairCode}`);
+  }
+  return {
+    repairCode: entry.code,
+    label,
+    description,
+  };
 }
 
 @Component({
@@ -53,154 +65,154 @@ export class VehicleZoneSelectorComponent {
   private readonly zoneIssueMap: Record<string, ZoneIssue[]> = {
     // --- CAR ZONES ---
     'car-engine': [
-      { repairCode: 'ENG-001', label: 'Oil Leak', description: 'Engine oil leak detected from gasket or seal area.' },
-      { repairCode: 'ENG-002', label: 'Overheating', description: 'Engine temperature exceeds normal operating range.' },
-      { repairCode: 'ENG-003', label: 'Misfiring / Rough Idle', description: 'Engine misfiring or rough idle condition.' },
+      zoneIssue('ENG-001', 'Oil Leak', 'Engine oil leak detected from gasket or seal area.'),
+      zoneIssue('ENG-002', 'Overheating', 'Engine temperature exceeds normal operating range.'),
+      zoneIssue('ENG-003', 'Misfiring / Rough Idle', 'Engine misfiring or rough idle condition.'),
     ],
     'car-hood': [
-      { repairCode: 'ENG-001', label: 'Hood Latch Failure', description: 'Hood latch does not engage or disengage properly.' },
-      { repairCode: 'BODY-001', label: 'Hood Panel Damage', description: 'Hood panel shows signs of deformation or misalignment.' },
+      zoneIssue('ENG-001', 'Hood Latch Failure', 'Hood latch does not engage or disengage properly.'),
+      zoneIssue('BODY-001', 'Hood Panel Damage', 'Hood panel shows signs of deformation or misalignment.'),
     ],
     'car-front-bumper': [
-      { repairCode: 'BODY-001', label: 'Bumper Damage', description: 'Front bumper shows cracking, deformation, or misalignment.' },
-      { repairCode: 'ELEC-003', label: 'Parking Sensor Failure', description: 'Front parking sensors not detecting obstacles.' },
+      zoneIssue('BODY-001', 'Bumper Damage', 'Front bumper shows cracking, deformation, or misalignment.'),
+      zoneIssue('ELEC-003', 'Parking Sensor Failure', 'Front parking sensors not detecting obstacles.'),
     ],
     'car-front-lights': [
-      { repairCode: 'ELEC-004', label: 'Headlight Failure', description: 'One or more headlight units not functioning.' },
-      { repairCode: 'ELEC-005', label: 'DRL Malfunction', description: 'Daytime running lights not operating correctly.' },
+      zoneIssue('ELEC-004', 'Headlight Failure', 'One or more headlight units not functioning.'),
+      zoneIssue('ELEC-005', 'DRL Malfunction', 'Daytime running lights not operating correctly.'),
     ],
     'car-windshield': [
-      { repairCode: 'BODY-002', label: 'Windshield Crack', description: 'Windshield crack or chip affecting driver visibility.' },
-      { repairCode: 'ELEC-006', label: 'Wiper Motor Failure', description: 'Windshield wipers not operating at correct speed or not at all.' },
+      zoneIssue('BODY-002', 'Windshield Crack', 'Windshield crack or chip affecting driver visibility.'),
+      zoneIssue('ELEC-006', 'Wiper Motor Failure', 'Windshield wipers not operating at correct speed or not at all.'),
     ],
     'car-roof': [
-      { repairCode: 'BODY-003', label: 'Roof Panel Issue', description: 'Roof panel shows dents, rust, or water ingress.' },
-      { repairCode: 'AC-001', label: 'Sunroof Malfunction', description: 'Sunroof does not open/close or seals are leaking.' },
+      zoneIssue('BODY-003', 'Roof Panel Issue', 'Roof panel shows dents, rust, or water ingress.'),
+      zoneIssue('AC-001', 'Sunroof Malfunction', 'Sunroof does not open/close or seals are leaking.'),
     ],
     'car-door-fl': [
-      { repairCode: 'BODY-004', label: 'Door Latch/Lock', description: 'Front left door latch or lock mechanism failure.' },
-      { repairCode: 'ELEC-007', label: 'Power Window Failure', description: 'Front left power window motor or regulator failed.' },
-      { repairCode: 'BODY-005', label: 'Door Seal Leak', description: 'Door weather seal allows water or wind ingress.' },
+      zoneIssue('BODY-004', 'Door Latch/Lock', 'Front left door latch or lock mechanism failure.'),
+      zoneIssue('ELEC-007', 'Power Window Failure', 'Front left power window motor or regulator failed.'),
+      zoneIssue('BODY-005', 'Door Seal Leak', 'Door weather seal allows water or wind ingress.'),
     ],
     'car-door-rl': [
-      { repairCode: 'BODY-004', label: 'Door Latch/Lock', description: 'Rear left door latch or lock mechanism failure.' },
-      { repairCode: 'ELEC-007', label: 'Power Window Failure', description: 'Rear left power window motor or regulator failed.' },
-      { repairCode: 'BODY-005', label: 'Door Seal Leak', description: 'Door weather seal allows water or wind ingress.' },
+      zoneIssue('BODY-004', 'Door Latch/Lock', 'Rear left door latch or lock mechanism failure.'),
+      zoneIssue('ELEC-007', 'Power Window Failure', 'Rear left power window motor or regulator failed.'),
+      zoneIssue('BODY-005', 'Door Seal Leak', 'Door weather seal allows water or wind ingress.'),
     ],
     'car-door-fr': [
-      { repairCode: 'BODY-004', label: 'Door Latch/Lock', description: 'Front right door latch or lock mechanism failure.' },
-      { repairCode: 'ELEC-007', label: 'Power Window Failure', description: 'Front right power window motor or regulator failed.' },
+      zoneIssue('BODY-004', 'Door Latch/Lock', 'Front right door latch or lock mechanism failure.'),
+      zoneIssue('ELEC-007', 'Power Window Failure', 'Front right power window motor or regulator failed.'),
     ],
     'car-door-rr': [
-      { repairCode: 'BODY-004', label: 'Door Latch/Lock', description: 'Rear right door latch or lock mechanism failure.' },
-      { repairCode: 'ELEC-007', label: 'Power Window Failure', description: 'Rear right power window motor or regulator failed.' },
+      zoneIssue('BODY-004', 'Door Latch/Lock', 'Rear right door latch or lock mechanism failure.'),
+      zoneIssue('ELEC-007', 'Power Window Failure', 'Rear right power window motor or regulator failed.'),
     ],
     'car-wheel-fl': [
-      { repairCode: 'BRKS-001', label: 'Brake ABS Malfunction', description: 'ABS warning on front left wheel speed sensor.' },
-      { repairCode: 'SUSP-001', label: 'Suspension / Strut', description: 'Front left strut or control arm worn or damaged.' },
-      { repairCode: 'TIRE-001', label: 'Tire / Rim Damage', description: 'Tire pressure loss or rim deformation on front left.' },
+      zoneIssue('BRKS-001', 'Brake ABS Malfunction', 'ABS warning on front left wheel speed sensor.'),
+      zoneIssue('SUSP-001', 'Suspension / Strut', 'Front left strut or control arm worn or damaged.'),
+      zoneIssue('TIRE-001', 'Tire / Rim Damage', 'Tire pressure loss or rim deformation on front left.'),
     ],
     'car-wheel-rl': [
-      { repairCode: 'BRKS-001', label: 'Brake ABS Malfunction', description: 'ABS warning on rear left wheel speed sensor.' },
-      { repairCode: 'SUSP-002', label: 'Rear Suspension', description: 'Rear left shock absorber or spring issue.' },
-      { repairCode: 'TIRE-001', label: 'Tire / Rim Damage', description: 'Tire pressure loss or rim deformation on rear left.' },
+      zoneIssue('BRKS-001', 'Brake ABS Malfunction', 'ABS warning on rear left wheel speed sensor.'),
+      zoneIssue('SUSP-002', 'Rear Suspension', 'Rear left shock absorber or spring issue.'),
+      zoneIssue('TIRE-001', 'Tire / Rim Damage', 'Tire pressure loss or rim deformation on rear left.'),
     ],
     'car-wheel-fr': [
-      { repairCode: 'BRKS-001', label: 'Brake ABS Malfunction', description: 'ABS warning on front right wheel speed sensor.' },
-      { repairCode: 'SUSP-001', label: 'Suspension / Strut', description: 'Front right strut or control arm worn or damaged.' },
-      { repairCode: 'TIRE-001', label: 'Tire / Rim Damage', description: 'Tire pressure loss or rim deformation on front right.' },
+      zoneIssue('BRKS-001', 'Brake ABS Malfunction', 'ABS warning on front right wheel speed sensor.'),
+      zoneIssue('SUSP-001', 'Suspension / Strut', 'Front right strut or control arm worn or damaged.'),
+      zoneIssue('TIRE-001', 'Tire / Rim Damage', 'Tire pressure loss or rim deformation on front right.'),
     ],
     'car-wheel-rr': [
-      { repairCode: 'BRKS-001', label: 'Brake ABS Malfunction', description: 'ABS warning on rear right wheel speed sensor.' },
-      { repairCode: 'SUSP-002', label: 'Rear Suspension', description: 'Rear right shock absorber or spring issue.' },
-      { repairCode: 'TIRE-001', label: 'Tire / Rim Damage', description: 'Tire pressure loss or rim deformation on rear right.' },
+      zoneIssue('BRKS-001', 'Brake ABS Malfunction', 'ABS warning on rear right wheel speed sensor.'),
+      zoneIssue('SUSP-002', 'Rear Suspension', 'Rear right shock absorber or spring issue.'),
+      zoneIssue('TIRE-001', 'Tire / Rim Damage', 'Tire pressure loss or rim deformation on rear right.'),
     ],
     'car-transmission': [
-      { repairCode: 'TRANS-001', label: 'Transmission Slipping', description: 'Transmission slips between gears under load.' },
-      { repairCode: 'TRANS-002', label: 'No Shift / Hard Shift', description: 'Transmission fails to shift or shifts harshly.' },
+      zoneIssue('TRANS-001', 'Transmission Slipping', 'Transmission slips between gears under load.'),
+      zoneIssue('TRANS-002', 'No Shift / Hard Shift', 'Transmission fails to shift or shifts harshly.'),
     ],
     'car-exhaust': [
-      { repairCode: 'EXH-001', label: 'Exhaust Leak', description: 'Exhaust gases leaking from manifold, pipe, or joint.' },
-      { repairCode: 'EXH-002', label: 'Catalytic Converter', description: 'Catalytic converter efficiency below threshold.' },
+      zoneIssue('EXH-001', 'Exhaust Leak', 'Exhaust gases leaking from manifold, pipe, or joint.'),
+      zoneIssue('EXH-002', 'Catalytic Converter', 'Catalytic converter efficiency below threshold.'),
     ],
     'car-rear-bumper': [
-      { repairCode: 'BODY-001', label: 'Bumper Damage', description: 'Rear bumper shows cracking or misalignment.' },
-      { repairCode: 'ELEC-003', label: 'Rear Sensor Failure', description: 'Rear parking sensors not functioning.' },
+      zoneIssue('BODY-001', 'Bumper Damage', 'Rear bumper shows cracking or misalignment.'),
+      zoneIssue('ELEC-003', 'Rear Sensor Failure', 'Rear parking sensors not functioning.'),
     ],
     'car-trunk': [
-      { repairCode: 'BODY-006', label: 'Trunk Latch Failure', description: 'Trunk lid does not latch or release properly.' },
-      { repairCode: 'ELEC-008', label: 'Power Tailgate Issue', description: 'Power trunk/tailgate motor or sensor failed.' },
+      zoneIssue('BODY-006', 'Trunk Latch Failure', 'Trunk lid does not latch or release properly.'),
+      zoneIssue('ELEC-008', 'Power Tailgate Issue', 'Power trunk/tailgate motor or sensor failed.'),
     ],
     'car-rear-lights': [
-      { repairCode: 'ELEC-009', label: 'Tail Light Failure', description: 'Tail light, brake light, or reverse light not working.' },
+      zoneIssue('ELEC-009', 'Tail Light Failure', 'Tail light, brake light, or reverse light not working.'),
     ],
     'car-battery': [
-      { repairCode: 'ELEC-001', label: 'Battery Drain', description: 'Battery discharges unexpectedly overnight or within hours.' },
-      { repairCode: 'ELEC-002', label: 'Alternator Failure', description: 'Alternator not charging battery while engine running.' },
+      zoneIssue('ELEC-001', 'Battery Drain', 'Battery discharges unexpectedly overnight or within hours.'),
+      zoneIssue('ELEC-002', 'Alternator Failure', 'Alternator not charging battery while engine running.'),
     ],
     'car-ac': [
-      { repairCode: 'AC-001', label: 'A/C Compressor Failure', description: 'Air conditioning compressor not engaging or blowing warm.' },
-      { repairCode: 'AC-002', label: 'Refrigerant Leak', description: 'A/C system refrigerant level low due to leak.' },
+      zoneIssue('AC-001', 'A/C Compressor Failure', 'Air conditioning compressor not engaging or blowing warm.'),
+      zoneIssue('AC-002', 'Refrigerant Leak', 'A/C system refrigerant level low due to leak.'),
     ],
     'car-interior': [
-      { repairCode: 'INT-001', label: 'Dashboard Warning Light', description: 'Persistent warning light on instrument cluster.' },
-      { repairCode: 'INT-002', label: 'Infotainment Failure', description: 'Head unit / display screen not responding or blank.' },
-      { repairCode: 'ELEC-010', label: 'Airbag System Fault', description: 'Airbag warning light on or SRS fault code present.' },
+      zoneIssue('INT-001', 'Dashboard Warning Light', 'Persistent warning light on instrument cluster.'),
+      zoneIssue('INT-002', 'Infotainment Failure', 'Head unit / display screen not responding or blank.'),
+      zoneIssue('ELEC-010', 'Airbag System Fault', 'Airbag warning light on or SRS fault code present.'),
     ],
     // --- BIKE ZONES ---
     'bike-engine': [
-      { repairCode: 'ENG-001', label: 'Engine Oil Leak', description: 'Engine oil leaking from gasket or case seam.' },
-      { repairCode: 'ENG-003', label: 'Misfiring / No Start', description: 'Engine misfires or fails to start.' },
+      zoneIssue('ENG-001', 'Engine Oil Leak', 'Engine oil leaking from gasket or case seam.'),
+      zoneIssue('ENG-003', 'Misfiring / No Start', 'Engine misfires or fails to start.'),
     ],
     'bike-front-wheel': [
-      { repairCode: 'BRKS-002', label: 'Front Brake Fade', description: 'Front brake pad worn or caliper seized.' },
-      { repairCode: 'SUSP-003', label: 'Fork Seal Leak', description: 'Front fork seals leaking oil.' },
-      { repairCode: 'TIRE-001', label: 'Tire Damage', description: 'Front tire puncture or sidewall damage.' },
+      zoneIssue('BRKS-002', 'Front Brake Fade', 'Front brake pad worn or caliper seized.'),
+      zoneIssue('SUSP-003', 'Fork Seal Leak', 'Front fork seals leaking oil.'),
+      zoneIssue('TIRE-001', 'Tire Damage', 'Front tire puncture or sidewall damage.'),
     ],
     'bike-rear-wheel': [
-      { repairCode: 'BRKS-003', label: 'Rear Brake Issue', description: 'Rear brake pad worn or drum issue.' },
-      { repairCode: 'SUSP-004', label: 'Rear Shock Failure', description: 'Rear shock absorber leaking or collapsed.' },
-      { repairCode: 'TIRE-001', label: 'Tire Damage', description: 'Rear tire puncture or excessive wear.' },
+      zoneIssue('BRKS-003', 'Rear Brake Issue', 'Rear brake pad worn or drum issue.'),
+      zoneIssue('SUSP-004', 'Rear Shock Failure', 'Rear shock absorber leaking or collapsed.'),
+      zoneIssue('TIRE-001', 'Tire Damage', 'Rear tire puncture or excessive wear.'),
     ],
     'bike-fuel-tank': [
-      { repairCode: 'FUEL-001', label: 'Fuel Leak', description: 'Fuel tank or fuel line leaking.' },
-      { repairCode: 'FUEL-002', label: 'Fuel Gauge Failure', description: 'Fuel gauge reads inaccurately or not at all.' },
+      zoneIssue('FUEL-001', 'Fuel Leak', 'Fuel tank or fuel line leaking.'),
+      zoneIssue('FUEL-002', 'Fuel Gauge Failure', 'Fuel gauge reads inaccurately or not at all.'),
     ],
     'bike-exhaust': [
-      { repairCode: 'EXH-001', label: 'Exhaust Leak', description: 'Header pipe or muffler leaking exhaust gases.' },
+      zoneIssue('EXH-001', 'Exhaust Leak', 'Header pipe or muffler leaking exhaust gases.'),
     ],
     'bike-handlebars': [
-      { repairCode: 'ELEC-011', label: 'Switch Gear Failure', description: 'Handlebar switches (turn signal, horn, starter) not working.' },
-      { repairCode: 'SUSP-003', label: 'Steering Bearing', description: 'Steering head bearings worn causing handlebar play.' },
+      zoneIssue('ELEC-011', 'Switch Gear Failure', 'Handlebar switches (turn signal, horn, starter) not working.'),
+      zoneIssue('SUSP-003', 'Steering Bearing', 'Steering head bearings worn causing handlebar play.'),
     ],
     'bike-lights': [
-      { repairCode: 'ELEC-004', label: 'Headlight Failure', description: 'Headlight bulb or unit not functioning.' },
-      { repairCode: 'ELEC-009', label: 'Turn Signal Failure', description: 'Turn signal indicators not flashing or dead.' },
+      zoneIssue('ELEC-004', 'Headlight Failure', 'Headlight bulb or unit not functioning.'),
+      zoneIssue('ELEC-009', 'Turn Signal Failure', 'Turn signal indicators not flashing or dead.'),
     ],
     // --- TRUCK ZONES ---
     'truck-engine': [
-      { repairCode: 'ENG-001', label: 'Oil Leak', description: 'Heavy-duty engine oil leaking from seals.' },
-      { repairCode: 'ENG-002', label: 'Overheating', description: 'Engine overheating under load or highway.' },
+      zoneIssue('ENG-001', 'Oil Leak', 'Heavy-duty engine oil leaking from seals.'),
+      zoneIssue('ENG-002', 'Overheating', 'Engine overheating under load or highway.'),
     ],
     'truck-front-axle': [
-      { repairCode: 'SUSP-005', label: 'Front Axle / Hub', description: 'Front axle hub bearing worn or damaged.' },
-      { repairCode: 'BRKS-004', label: 'Air Brake Issue', description: 'Air brake system pressure drop or valve failure.' },
+      zoneIssue('SUSP-005', 'Front Axle / Hub', 'Front axle hub bearing worn or damaged.'),
+      zoneIssue('BRKS-004', 'Air Brake Issue', 'Air brake system pressure drop or valve failure.'),
     ],
     'truck-rear-axle': [
-      { repairCode: 'TRANS-003', label: 'Differential Failure', description: 'Rear differential noise or fluid leak.' },
-      { repairCode: 'BRKS-004', label: 'Air Brake Issue', description: 'Rear air brake system failure.' },
+      zoneIssue('TRANS-003', 'Differential Failure', 'Rear differential noise or fluid leak.'),
+      zoneIssue('BRKS-004', 'Air Brake Issue', 'Rear air brake system failure.'),
     ],
     'truck-cab': [
-      { repairCode: 'INT-001', label: 'Dashboard Warning', description: 'Instrument cluster warning light active.' },
-      { repairCode: 'AC-001', label: 'A/C Failure', description: 'Cab air conditioning not cooling.' },
+      zoneIssue('INT-001', 'Dashboard Warning', 'Instrument cluster warning light active.'),
+      zoneIssue('AC-001', 'A/C Failure', 'Cab air conditioning not cooling.'),
     ],
     'truck-cargo-bed': [
-      { repairCode: 'BODY-007', label: 'Bed Liner Damage', description: 'Cargo bed liner cracked or delaminating.' },
-      { repairCode: 'ELEC-008', label: 'Tailgate Actuator', description: 'Power tailgate or tonneau cover motor failed.' },
+      zoneIssue('BODY-007', 'Bed Liner Damage', 'Cargo bed liner cracked or delaminating.'),
+      zoneIssue('ELEC-008', 'Tailgate Actuator', 'Power tailgate or tonneau cover motor failed.'),
     ],
     'truck-exhaust': [
-      { repairCode: 'EXH-003', label: 'DPF / EGR Issue', description: 'Diesel particulate filter or EGR valve fault.' },
-      { repairCode: 'EXH-001', label: 'Exhaust Leak', description: 'Exhaust manifold or turbo downpipe leaking.' },
+      zoneIssue('EXH-003', 'DPF / EGR Issue', 'Diesel particulate filter or EGR valve fault.'),
+      zoneIssue('EXH-001', 'Exhaust Leak', 'Exhaust manifold or turbo downpipe leaking.'),
     ],
   };
 

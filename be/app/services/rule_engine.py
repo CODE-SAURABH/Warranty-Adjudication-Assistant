@@ -166,7 +166,7 @@ def _load_all_data() -> dict[str, Any]:
 
 
 def _claim_view(claim: dict[str, Any]) -> dict[str, Any]:
-    return {
+    payload = {
         "in_service_date": claim.get("in_service_date"),
         "repair_order_date": claim.get("repair_order_date"),
         "mileage_km": claim.get("mileage_km"),
@@ -177,6 +177,11 @@ def _claim_view(claim: dict[str, Any]) -> dict[str, Any]:
         "failure_description": claim.get("failure_description"),
         "attachments": claim.get("attachments", []) if isinstance(claim.get("attachments"), list) else [],
     }
+    if isinstance(claim.get("repair_codes"), list) and claim.get("repair_codes"):
+        payload["repair_codes"] = claim.get("repair_codes")
+    if isinstance(claim.get("causal_parts"), list) and claim.get("causal_parts"):
+        payload["causal_parts"] = claim.get("causal_parts")
+    return payload
 
 
 def _base_validation_summary() -> dict[str, bool]:
@@ -216,7 +221,9 @@ def _base_refs() -> dict[str, Any]:
         "warranty_id": None,
         "clauses_doc_ref": None,
         "repair_code": None,
+        "repair_codes": [],
         "component_group": None,
+        "causal_parts": [],
         "labor_cost_rule_id": None,
         "prior_repair_history_ids": [],
         "service_history_ids": [],
@@ -231,6 +238,30 @@ def _goodwill_percent(current: float, limit: float) -> float:
     if limit <= 0:
         return 0.0
     return round(((current - limit) / limit) * 100, 2)
+
+
+def _is_mapping_cancelled(mapping: dict[str, Any]) -> bool:
+    return str(mapping.get("status", "")).strip().lower() == "cancelled"
+
+
+def _stored_status_is_stale(mapping: dict[str, Any], *, repair_order_date: datetime | None, mileage: float) -> bool:
+    if repair_order_date is None:
+        return False
+
+    start = parse_date(mapping.get("start_date"))
+    end = parse_date(mapping.get("end_date"))
+    if not start or not end:
+        return False
+
+    within_date = start <= repair_order_date <= end
+    within_mileage = mileage <= float(mapping.get("end_mileage_km", 0) or 0)
+    normalized_status = str(mapping.get("status", "")).strip().lower()
+
+    if within_date and within_mileage:
+        return normalized_status not in {"active", ""}
+    if repair_order_date > end or not within_mileage:
+        return normalized_status == "active"
+    return False
 
 
 def _default_goodwill_precheck(reason: str = "No goodwill condition identified.") -> dict[str, Any]:
@@ -540,7 +571,7 @@ def run_gateway_validation(claim: dict[str, Any], data: dict[str, Any]) -> dict[
             goodwill_precheck=goodwill_precheck,
         )
 
-    non_cancelled = [(mapping, product) for mapping, product in pairs if mapping.get("status") != "Cancelled"]
+    non_cancelled = [(mapping, product) for mapping, product in pairs if not _is_mapping_cancelled(mapping)]
     if not non_cancelled:
         refs["warranty_mapping_id"] = pairs[0][0].get("mapping_id")
         refs["warranty_id"] = pairs[0][0].get("warranty_id")
@@ -571,7 +602,7 @@ def run_gateway_validation(claim: dict[str, Any], data: dict[str, Any]) -> dict[
         within_date = start <= repair_order_date <= end
         within_mileage = mileage <= float(mapping.get("end_mileage_km", 0) or 0)
 
-        if mapping.get("status") == "Active" and within_date and within_mileage:
+        if within_date and within_mileage:
             selected_mapping = mapping
             selected_product = product
             validation_summary["warranty_resolved"] = True
@@ -579,7 +610,7 @@ def run_gateway_validation(claim: dict[str, Any], data: dict[str, Any]) -> dict[
             validation_summary["mileage_within_limit"] = True
             break
 
-        if not within_date:
+        if repair_order_date > end:
             coverage_days = max(1, _days_between(start, end))
             over_days = max(0, _days_between(end, repair_order_date))
             overage_percent = round((over_days / coverage_days) * 100, 2)
@@ -622,6 +653,14 @@ def run_gateway_validation(claim: dict[str, Any], data: dict[str, Any]) -> dict[
             computed["warranty_days_remaining"] = _days_between(repair_order_date, end)
         computed["warranty_mileage_remaining_km"] = float(selected_mapping.get("end_mileage_km", 0) or 0) - mileage
         goodwill_precheck = _default_goodwill_precheck("Claim is within active warranty limits.")
+        if _stored_status_is_stale(selected_mapping, repair_order_date=repair_order_date, mileage=mileage):
+            warnings.append(
+                {
+                    "code": "WARRANTY_STATUS_DATA_MISMATCH",
+                    "message": "Stored warranty status did not match derived coverage dates and mileage; derived coverage was used.",
+                }
+            )
+            flags.append("WARRANTY_STATUS_DATA_MISMATCH")
         return {
             "gateway_status": "CONTINUE",
             "warranty_mapping": selected_mapping,
@@ -708,6 +747,8 @@ def run_full_claim_validation(
     attachments = claim.get("attachments", []) if isinstance(claim.get("attachments"), list) else []
     component_rule = find_component_rule(claim.get("repair_code"), data)
     refs["repair_code"] = claim.get("repair_code")
+    refs["repair_codes"] = claim.get("repair_codes", []) if isinstance(claim.get("repair_codes"), list) else []
+    refs["causal_parts"] = claim.get("causal_parts", []) if isinstance(claim.get("causal_parts"), list) else []
 
     def fail(code: str, message: str, flag: str | None = None) -> None:
         failed_checks.append({"code": code, "message": message})
@@ -723,6 +764,15 @@ def run_full_claim_validation(
         missing_info.append({"item": item, "message": message})
         if flag:
             flags.append(flag)
+
+    submitted_repair_codes = claim.get("repair_codes", []) if isinstance(claim.get("repair_codes"), list) else []
+    submitted_causal_parts = claim.get("causal_parts", []) if isinstance(claim.get("causal_parts"), list) else []
+    if len(submitted_repair_codes) > 1 or len(submitted_causal_parts) > 1:
+        warn(
+            "MULTI_REPAIR_LINE_INPUT",
+            "Multiple repair codes or causal parts were submitted. Deterministic validation used the first aligned repair-code/causal-part pair.",
+            "MULTI_REPAIR_LINE_INPUT",
+        )
 
     if component_rule:
         refs["component_group"] = component_rule.get("component_group")

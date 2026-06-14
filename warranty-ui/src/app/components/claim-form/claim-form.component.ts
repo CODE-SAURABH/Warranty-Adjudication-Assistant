@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { getRepairCodeEntry } from '../../data/repair-codes.data';
 import { WarrantyService } from '../../services/warranty.service';
 import { ClaimSubmission, SelectedZone } from '../../models/claim.model';
 
@@ -14,20 +15,6 @@ export class ClaimFormComponent implements OnInit {
   isSubmitting = false;
   submitError = '';
 
-  readonly repairCodes = [
-    { code: 'ENG-001', label: 'Engine – Oil Leak' },
-    { code: 'ENG-002', label: 'Engine – Overheating' },
-    { code: 'ENG-003', label: 'Engine – Misfiring' },
-    { code: 'TRANS-001', label: 'Transmission – Slipping' },
-    { code: 'TRANS-002', label: 'Transmission – No Shift' },
-    { code: 'ELEC-001', label: 'Electrical – Battery Drain' },
-    { code: 'ELEC-002', label: 'Electrical – Alternator Failure' },
-    { code: 'BRKS-001', label: 'Brakes – ABS Malfunction' },
-    { code: 'SUSP-001', label: 'Suspension – Control Arm' },
-    { code: 'AC-001', label: 'HVAC – Compressor Failure' },
-    { code: 'OTHER', label: 'Other (specify in description)' },
-  ];
-
   constructor(
     private fb: FormBuilder,
     private warrantyService: WarrantyService,
@@ -38,12 +25,17 @@ export class ClaimFormComponent implements OnInit {
     this.claimForm = this.fb.group({
       vin: ['', [Validators.required, Validators.pattern(/^[A-HJ-NPR-Z0-9]{17}$/)]],
       inServiceDate: ['', Validators.required],
+      repairOrderDate: [this.getTodayDate(), Validators.required],
       currentOdometerReading: ['', [Validators.required, Validators.min(0), Validators.max(9999999)]],
       repairCode: ['', Validators.required],
-      parts: ['', Validators.required],
+      causalPart: ['', Validators.required],
+      partsCostEur: ['', [Validators.required, Validators.min(0)]],
       laborHours: ['', [Validators.required, Validators.min(0.1), Validators.max(99)]],
       failureDescription: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(2000)]],
       serviceHistory: this.fb.array([]),
+    });
+    this.claimForm.get('repairCode')?.valueChanges.subscribe((repairCode) => {
+      this.applyRepairCodeDefaults(String(repairCode ?? '').trim());
     });
   }
 
@@ -104,10 +96,8 @@ export class ClaimFormComponent implements OnInit {
   }
 
   onZoneSelected(zone: SelectedZone): void {
-    // Auto-fill repair code from zone selection
     this.claimForm.patchValue({ repairCode: zone.repairCode });
 
-    // Append zone description to failure description (don't overwrite existing text)
     const current: string = this.claimForm.get('failureDescription')?.value ?? '';
     const append = zone.defaultDescription;
     const newVal = current ? `${current}\n[${zone.label}] ${append}` : `[${zone.label}] ${append}`;
@@ -119,6 +109,23 @@ export class ClaimFormComponent implements OnInit {
     while (this.serviceHistoryArray.length) {
       this.serviceHistoryArray.removeAt(0);
     }
+    this.claimForm.patchValue({ repairOrderDate: this.getTodayDate() });
     this.submitError = '';
+  }
+
+  private applyRepairCodeDefaults(repairCode: string): void {
+    const selectedRepair = getRepairCodeEntry(repairCode);
+    if (!selectedRepair) {
+      return;
+    }
+
+    this.claimForm.patchValue({
+      causalPart: selectedRepair.causalPart ?? this.claimForm.get('causalPart')?.value,
+      laborHours: selectedRepair.standardLaborHours ?? this.claimForm.get('laborHours')?.value,
+    });
+  }
+
+  private getTodayDate(): string {
+    return new Date().toISOString().slice(0, 10);
   }
 }

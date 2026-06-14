@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import asyncio
+import copy
 import json
+import re
 from typing import Any
 
 from ..core.agents import create_agent, get_agent_client
+from ..schemas.database import AdjudicationUiResponseSchema
 from .agent_tools import (
     get_policy_clauses_by_ids,
     get_component_rule_by_repair_code,
@@ -17,6 +20,17 @@ from .agent_tools import (
     save_claim_decision,
 )
 from .rule_engine import run_rule_engine
+
+
+FAILURE_DESCRIPTION_INJECTION_PATTERNS = (
+    re.compile(r"\b(ignore|forget|disregard)\b.{0,60}\b(instruction|instructions|rule|rules|prompt|prompts)\b", re.IGNORECASE),
+    re.compile(r"\bjust\s+say\b", re.IGNORECASE),
+    re.compile(r"\bapprove(?:d)?\s+claim\b", re.IGNORECASE),
+    re.compile(r"\bact\s+as\b", re.IGNORECASE),
+    re.compile(r"\boverride\b.{0,40}\b(instruction|rule|decision)\b", re.IGNORECASE),
+    re.compile(r"\bjailbreak\b", re.IGNORECASE),
+)
+SANITIZED_FAILURE_DESCRIPTION_NOTICE = "[Instruction-like content removed before agent adjudication.]"
 
 
 AGENT_SYSTEM_PROMPT = """You are the assessor-facing Warranty Adjudication Agent for Vantara Commercial Vehicles.
@@ -89,11 +103,62 @@ def create_warranty_adjudication_agent():
     )
 
 
+def _sanitize_failure_description_for_agent(value: Any) -> tuple[str, bool]:
+    if not isinstance(value, str):
+        return "", False
+
+    text = re.sub(r"\s+", " ", value).strip()
+    if not text:
+        return "", False
+
+    segments = re.split(r"(?<=[.!?])\s+", text)
+    safe_segments: list[str] = []
+    removed_segments = 0
+
+    for segment in segments:
+        cleaned = segment.strip()
+        if not cleaned:
+            continue
+        if any(pattern.search(cleaned) for pattern in FAILURE_DESCRIPTION_INJECTION_PATTERNS):
+            removed_segments += 1
+            continue
+        safe_segments.append(cleaned)
+
+    if removed_segments == 0:
+        return text, False
+
+    sanitized = " ".join(safe_segments).strip()
+    if sanitized:
+        return f"{sanitized} {SANITIZED_FAILURE_DESCRIPTION_NOTICE}", True
+    return SANITIZED_FAILURE_DESCRIPTION_NOTICE, True
+
+
+def _sanitize_rule_engine_result_for_agent(rule_engine_result: dict[str, Any]) -> dict[str, Any]:
+    sanitized_payload = copy.deepcopy(rule_engine_result)
+    claim = sanitized_payload.get("claim")
+    if not isinstance(claim, dict):
+        return sanitized_payload
+
+    sanitized_failure_description, was_sanitized = _sanitize_failure_description_for_agent(
+        claim.get("failure_description")
+    )
+    if not was_sanitized:
+        return sanitized_payload
+
+    claim["failure_description"] = sanitized_failure_description
+    sanitized_payload["agent_input_safety"] = {
+        "failure_description_sanitized": True,
+        "reason": "Instruction-like text was removed from failure_description before the payload reached the agent.",
+    }
+    return sanitized_payload
+
+
 def _build_agent_prompt(rule_engine_result: dict[str, Any]) -> str:
+    sanitized_rule_engine_result = _sanitize_rule_engine_result_for_agent(rule_engine_result)
     return (
         "Review the deterministic warranty rule-engine payload below and produce the final assessor-facing JSON in the required schema.\n"
         "Use tools for citations and flagged context, and do not return an uncited decision.\n\n"
-        f"{json.dumps(rule_engine_result, indent=2)}"
+        f"{json.dumps(sanitized_rule_engine_result, indent=2)}"
     )
 
 
@@ -145,6 +210,45 @@ def _normalize_agent_output(rule_engine_result: dict[str, Any], agent_output: di
 
     agent_output["missing_information"] = []
     return agent_output
+
+
+def extract_ui_adjudication_response(
+    agent_output: dict[str, Any],
+    *,
+    fallback_claim_id: str | None = None,
+) -> dict[str, Any]:
+    claim_id = str(agent_output.get("claim_id", "")).strip()
+    if not claim_id:
+        claim_queue = agent_output.get("assessor_ui")
+        if isinstance(claim_queue, dict):
+            claim_queue = claim_queue.get("claim_queue")
+        if isinstance(claim_queue, dict):
+            claim_id = str(claim_queue.get("claim_id", "")).strip()
+    if not claim_id:
+        claim_id = str(fallback_claim_id or "").strip()
+
+    assessor_ui = agent_output.get("assessor_ui", {}) if isinstance(agent_output.get("assessor_ui"), dict) else {}
+    override_capability = (
+        assessor_ui.get("override_capability", {})
+        if isinstance(assessor_ui.get("override_capability"), dict)
+        else {}
+    )
+
+    ui_payload = {
+        "claim_id": claim_id,
+        "disposition_per_claim": agent_output.get("disposition_per_claim", {}),
+        "cited_justification": agent_output.get("cited_justification", []),
+        "missing_information": agent_output.get("missing_information", []),
+        "assessor_ui": {
+            "claim_queue": assessor_ui.get("claim_queue", {}),
+            "decision_detail": assessor_ui.get("decision_detail", {}),
+            "override_capability": {
+                "allowed": override_capability.get("allowed", False),
+                "required_fields": override_capability.get("required_fields", []),
+            },
+        },
+    }
+    return AdjudicationUiResponseSchema.model_validate(ui_payload).model_dump()
 
 
 async def run_adjudication_agent_async(rule_engine_result: dict[str, Any]) -> dict[str, Any]:

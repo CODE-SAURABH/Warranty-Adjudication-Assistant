@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any
 
-from sqlalchemy import Select, delete, select
+from sqlalchemy import Select, delete, inspect, select
 
-from ..db.session import session_scope
+from ..db.session import get_engine, session_scope
 from ..models.reference_data import (
     ClaimDecision,
     ClaimEvaluationCase,
@@ -24,6 +25,10 @@ from ..models.reference_data import (
 
 def _rows_to_dicts(rows: list[Any]) -> list[dict[str, Any]]:
     return [row.to_dict() for row in rows]
+
+
+def _table_exists(table_name: str) -> bool:
+    return inspect(get_engine()).has_table(table_name)
 
 
 def load_reference_snapshot() -> dict[str, Any]:
@@ -53,6 +58,8 @@ def load_policy_clauses(source_name: str | None = None, clause_ids: list[str] | 
 
 
 def list_policy_documents() -> list[dict[str, Any]]:
+    if not _table_exists(PolicyDocument.__tablename__):
+        return []
     with session_scope() as session:
         rows = session.execute(
             select(PolicyDocument).order_by(PolicyDocument.policy_name, PolicyDocument.version)
@@ -61,6 +68,8 @@ def list_policy_documents() -> list[dict[str, Any]]:
 
 
 def get_policy_document(policy_id: str) -> dict[str, Any] | None:
+    if not _table_exists(PolicyDocument.__tablename__):
+        return None
     with session_scope() as session:
         row = session.execute(
             select(PolicyDocument).where(PolicyDocument.policy_id == policy_id)
@@ -69,6 +78,10 @@ def get_policy_document(policy_id: str) -> dict[str, Any] | None:
 
 
 def upsert_policy_document(payload: dict[str, Any]) -> dict[str, Any]:
+    if not _table_exists(PolicyDocument.__tablename__):
+        raise RuntimeError(
+            "Policy corpus schema is missing. Run 'python -m alembic upgrade head' to create policy corpus tables."
+        )
     with session_scope() as session:
         row = session.execute(
             select(PolicyDocument).where(PolicyDocument.policy_id == payload["policy_id"])
@@ -84,6 +97,10 @@ def upsert_policy_document(payload: dict[str, Any]) -> dict[str, Any]:
 
 
 def replace_policy_corpus_clauses(policy_id: str, clauses: list[dict[str, Any]]) -> int:
+    if not _table_exists(PolicyCorpusClause.__tablename__):
+        raise RuntimeError(
+            "Policy corpus schema is missing. Run 'python -m alembic upgrade head' to create policy corpus tables."
+        )
     with session_scope() as session:
         session.execute(delete(PolicyCorpusClause).where(PolicyCorpusClause.policy_id == policy_id))
         if clauses:
@@ -92,6 +109,8 @@ def replace_policy_corpus_clauses(policy_id: str, clauses: list[dict[str, Any]])
 
 
 def list_policy_corpus_clauses(policy_id: str) -> list[dict[str, Any]]:
+    if not _table_exists(PolicyCorpusClause.__tablename__):
+        return []
     with session_scope() as session:
         rows = session.execute(
             select(PolicyCorpusClause)
@@ -104,6 +123,8 @@ def list_policy_corpus_clauses(policy_id: str) -> list[dict[str, Any]]:
 def load_policy_corpus_clauses_by_ids(policy_id: str, clause_ids: list[str]) -> list[dict[str, Any]]:
     if not clause_ids:
         return []
+    if not _table_exists(PolicyCorpusClause.__tablename__):
+        return []
     with session_scope() as session:
         rows = session.execute(
             select(PolicyCorpusClause)
@@ -114,6 +135,8 @@ def load_policy_corpus_clauses_by_ids(policy_id: str, clause_ids: list[str]) -> 
 
 
 def search_policy_corpus_clauses(query: str, policy_id: str | None = None, top_k: int = 5) -> list[dict[str, Any]]:
+    if not _table_exists(PolicyCorpusClause.__tablename__):
+        return []
     query_terms = [term.strip().lower() for term in query.split() if term.strip()]
     stmt: Select[Any] = select(PolicyCorpusClause)
     if policy_id:
@@ -185,16 +208,64 @@ def load_labor_cost_rule_by_id(rule_id: str) -> dict[str, Any] | None:
 
 
 def save_claim_decision_record(payload: dict[str, Any]) -> dict[str, Any]:
+    claim_id = str(payload.get("claim_id") or payload.get("claimId") or "").strip() or None
     disposition = None
     if isinstance(payload.get("disposition_per_claim"), dict):
         disposition = payload["disposition_per_claim"].get("decision")
+    if disposition is None:
+        disposition = payload.get("disposition")
 
-    record = ClaimDecision(
-        claim_id=payload.get("claim_id"),
-        disposition=disposition or payload.get("disposition") or payload.get("recommended_disposition"),
-        payload=payload,
-    )
     with session_scope() as session:
-        session.add(record)
+        record = None
+        if claim_id:
+            record = session.execute(
+                select(ClaimDecision)
+                .where(ClaimDecision.claim_id == claim_id)
+                .order_by(ClaimDecision.created_at.desc(), ClaimDecision.id.desc())
+            ).scalars().first()
+        if record is None:
+            record = ClaimDecision(
+                claim_id=claim_id,
+                disposition=disposition or payload.get("recommended_disposition"),
+                payload=payload,
+            )
+            session.add(record)
+        else:
+            record.claim_id = claim_id
+            record.disposition = disposition or payload.get("recommended_disposition")
+            record.payload = payload
+            record.created_at = datetime.utcnow()
         session.flush()
         return record.to_dict()
+
+
+def list_claim_decision_records() -> list[dict[str, Any]]:
+    with session_scope() as session:
+        rows = session.execute(
+            select(ClaimDecision).order_by(ClaimDecision.created_at.desc(), ClaimDecision.id.desc())
+        ).scalars().all()
+        latest_by_claim: list[dict[str, Any]] = []
+        seen_claim_ids: set[str] = set()
+        for row in rows:
+            claim_id = str(row.claim_id or "").strip()
+            if not claim_id or claim_id in seen_claim_ids:
+                continue
+            seen_claim_ids.add(claim_id)
+            latest_by_claim.append(row.to_dict())
+        return latest_by_claim
+
+
+def load_claim_decision_record(claim_id: str) -> dict[str, Any] | None:
+    with session_scope() as session:
+        row = session.execute(
+            select(ClaimDecision)
+            .where(ClaimDecision.claim_id == claim_id)
+            .order_by(ClaimDecision.created_at.desc(), ClaimDecision.id.desc())
+        ).scalars().first()
+        return row.to_dict() if row else None
+
+
+def delete_claim_decision_records(claim_id: str) -> int:
+    with session_scope() as session:
+        result = session.execute(delete(ClaimDecision).where(ClaimDecision.claim_id == claim_id))
+        return int(result.rowcount or 0)

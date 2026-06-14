@@ -1,0 +1,73 @@
+<div class="repair-code-combobox">
+  <label class="combobox-label" for="repair-code-input">
+    Search by code, label, or keyword
+  </label>
+
+  <div class="selected-badge-row" *ngIf="value">
+    <span class="selected-badge" [class.selected-badge-custom]="hasCustomValue">
+      {{ selectedBadgeLabel }}
+    </span>
+    <button
+      type="button"
+      class="clear-btn"
+      (click)="clearSelection($event)"
+      [disabled]="disabled"
+      aria-label="Clear repair code"
+    >
+      Clear
+    </button>
+  </div>
+
+  <div
+    class="input-shell"
+    [class.input-shell-open]="dropdownOpen"
+    [class.input-shell-disabled]="disabled"
+    [class.input-shell-invalid]="invalid"
+  >
+    <input
+      id="repair-code-input"
+      type="text"
+      class="combobox-input"
+      [disabled]="disabled"
+      [value]="query"
+      [placeholder]="value ? 'Type to change repair code' : 'Start typing a repair code or issue…'"
+      (focus)="onFocus()"
+      (input)="onInput($event)"
+      (keydown)="onKeydown($event)"
+    />
+    <button
+      type="button"
+      class="toggle-btn"
+      [disabled]="disabled"
+      (click)="dropdownOpen = !dropdownOpen"
+      aria-label="Toggle repair code suggestions"
+    >
+      ▾
+    </button>
+  </div>
+
+  <div class="results-panel" *ngIf="dropdownOpen">
+    <ng-container *ngIf="groupedOptions.length > 0; else noMatches">
+      <div class="result-group" *ngFor="let group of groupedOptions; trackBy: trackByCategory">
+        <div class="group-title">{{ group.category }}</div>
+        <button
+          type="button"
+          class="result-option"
+          *ngFor="let option of group.options; trackBy: trackByOption"
+          [class.result-option-active]="isHighlighted(option)"
+          [class.result-option-custom]="option.isCustom"
+          (click)="selectOption(option)"
+        >
+          <span class="option-code">{{ option.code }}</span>
+          <span class="option-label">{{ option.label }}</span>
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-template #noMatches>
+      <div class="empty-state">
+        No matches. Keep typing to create an "Other / not listed" custom code.
+      </div>
+    </ng-template>
+  </div>
+</div>

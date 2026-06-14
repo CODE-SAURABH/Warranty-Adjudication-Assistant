@@ -190,6 +190,10 @@
               <span class="summary-val">{{ claim.submission.inServiceDate | date:'mediumDate' }}</span>
             </div>
             <div class="summary-row">
+              <span class="summary-key">Repair Order Date</span>
+              <span class="summary-val">{{ claim.submission.repairOrderDate | date:'mediumDate' }}</span>
+            </div>
+            <div class="summary-row">
               <span class="summary-key">Odometer Reading</span>
               <span class="summary-val">{{ claim.submission.currentOdometerReading | number }} km</span>
             </div>
@@ -198,8 +202,16 @@
               <span class="summary-val mono">{{ claim.submission.repairCode }}</span>
             </div>
             <div class="summary-row">
+              <span class="summary-key">Causal Part</span>
+              <span class="summary-val">{{ claim.submission.causalPart }}</span>
+            </div>
+            <div class="summary-row">
               <span class="summary-key">Labor Hours</span>
               <span class="summary-val">{{ claim.submission.laborHours }} hrs</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key">Parts Cost</span>
+              <span class="summary-val">EUR {{ claim.submission.partsCostEur | number:'1.0-2' }}</span>
             </div>
             <div class="summary-row">
               <span class="summary-key">Submitted</span>
@@ -208,12 +220,12 @@
           </div>
         </div>
 
-        <!-- Parts -->
+        <!-- Causal Part -->
         <div class="detail-card">
           <div class="card-title">
-            <span class="card-icon">🔩</span> Parts Used
+            <span class="card-icon">🔩</span> Causal Part
           </div>
-          <p class="parts-text">{{ claim.submission.parts }}</p>
+          <p class="parts-text">{{ claim.submission.causalPart }}</p>
         </div>
 
         <!-- Failure Description -->

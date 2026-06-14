@@ -3,6 +3,7 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from .api.routes.claims import router as claims_router
 from .api.routes.health import router as health_router
@@ -24,6 +25,14 @@ def create_app() -> FastAPI:
         description="Production-style FastAPI backend for smart warranty adjudication.",
         lifespan=lifespan,
     )
+    if settings.cors_allowed_origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=list(settings.cors_allowed_origins),
+            allow_credentials=True,
+            allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+            allow_headers=["*"],
+        )
     app.include_router(health_router)
     app.include_router(claims_router)
     app.include_router(policy_corpus_router)
