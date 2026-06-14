@@ -301,11 +301,14 @@ class StoredClaimSubmissionSchema(BaseModel):
     repairOrderDate: str = ""
     currentOdometerReading: int | float | None = None
     repairCode: str = ""
+    repairCodes: list[str] = Field(default_factory=list)
     causalPart: str = ""
+    causalParts: list[str] = Field(default_factory=list)
     partsCostEur: int | float | None = None
     laborHours: int | float | None = None
     failureDescription: str = ""
     serviceHistory: list[dict[str, Any]] = Field(default_factory=list)
+    lineItems: list[dict[str, Any]] = Field(default_factory=list)
 
 
 class PolicyClauseUiSchema(BaseModel):

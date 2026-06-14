@@ -239,71 +239,86 @@ def save_claim_decision_record(payload: dict[str, Any]) -> dict[str, Any]:
         return record.to_dict()
 
 
-def upsert_prior_repair_history_record(claim_payload: dict[str, Any]) -> dict[str, Any]:
+def upsert_prior_repair_history_record(claim_payload: dict[str, Any]) -> list[dict[str, Any]]:
     claim_id = str(claim_payload.get("claimId") or claim_payload.get("claim_id") or "").strip()
     submission = claim_payload.get("submission", {}) if isinstance(claim_payload.get("submission"), dict) else {}
-    history_id = f"HIST-{claim_id}" if claim_id else None
-    repair_code = str(submission.get("repairCode") or "").strip() or None
-    component_rule = None
+    line_items = submission.get("lineItems", []) if isinstance(submission.get("lineItems"), list) else []
+
+    if not line_items:
+        line_items = [
+            {
+                "lineNumber": 1,
+                "repairCode": str(submission.get("repairCode") or "").strip(),
+                "causalPart": str(submission.get("causalPart") or "").strip(),
+                "partsCostEur": submission.get("partsCostEur"),
+                "laborHours": submission.get("laborHours"),
+            }
+        ]
 
     with session_scope() as session:
-        if repair_code:
+        existing_records = session.execute(
+            select(PriorRepairHistory)
+            .where(PriorRepairHistory.previous_claim_id == claim_id)
+            .order_by(PriorRepairHistory.id.asc())
+        ).scalars().all()
+        existing_by_history_id = {str(record.history_id): record for record in existing_records}
+        seen_history_ids: set[str] = set()
+        updated_rows: list[dict[str, Any]] = []
+
+        for index, item in enumerate(line_items, start=1):
+            repair_code = str(item.get("repairCode") or item.get("repair_code") or "").strip() or None
+            if not repair_code:
+                continue
+            history_id = f"HIST-{claim_id}-{index}" if claim_id else f"HIST-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')}-{index}"
             component_rule = session.execute(
                 select(ComponentRule).where(ComponentRule.repair_code == repair_code)
             ).scalar_one_or_none()
+            record = existing_by_history_id.get(history_id)
+            payload = {
+                "history_id": history_id,
+                "previous_claim_id": claim_id or None,
+                "vin": str(submission.get("vin") or "").strip(),
+                "repair_order_number": claim_id or None,
+                "repair_order_date": str(submission.get("repairOrderDate") or "").strip() or None,
+                "repair_code": repair_code,
+                "repair_description": component_rule.repair_description if component_rule else None,
+                "causal_part": str(item.get("causalPart") or item.get("causal_part") or "").strip() or None,
+                "component_group": component_rule.component_group if component_rule else None,
+                "failure_summary": str(submission.get("failureDescription") or "").strip() or None,
+                "correction_summary": str(claim_payload.get("justification") or "").strip() or None,
+                "mileage_km": int(submission["currentOdometerReading"])
+                if isinstance(submission.get("currentOdometerReading"), (int, float))
+                else None,
+                "labor_hours": float(item["laborHours"])
+                if isinstance(item.get("laborHours"), (int, float))
+                else None,
+                "parts_cost_eur": float(item["partsCostEur"])
+                if isinstance(item.get("partsCostEur"), (int, float))
+                else None,
+                "paid_amount_eur": None,
+                "dealer_id": None,
+                "disposition": str(claim_payload.get("disposition") or "").strip() or None,
+                "is_duplicate_candidate": False,
+                "is_related_to_current_claim": False,
+                "duplicate_reason": None,
+                "created_at": str(claim_payload.get("timestamp") or datetime.utcnow().isoformat()),
+            }
+            if record is None:
+                record = PriorRepairHistory(**payload)
+                session.add(record)
+            else:
+                for key, value in payload.items():
+                    setattr(record, key, value)
+            seen_history_ids.add(history_id)
+            session.flush()
+            updated_rows.append(record.to_dict())
 
-        record = None
-        if claim_id:
-            record = session.execute(
-                select(PriorRepairHistory)
-                .where(PriorRepairHistory.previous_claim_id == claim_id)
-                .order_by(PriorRepairHistory.id.desc())
-            ).scalars().first()
-        if record is None and history_id:
-            record = session.execute(
-                select(PriorRepairHistory)
-                .where(PriorRepairHistory.history_id == history_id)
-                .order_by(PriorRepairHistory.id.desc())
-            ).scalars().first()
+        for history_id, record in existing_by_history_id.items():
+            if history_id not in seen_history_ids:
+                session.delete(record)
 
-        payload = {
-            "history_id": history_id or f"HIST-{datetime.utcnow().strftime('%Y%m%d%H%M%S%f')}",
-            "previous_claim_id": claim_id or None,
-            "vin": str(submission.get("vin") or "").strip(),
-            "repair_order_number": claim_id or None,
-            "repair_order_date": str(submission.get("repairOrderDate") or "").strip() or None,
-            "repair_code": repair_code,
-            "repair_description": component_rule.repair_description if component_rule else None,
-            "causal_part": str(submission.get("causalPart") or "").strip() or None,
-            "component_group": component_rule.component_group if component_rule else None,
-            "failure_summary": str(submission.get("failureDescription") or "").strip() or None,
-            "correction_summary": str(claim_payload.get("justification") or "").strip() or None,
-            "mileage_km": int(submission["currentOdometerReading"])
-            if isinstance(submission.get("currentOdometerReading"), (int, float))
-            else None,
-            "labor_hours": float(submission["laborHours"])
-            if isinstance(submission.get("laborHours"), (int, float))
-            else None,
-            "parts_cost_eur": float(submission["partsCostEur"])
-            if isinstance(submission.get("partsCostEur"), (int, float))
-            else None,
-            "paid_amount_eur": None,
-            "dealer_id": None,
-            "disposition": str(claim_payload.get("disposition") or "").strip() or None,
-            "is_duplicate_candidate": False,
-            "is_related_to_current_claim": False,
-            "duplicate_reason": None,
-            "created_at": str(claim_payload.get("timestamp") or datetime.utcnow().isoformat()),
-        }
-
-        if record is None:
-            record = PriorRepairHistory(**payload)
-            session.add(record)
-        else:
-            for key, value in payload.items():
-                setattr(record, key, value)
         session.flush()
-        return record.to_dict()
+        return updated_rows
 
 
 def list_claim_decision_records() -> list[dict[str, Any]]:

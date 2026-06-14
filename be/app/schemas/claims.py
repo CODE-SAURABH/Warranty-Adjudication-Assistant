@@ -10,6 +10,13 @@ class ClaimCosts(BaseModel):
     labor_hours: str | int | float | None = ""
 
 
+class ClaimLineItemInput(BaseModel):
+    repair_code: str
+    causal_part: str = ""
+    parts_cost_eur: str | int | float | None = ""
+    labor_hours: str | int | float | None = ""
+
+
 class ClaimInput(BaseModel):
     model_config = ConfigDict(
         json_schema_extra={
@@ -29,6 +36,14 @@ class ClaimInput(BaseModel):
                     "labor_hours": "1",
                 },
                 "attachments": [],
+                "line_items": [
+                    {
+                        "repair_code": "Eng-cls-01",
+                        "causal_part": "water pump",
+                        "parts_cost_eur": "230",
+                        "labor_hours": "1",
+                    }
+                ],
             }
         }
     )
@@ -59,6 +74,7 @@ class ClaimInput(BaseModel):
     )
     costs: ClaimCosts = Field(default_factory=ClaimCosts)
     attachments: list[str] = Field(default_factory=list)
+    line_items: list[ClaimLineItemInput] = Field(default_factory=list)
 
 
 ClaimPayload = dict[str, Any]

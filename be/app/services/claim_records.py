@@ -29,6 +29,38 @@ def _primary_string(value: Any) -> str:
     return str(value or "").strip()
 
 
+def _string_list(value: Any) -> list[str]:
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item).strip()]
+    if isinstance(value, str):
+        cleaned = value.strip()
+        return [cleaned] if cleaned else []
+    return []
+
+
+def _normalized_line_items(value: Any) -> list[dict[str, Any]]:
+    if not isinstance(value, list):
+        return []
+    normalized: list[dict[str, Any]] = []
+    for index, item in enumerate(value, start=1):
+        if not isinstance(item, dict):
+            continue
+        repair_code = _primary_string(item.get("repairCode", item.get("repair_code")))
+        causal_part = _primary_string(item.get("causalPart", item.get("causal_part")))
+        if not repair_code:
+            continue
+        normalized.append(
+            {
+                "lineNumber": int(item.get("lineNumber") or item.get("line_number") or index),
+                "repairCode": repair_code,
+                "causalPart": causal_part,
+                "partsCostEur": _coerce_number(item.get("partsCostEur", item.get("parts_cost_eur"))),
+                "laborHours": _coerce_number(item.get("laborHours", item.get("labor_hours"))),
+            }
+        )
+    return normalized
+
+
 def _map_decision_to_disposition(decision: str | None) -> str:
     normalized = (decision or "").strip().upper()
     if normalized == "APPROVE":
@@ -89,13 +121,16 @@ def build_claim_result_record(
             "repairOrderDate": str(raw_submission.get("repair_order_date", "")).strip(),
             "currentOdometerReading": _coerce_number(raw_submission.get("mileage_km")),
             "repairCode": _primary_string(raw_submission.get("repair_code")),
+            "repairCodes": _string_list(raw_submission.get("repair_codes", raw_submission.get("repair_code"))),
             "causalPart": _primary_string(raw_submission.get("causal_part")),
+            "causalParts": _string_list(raw_submission.get("causal_parts", raw_submission.get("causal_part"))),
             "partsCostEur": _coerce_number(raw_submission.get("parts_cost_eur")),
             "laborHours": _coerce_number(raw_submission.get("labor_hours")),
             "failureDescription": str(raw_submission.get("failure_description", "")).strip(),
             "serviceHistory": raw_submission.get("service_history", [])
             if isinstance(raw_submission.get("service_history"), list)
             else [],
+            "lineItems": _normalized_line_items(raw_submission.get("line_items", raw_submission.get("claim_lines"))),
         },
         "assessorOverridden": False,
     }
@@ -187,8 +222,14 @@ def normalize_claim_result_record(
             "repairCode": _primary_string(
                 submission_payload.get("repairCode", legacy_claim.get("repair_code"))
             ),
+            "repairCodes": _string_list(
+                submission_payload.get("repairCodes", legacy_claim.get("repair_codes"))
+            ),
             "causalPart": _primary_string(
                 submission_payload.get("causalPart", legacy_claim.get("causal_part"))
+            ),
+            "causalParts": _string_list(
+                submission_payload.get("causalParts", legacy_claim.get("causal_parts"))
             ),
             "partsCostEur": _coerce_number(
                 submission_payload.get("partsCostEur", legacy_claim.get("parts_cost_eur"))
@@ -202,6 +243,9 @@ def normalize_claim_result_record(
                 or ""
             ).strip(),
             "serviceHistory": submission_payload.get("serviceHistory", []),
+            "lineItems": _normalized_line_items(
+                submission_payload.get("lineItems", legacy_claim.get("claim_lines"))
+            ),
         },
         "assessorOverridden": bool(claim_record.get("assessorOverridden")),
     }

@@ -54,6 +54,61 @@ def _primary_value(values: list[str]) -> str:
     return values[0] if values else ""
 
 
+def _normalize_line_items(value: Any) -> list[dict[str, Any]]:
+    if not isinstance(value, list):
+        return []
+    normalized: list[dict[str, Any]] = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        repair_code = str(item.get("repair_code", "")).strip()
+        causal_part = str(item.get("causal_part", "")).strip()
+        if not repair_code:
+            continue
+        component = _find_component_by_repair_code(repair_code)
+        if not causal_part and component and component.get("causal_part"):
+            causal_part = str(component.get("causal_part")).strip()
+        normalized.append(
+            {
+                "repair_code": repair_code,
+                "causal_part": causal_part,
+                "parts_cost_eur": _coerce_number(item.get("parts_cost_eur")),
+                "labor_hours": _coerce_number(item.get("labor_hours")),
+            }
+        )
+    return normalized
+
+
+def _build_claim_lines(
+    repair_codes: list[str],
+    causal_parts: list[str],
+    line_items: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if line_items:
+        return line_items
+
+    if not repair_codes:
+        return []
+
+    line_count = max(len(repair_codes), len(causal_parts) or 0)
+    claim_lines: list[dict[str, Any]] = []
+    for index in range(line_count):
+        repair_code = repair_codes[index] if index < len(repair_codes) else repair_codes[-1]
+        component = _find_component_by_repair_code(repair_code)
+        causal_part = causal_parts[index] if index < len(causal_parts) else ""
+        if not causal_part and component and component.get("causal_part"):
+            causal_part = str(component.get("causal_part")).strip()
+        claim_lines.append(
+            {
+                "repair_code": repair_code,
+                "causal_part": causal_part,
+                "parts_cost_eur": None,
+                "labor_hours": None,
+            }
+        )
+    return claim_lines
+
+
 def _build_failure_description(raw_input: dict[str, Any], failure_details: dict[str, Any]) -> str:
     complaint = str(failure_details.get("complaint", "")).strip()
     cause = str(failure_details.get("cause", "")).strip()
@@ -73,6 +128,11 @@ def build_claim_from_input(raw_input: dict[str, Any]) -> dict[str, Any]:
 
     repair_codes = _normalize_string_list(raw_input.get("repair_code"))
     causal_parts = _normalize_string_list(raw_input.get("causal_part"))
+    line_items = _normalize_line_items(raw_input.get("line_items"))
+    if line_items and not repair_codes:
+        repair_codes = [str(item.get("repair_code", "")).strip() for item in line_items if item.get("repair_code")]
+    if line_items and not causal_parts:
+        causal_parts = [str(item.get("causal_part", "")).strip() for item in line_items if item.get("causal_part")]
     repair_code = _primary_value(repair_codes)
     component = _find_component_by_repair_code(repair_code)
     if not causal_parts and component and component.get("causal_part"):
@@ -91,6 +151,7 @@ def build_claim_from_input(raw_input: dict[str, Any]) -> dict[str, Any]:
         "repair_codes": repair_codes,
         "causal_part": causal_part,
         "causal_parts": causal_parts,
+        "claim_lines": _build_claim_lines(repair_codes, causal_parts, line_items),
         "parts_cost_eur": _coerce_number(parts_cost),
         "labor_hours": _coerce_number(labor_hours),
         "failure_description": failure_description,

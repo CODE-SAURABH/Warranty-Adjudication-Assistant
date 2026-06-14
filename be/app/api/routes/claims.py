@@ -54,7 +54,7 @@ async def adjudicate_claim_ui(payload: ClaimInput) -> AdjudicationUiResponseSche
         response.get("agent_output", {}),
         fallback_claim_id=response.get("rule_engine_output", {}).get("claim_id"),
     )
-    stored_claim = build_claim_result_record(payload.model_dump(), ui_response)
+    stored_claim = build_claim_result_record(claim, ui_response)
     save_claim_decision_record(stored_claim)
     upsert_prior_repair_history_record(stored_claim)
     return ui_response

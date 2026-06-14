@@ -167,6 +167,7 @@ def _load_all_data() -> dict[str, Any]:
 
 def _claim_view(claim: dict[str, Any]) -> dict[str, Any]:
     payload = {
+        "line_number": claim.get("line_number"),
         "in_service_date": claim.get("in_service_date"),
         "repair_order_date": claim.get("repair_order_date"),
         "mileage_km": claim.get("mileage_km"),
@@ -181,6 +182,8 @@ def _claim_view(claim: dict[str, Any]) -> dict[str, Any]:
         payload["repair_codes"] = claim.get("repair_codes")
     if isinstance(claim.get("causal_parts"), list) and claim.get("causal_parts"):
         payload["causal_parts"] = claim.get("causal_parts")
+    if isinstance(claim.get("claim_lines"), list) and claim.get("claim_lines"):
+        payload["claim_lines"] = claim.get("claim_lines")
     return payload
 
 
@@ -289,8 +292,9 @@ def _make_compact_result(
     missing_info: list[dict[str, str]] | None = None,
     flags: list[str] | None = None,
     goodwill_precheck: dict[str, Any] | None = None,
+    line_results: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    return {
+    result = {
         "claim_id": claim["claim_id"],
         "vin": claim.get("vin"),
         "gateway_status": gateway_status,
@@ -308,6 +312,9 @@ def _make_compact_result(
         "flags": sorted(set(flags or [])),
         "goodwill_precheck": goodwill_precheck or _default_goodwill_precheck(),
     }
+    if line_results:
+        result["line_results"] = line_results
+    return result
 
 
 def _component_candidate_pairs(
@@ -398,6 +405,291 @@ def _handle_threshold_breach(
         warn_fn(warning_code, warning_message, warning_flag)
     else:
         need_fn(missing_item, missing_message, missing_flag)
+
+
+def _normalize_claim_lines_for_validation(claim: dict[str, Any]) -> list[dict[str, Any]]:
+    submitted_lines = claim.get("claim_lines")
+    normalized: list[dict[str, Any]] = []
+
+    if isinstance(submitted_lines, list):
+        for index, item in enumerate(submitted_lines, start=1):
+            if not isinstance(item, dict):
+                continue
+            repair_code = str(item.get("repair_code") or item.get("repairCode") or "").strip()
+            causal_part = str(item.get("causal_part") or item.get("causalPart") or "").strip()
+            if not repair_code:
+                continue
+            normalized.append(
+                {
+                    "line_number": int(item.get("line_number") or item.get("lineNumber") or index),
+                    "repair_code": repair_code,
+                    "causal_part": causal_part,
+                    "parts_cost_eur": item.get("parts_cost_eur", item.get("partsCostEur")),
+                    "labor_hours": item.get("labor_hours", item.get("laborHours")),
+                }
+            )
+    if normalized:
+        return normalized
+
+    repair_codes = claim.get("repair_codes", []) if isinstance(claim.get("repair_codes"), list) else []
+    causal_parts = claim.get("causal_parts", []) if isinstance(claim.get("causal_parts"), list) else []
+    if not repair_codes and claim.get("repair_code"):
+        repair_codes = [str(claim.get("repair_code")).strip()]
+    if not causal_parts and claim.get("causal_part"):
+        causal_parts = [str(claim.get("causal_part")).strip()]
+
+    line_count = max(len(repair_codes), len(causal_parts))
+    if line_count == 0:
+        return []
+    for index in range(line_count):
+        repair_code = repair_codes[index] if index < len(repair_codes) else repair_codes[-1]
+        causal_part = causal_parts[index] if index < len(causal_parts) else ""
+        normalized.append(
+            {
+                "line_number": index + 1,
+                "repair_code": str(repair_code).strip(),
+                "causal_part": str(causal_part).strip(),
+                "parts_cost_eur": None,
+                "labor_hours": None,
+            }
+        )
+    return normalized
+
+
+def _allocate_remaining_total(
+    total: float | None,
+    current_values: list[float | None],
+    reference_values: list[float],
+) -> list[float | None]:
+    if total is None:
+        return current_values
+
+    allocated = list(current_values)
+    specified_total = sum(value for value in allocated if isinstance(value, (int, float)))
+    missing_indexes = [index for index, value in enumerate(allocated) if not isinstance(value, (int, float))]
+    if not missing_indexes:
+        return allocated
+
+    remaining_total = max(0.0, float(total) - float(specified_total))
+    weights = [max(0.0, float(reference_values[index] or 0)) for index in missing_indexes]
+    if sum(weights) <= 0:
+        weights = [1.0] * len(missing_indexes)
+
+    running_total = 0.0
+    for position, index in enumerate(missing_indexes):
+        if position == len(missing_indexes) - 1:
+            allocated[index] = round(max(0.0, remaining_total - running_total), 2)
+            continue
+        share = remaining_total * (weights[position] / sum(weights))
+        rounded_share = round(share, 2)
+        allocated[index] = rounded_share
+        running_total += rounded_share
+    return allocated
+
+
+def _resolve_claim_lines(
+    claim: dict[str, Any],
+    *,
+    warranty_id: str | None,
+    repair_order_date: datetime | None,
+    data: dict[str, Any],
+) -> list[dict[str, Any]]:
+    normalized_lines = _normalize_claim_lines_for_validation(claim)
+    if not normalized_lines:
+        return []
+
+    reference_parts: list[float] = []
+    reference_labor: list[float] = []
+    for line in normalized_lines:
+        labor_cost_rule = find_labor_cost_rule(line.get("repair_code"), warranty_id, repair_order_date, data)
+        reference_parts.append(float(labor_cost_rule.get("standard_parts_cost_eur", 0) or 0) if labor_cost_rule else 0.0)
+        reference_labor.append(float(labor_cost_rule.get("standard_labor_hours", 0) or 0) if labor_cost_rule else 0.0)
+
+    current_parts = [
+        float(line["parts_cost_eur"]) if isinstance(line.get("parts_cost_eur"), (int, float)) else None
+        for line in normalized_lines
+    ]
+    current_labor = [
+        float(line["labor_hours"]) if isinstance(line.get("labor_hours"), (int, float)) else None
+        for line in normalized_lines
+    ]
+    allocated_parts = _allocate_remaining_total(
+        float(claim.get("parts_cost_eur")) if isinstance(claim.get("parts_cost_eur"), (int, float)) else None,
+        current_parts,
+        reference_parts,
+    )
+    allocated_labor = _allocate_remaining_total(
+        float(claim.get("labor_hours")) if isinstance(claim.get("labor_hours"), (int, float)) else None,
+        current_labor,
+        reference_labor,
+    )
+
+    resolved_lines: list[dict[str, Any]] = []
+    for index, line in enumerate(normalized_lines):
+        resolved_lines.append(
+            {
+                "line_number": int(line.get("line_number") or index + 1),
+                "repair_code": line.get("repair_code"),
+                "causal_part": line.get("causal_part"),
+                "parts_cost_eur": allocated_parts[index],
+                "labor_hours": allocated_labor[index],
+            }
+        )
+    return resolved_lines
+
+
+def _line_label(line_claim: dict[str, Any]) -> str:
+    return (
+        f"Line {line_claim.get('line_number')} "
+        f"({line_claim.get('repair_code')} / {line_claim.get('causal_part') or 'unresolved part'})"
+    )
+
+
+def _aggregate_multi_line_result(
+    claim: dict[str, Any],
+    *,
+    gateway_result: dict[str, Any],
+    line_results: list[dict[str, Any]],
+) -> dict[str, Any]:
+    combined_failed_checks: list[dict[str, str]] = []
+    combined_warnings: list[dict[str, str]] = []
+    combined_missing_info: list[dict[str, str]] = []
+    flags: set[str] = set(gateway_result.get("flags", []))
+    refs = dict(gateway_result.get("refs", _base_refs()))
+    refs["repair_codes"] = claim.get("repair_codes", []) if isinstance(claim.get("repair_codes"), list) else []
+    refs["causal_parts"] = claim.get("causal_parts", []) if isinstance(claim.get("causal_parts"), list) else []
+    refs["repair_code"] = claim.get("repair_code")
+    validation_summary = dict(line_results[0].get("validation_summary", gateway_result.get("validation_summary", _base_validation_summary())))
+    validation_summary["component_valid"] = True
+    validation_summary["component_covered"] = True
+    validation_summary["labor_valid"] = True
+    validation_summary["cost_valid"] = True
+    validation_summary["documents_valid"] = True
+    validation_summary["duplicate_risk"] = False
+    validation_summary["prior_repair_risk"] = False
+    validation_summary["mileage_anomaly"] = False
+    validation_summary["exclusion_risk"] = False
+    computed = dict(gateway_result.get("computed", _base_computed()))
+    computed["labor_cost_eur"] = 0.0
+    computed["total_claim_cost_eur"] = 0.0
+    has_labor_cost = False
+    has_total_cost = False
+
+    for result in line_results:
+        line_claim = result.get("claim", {})
+        label = _line_label(line_claim)
+        for item in result.get("failed_checks", []):
+            combined_failed_checks.append(
+                {"code": str(item.get("code", "")).strip(), "message": f"{label}: {item.get('message', '')}"}
+            )
+        for item in result.get("warnings", []):
+            combined_warnings.append(
+                {"code": str(item.get("code", "")).strip(), "message": f"{label}: {item.get('message', '')}"}
+            )
+        for item in result.get("missing_info", []):
+            combined_missing_info.append(
+                {"item": str(item.get("item", "")).strip(), "message": f"{label}: {item.get('message', '')}"}
+            )
+        flags.update(result.get("flags", []))
+        line_validation = result.get("validation_summary", {})
+        validation_summary["component_valid"] = validation_summary.get("component_valid", True) and bool(line_validation.get("component_valid"))
+        validation_summary["component_covered"] = validation_summary.get("component_covered", True) and bool(line_validation.get("component_covered"))
+        validation_summary["labor_valid"] = validation_summary.get("labor_valid", True) and bool(line_validation.get("labor_valid"))
+        validation_summary["cost_valid"] = validation_summary.get("cost_valid", True) and bool(line_validation.get("cost_valid"))
+        validation_summary["documents_valid"] = validation_summary.get("documents_valid", True) and bool(line_validation.get("documents_valid"))
+        validation_summary["duplicate_risk"] = validation_summary.get("duplicate_risk", False) or bool(line_validation.get("duplicate_risk"))
+        validation_summary["prior_repair_risk"] = validation_summary.get("prior_repair_risk", False) or bool(line_validation.get("prior_repair_risk"))
+        validation_summary["mileage_anomaly"] = validation_summary.get("mileage_anomaly", False) or bool(line_validation.get("mileage_anomaly"))
+        validation_summary["exclusion_risk"] = validation_summary.get("exclusion_risk", False) or bool(line_validation.get("exclusion_risk"))
+        line_refs = result.get("refs", {})
+        refs["prior_repair_history_ids"] = sorted(
+            set(refs.get("prior_repair_history_ids", [])) | set(line_refs.get("prior_repair_history_ids", []))
+        )
+        refs["service_history_ids"] = sorted(
+            set(refs.get("service_history_ids", [])) | set(line_refs.get("service_history_ids", []))
+        )
+        line_computed = result.get("computed", {})
+        if isinstance(line_computed.get("labor_cost_eur"), (int, float)):
+            computed["labor_cost_eur"] = round(float(computed["labor_cost_eur"]) + float(line_computed["labor_cost_eur"]), 2)
+            has_labor_cost = True
+        if isinstance(line_computed.get("total_claim_cost_eur"), (int, float)):
+            computed["total_claim_cost_eur"] = round(float(computed["total_claim_cost_eur"]) + float(line_computed["total_claim_cost_eur"]), 2)
+            has_total_cost = True
+
+    if not has_labor_cost:
+        computed["labor_cost_eur"] = None
+    if not has_total_cost:
+        computed["total_claim_cost_eur"] = None
+
+    reject_count = sum(1 for item in line_results if item.get("recommended_disposition") == "REJECT")
+    more_info_count = sum(1 for item in line_results if item.get("recommended_disposition") == "MORE_INFO")
+    refer_count = sum(1 for item in line_results if item.get("recommended_disposition") == "REFER_TO_HUMAN")
+    warning_count = sum(1 for item in line_results if item.get("overall_rule_status") == "PASS_WITH_WARNINGS")
+    pass_count = sum(1 for item in line_results if item.get("overall_rule_status") == "PASS")
+
+    overall_rule_status = "PASS"
+    recommended_disposition = "CONTINUE"
+    if reject_count:
+        overall_rule_status = "BLOCKED"
+        recommended_disposition = "REJECT"
+    elif more_info_count:
+        overall_rule_status = "PASS_WITH_WARNINGS"
+        recommended_disposition = "MORE_INFO"
+    elif refer_count:
+        overall_rule_status = "PASS_WITH_WARNINGS"
+        recommended_disposition = "REFER_TO_HUMAN"
+    elif warning_count:
+        overall_rule_status = "PASS_WITH_WARNINGS"
+        recommended_disposition = "CONTINUE"
+
+    summary_parts = [f"Validated {len(line_results)} repair lines."]
+    if pass_count:
+        summary_parts.append(f"{pass_count} line(s) passed.")
+    if more_info_count:
+        summary_parts.append(f"{more_info_count} line(s) require additional information.")
+    if refer_count:
+        summary_parts.append(f"{refer_count} line(s) require human review.")
+    if reject_count:
+        summary_parts.append(f"{reject_count} line(s) failed validation.")
+
+    compact_line_results = [
+        {
+            "line_number": result.get("claim", {}).get("line_number"),
+            "repair_code": result.get("claim", {}).get("repair_code"),
+            "causal_part": result.get("claim", {}).get("causal_part"),
+            "parts_cost_eur": result.get("claim", {}).get("parts_cost_eur"),
+            "labor_hours": result.get("claim", {}).get("labor_hours"),
+            "overall_rule_status": result.get("overall_rule_status"),
+            "recommended_disposition": result.get("recommended_disposition"),
+            "rule_summary": result.get("rule_summary"),
+            "validation_summary": result.get("validation_summary", {}),
+            "failed_checks": result.get("failed_checks", []),
+            "warnings": result.get("warnings", []),
+            "missing_info": result.get("missing_info", []),
+            "flags": result.get("flags", []),
+            "refs": result.get("refs", {}),
+            "computed": result.get("computed", {}),
+        }
+        for result in line_results
+    ]
+
+    return _make_compact_result(
+        claim,
+        gateway_status="CONTINUE",
+        overall_rule_status=overall_rule_status,
+        recommended_disposition=recommended_disposition,
+        rule_confidence=calculate_rule_confidence(combined_failed_checks, combined_warnings),
+        rule_summary=" ".join(summary_parts),
+        refs=refs,
+        computed=computed,
+        validation_summary=validation_summary,
+        failed_checks=combined_failed_checks,
+        warnings=combined_warnings,
+        missing_info=combined_missing_info,
+        flags=sorted(flags),
+        goodwill_precheck=gateway_result.get("goodwill_precheck"),
+        line_results=compact_line_results,
+    )
 
 
 def _collect_prior_repair_signals(
@@ -737,6 +1029,33 @@ def run_full_claim_validation(
     gateway_result: dict[str, Any],
     data: dict[str, Any],
 ) -> dict[str, Any]:
+    submitted_lines = _normalize_claim_lines_for_validation(claim)
+    if len(submitted_lines) > 1:
+        repair_order_date = parse_date(claim.get("repair_order_date"))
+        resolved_lines = _resolve_claim_lines(
+            claim,
+            warranty_id=gateway_result["warranty_mapping"].get("warranty_id"),
+            repair_order_date=repair_order_date,
+            data=data,
+        )
+        line_results: list[dict[str, Any]] = []
+        for line in resolved_lines:
+            line_gateway_result = dict(gateway_result)
+            line_gateway_result["validation_summary"] = dict(gateway_result.get("validation_summary", _base_validation_summary()))
+            line_gateway_result["refs"] = dict(gateway_result.get("refs", _base_refs()))
+            line_gateway_result["computed"] = dict(gateway_result.get("computed", _base_computed()))
+            line_claim = dict(claim)
+            line_claim["repair_code"] = line.get("repair_code")
+            line_claim["repair_codes"] = [line.get("repair_code")]
+            line_claim["causal_part"] = line.get("causal_part")
+            line_claim["causal_parts"] = [line.get("causal_part")] if line.get("causal_part") else []
+            line_claim["parts_cost_eur"] = line.get("parts_cost_eur")
+            line_claim["labor_hours"] = line.get("labor_hours")
+            line_claim["claim_lines"] = [line]
+            line_claim["line_number"] = line.get("line_number")
+            line_results.append(run_full_claim_validation(line_claim, line_gateway_result, data))
+        return _aggregate_multi_line_result(claim, gateway_result=gateway_result, line_results=line_results)
+
     validation_summary = gateway_result.get("validation_summary", _base_validation_summary())
     refs = gateway_result.get("refs", _base_refs())
     computed = gateway_result.get("computed", _base_computed())
@@ -769,15 +1088,6 @@ def run_full_claim_validation(
         missing_info.append({"item": item, "message": message})
         if flag:
             flags.append(flag)
-
-    submitted_repair_codes = claim.get("repair_codes", []) if isinstance(claim.get("repair_codes"), list) else []
-    submitted_causal_parts = claim.get("causal_parts", []) if isinstance(claim.get("causal_parts"), list) else []
-    if len(submitted_repair_codes) > 1 or len(submitted_causal_parts) > 1:
-        warn(
-            "MULTI_REPAIR_LINE_INPUT",
-            "Multiple repair codes or causal parts were submitted. Deterministic validation used the first aligned repair-code/causal-part pair.",
-            "MULTI_REPAIR_LINE_INPUT",
-        )
 
     if component_rule:
         refs["component_group"] = component_rule.get("component_group")
