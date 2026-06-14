@@ -13,6 +13,19 @@
     </button>
   </div>
 
+  <!-- Vehicle-change warning -->
+  <div class="vehicle-change-warning" *ngIf="showVehicleChangeWarning">
+    <span class="warn-icon">⚠️</span>
+    <span class="warn-text">
+      Switching vehicle type will discard <strong>{{ selectedZones.size }}</strong> selected zone(s) and all their repair codes.
+      Continue?
+    </span>
+    <div class="warn-actions">
+      <button class="warn-btn warn-confirm" (click)="confirmVehicleChange()">Yes, switch</button>
+      <button class="warn-btn warn-cancel" (click)="cancelVehicleChange()">Cancel</button>
+    </div>
+  </div>
+
   <!-- Canvas area -->
   <div class="canvas-wrap">
 
@@ -332,19 +345,26 @@
             <span class="popup-zone-name">{{ popup.zoneLabel }}</span>
             <button class="popup-close" (click)="closePopup()">×</button>
           </div>
-          <p class="popup-hint">Select the issue to report:</p>
+          <p class="popup-hint">Select one or more issues, then click <strong>Apply</strong>:</p>
           <div class="popup-issues">
-            <button
+            <label
               *ngFor="let issue of popup.issues"
-              class="issue-btn"
-              (click)="selectIssue(issue)"
+              class="issue-checkbox-row"
             >
+              <input
+                type="checkbox"
+                [checked]="isIssueChecked(issue.repairCode)"
+                (change)="togglePopupIssue(issue.repairCode)"
+              />
               <span class="issue-code">{{ issue.repairCode }}</span>
               <span class="issue-label">{{ issue.label }}</span>
-            </button>
+            </label>
             <div *ngIf="popup.issues.length === 0" class="no-issues">
-              No predefined issues. Use the failure description field.
+              No predefined issues for this zone.
             </div>
+          </div>
+          <div class="popup-footer" *ngIf="popup.issues.length > 0">
+            <button class="popup-apply-btn" (click)="applyPopupIssues()">Apply</button>
           </div>
         </div>
       </div><!-- svg-wrap -->
@@ -366,10 +386,18 @@
     </button>
   </div>
 
-  <!-- Selected zones summary -->
-  <div class="selected-summary" *ngIf="selectedZones.size > 0">
-    <span class="summary-label">Selected zones:</span>
-    <span class="zone-tag" *ngFor="let z of selectedZones">{{ z }}</span>
+  <!-- Selected zones + issues summary -->
+  <div class="selected-summary" *ngIf="selectedIssuesList.length > 0">
+    <span class="summary-label">Selected repair codes from zones:</span>
+    <span class="zone-tag" *ngFor="let entry of selectedIssuesList">
+      <span class="zone-tag-text">
+        <span class="zone-tag-code">{{ entry.issue.repairCode }}</span>
+        <span class="zone-tag-sep"> — </span>
+        <span class="zone-tag-label">{{ entry.issue.label }}</span>
+        <span class="zone-tag-zone"> ({{ entry.zoneLabel }})</span>
+      </span>
+      <button class="zone-tag-remove" (click)="removeIssue(entry.zoneId, entry.issue.repairCode)" title="Remove">&#x2715;</button>
+    </span>
   </div>
 
 </div>

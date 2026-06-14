@@ -81,9 +81,14 @@
         </div>
         <p class="zone-instruction">
           Select the <strong>vehicle type</strong>, rotate to the affected side, then <strong>click a zone</strong>
-          to pick the issue — this will auto-fill the repair code and failure description below.
+          and tick the issues to add their repair codes below.
         </p>
-        <app-vehicle-zone-selector (zoneSelected)="onZoneSelected($event)"></app-vehicle-zone-selector>
+        <app-vehicle-zone-selector
+          [clearSignal]="zoneClearSignal"
+          (issueAdded)="onIssueAdded($event)"
+          (issueRemoved)="onIssueRemoved($event)"
+          (allCleared)="onAllZonesCleared()">
+        </app-vehicle-zone-selector>
       </div>
 
       <!-- Repair Details -->
@@ -94,26 +99,57 @@
         </div>
         <div class="form-grid">
 
-          <div class="form-field">
-            <label for="repairCode">Repair / Labor Operation Code <span class="required">*</span></label>
-            <app-repair-code-combobox
-              formControlName="repairCode"
-            ></app-repair-code-combobox>
-            <span class="field-hint">Auto-filled when you click a zone above, or select manually.</span>
-            <span class="field-error" *ngIf="isFieldInvalid('repairCode')">{{ getFieldError('repairCode') }}</span>
+          <div class="form-field full-width">
+            <label>Repair / Labor Operation Codes <span class="required">*</span></label>
+
+            <!-- Picker row: search + add -->
+            <div class="repair-codes-picker-row">
+              <app-repair-code-combobox
+                [formControl]="repairCodePicker"
+                placeholder="Search and select a code to add…"
+              ></app-repair-code-combobox>
+              <span class="field-hint">Select a code from the list — it will be added automatically.</span>
+            </div>
+
+            <!-- Added codes chips -->
+            <div class="repair-codes-chips" *ngIf="repairCodesArray.length > 0">
+              <span
+                class="rc-chip"
+                *ngFor="let ctrl of repairCodesArray.controls; let i = index"
+              >
+                <span class="rc-chip-code">{{ ctrl.value }}</span>
+                <button type="button" class="rc-chip-remove" (click)="removeRepairCode(i)" title="Remove">&#x2715;</button>
+              </span>
+            </div>
+
+            <span class="field-error" *ngIf="isRepairCodesInvalid">At least one repair code is required.</span>
           </div>
 
           <div class="form-field">
-            <label for="causalPart">Causal Part <span class="required">*</span></label>
-            <input
-              id="causalPart"
-              type="text"
-              formControlName="causalPart"
-              placeholder="e.g. water pump"
-              [class.invalid]="isFieldInvalid('causalPart')"
-            />
-            <span class="field-hint">Auto-filled from the selected repair code. Adjust only if needed.</span>
-            <span class="field-error" *ngIf="isFieldInvalid('causalPart')">{{ getFieldError('causalPart') }}</span>
+            <label>Causal Part(s) <span class="required">*</span></label>
+            <!-- Inline text input + add button -->
+            <div class="causal-part-input-row">
+              <input
+                type="text"
+                [formControl]="causalPartInput"
+                placeholder="e.g. water pump"
+                (keydown.enter)="$event.preventDefault(); addCausalPart(causalPartInput.value || ''); causalPartInput.setValue('')"
+              />
+              <button
+                type="button"
+                class="btn-add-part"
+                (click)="addCausalPart(causalPartInput.value || ''); causalPartInput.setValue('')"
+              >+ Add</button>
+            </div>
+            <span class="field-hint">Auto-filled from repair code. Press Enter or click Add for each part.</span>
+            <!-- Chips -->
+            <div class="repair-codes-chips" *ngIf="causalPartsArray.length > 0">
+              <span class="rc-chip" *ngFor="let ctrl of causalPartsArray.controls; let i = index">
+                <span class="rc-chip-code">{{ ctrl.value }}</span>
+                <button type="button" class="rc-chip-remove" (click)="removeCausalPart(i)" title="Remove">&#x2715;</button>
+              </span>
+            </div>
+            <span class="field-error" *ngIf="isCausalPartsInvalid">At least one causal part is required.</span>
           </div>
 
           <div class="form-field">
@@ -150,7 +186,7 @@
               id="failureDescription"
               formControlName="failureDescription"
               rows="5"
-              placeholder="Auto-filled from zone selection above, or describe the failure mode, symptoms, and diagnostic findings…"
+              placeholder="Describe the failure mode, symptoms, and diagnostic findings in detail…"
               [class.invalid]="isFieldInvalid('failureDescription')"
             ></textarea>
             <span class="field-hint">

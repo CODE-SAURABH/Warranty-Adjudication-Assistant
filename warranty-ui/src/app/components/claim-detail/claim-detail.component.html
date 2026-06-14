@@ -198,12 +198,16 @@
               <span class="summary-val">{{ claim.submission.currentOdometerReading | number }} km</span>
             </div>
             <div class="summary-row">
-              <span class="summary-key">Repair Code</span>
-              <span class="summary-val mono">{{ claim.submission.repairCode }}</span>
+              <span class="summary-key">Repair Codes</span>
+              <span class="summary-val">
+                <span class="mono rc-badge" *ngFor="let code of claim.submission.repairCodes">{{ code }}</span>
+              </span>
             </div>
             <div class="summary-row">
-              <span class="summary-key">Causal Part</span>
-              <span class="summary-val">{{ claim.submission.causalPart }}</span>
+              <span class="summary-key">Causal Parts</span>
+              <span class="summary-val">
+                <span class="rc-badge" *ngFor="let part of claim.submission.causalParts">{{ part }}</span>
+              </span>
             </div>
             <div class="summary-row">
               <span class="summary-key">Labor Hours</span>
@@ -223,9 +227,11 @@
         <!-- Causal Part -->
         <div class="detail-card">
           <div class="card-title">
-            <span class="card-icon">🔩</span> Causal Part
+            <span class="card-icon">🔩</span> Causal Parts
           </div>
-          <p class="parts-text">{{ claim.submission.causalPart }}</p>
+          <div class="repair-codes-chips" style="padding: 4px 0;">
+            <span class="rc-badge" style="border-radius:6px;padding:3px 10px;font-size:12px;" *ngFor="let part of claim.submission.causalParts">{{ part }}</span>
+          </div>
         </div>
 
         <!-- Failure Description -->

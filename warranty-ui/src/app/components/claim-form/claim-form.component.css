@@ -102,6 +102,100 @@ textarea { resize: vertical; min-height: 100px; }
 .field-hint { font-size: 11px; color: #94a3b8; }
 .field-error { font-size: 11px; color: #ef4444; font-weight: 500; }
 
+/* Repair codes multi-picker */
+.repair-codes-picker-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+/* Causal parts inline input row */
+.causal-part-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.causal-part-input-row input {
+  flex: 1;
+}
+.btn-add-part {
+  white-space: nowrap;
+  padding: 8px 16px;
+  background: #1e40af;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-add-part:hover { background: #1d4ed8; }
+.repair-codes-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 8px 10px;
+  background: rgba(59,130,246,0.06);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 8px;
+  min-height: 40px;
+}
+.rc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px 3px 10px;
+  background: rgba(59,130,246,0.15);
+  border: 1px solid rgba(59,130,246,0.35);
+  border-radius: 20px;
+  font-size: 12px;
+  color: #93c5fd;
+}
+.rc-chip-code { font-family: monospace; font-weight: 700; letter-spacing: 0.3px; }
+.rc-chip-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f87171;
+  font-size: 11px;
+  padding: 0 4px;
+  line-height: 1;
+  opacity: 0.7;
+  border-radius: 50%;
+  transition: opacity 0.15s, background 0.15s;
+}
+.rc-chip-remove:hover { opacity: 1; background: rgba(248,113,113,0.15); }
+
+/* Zone-contributed repair code chips (legacy, keep for CSS safety) */
+.zone-codes-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: rgba(34,197,94,0.07);
+  border: 1px solid rgba(74,222,128,0.2);
+  border-radius: 8px;
+}
+.zone-codes-label { font-size: 10px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+.zone-code-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  background: rgba(34,197,94,0.12);
+  color: #4ade80;
+  border: 1px solid rgba(74,222,128,0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.zcc-code { font-family: monospace; font-weight: 700; }
+.zcc-sep { opacity: 0.45; }
+.zcc-label { color: #a7f3d0; }
+.zcc-zone { font-size: 10px; opacity: 0.5; margin-left: 2px; }
+
 .section-hint { font-size: 13px; color: #64748b; margin: -12px 0 16px; }
 
 /* Service history */

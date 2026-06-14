@@ -19,6 +19,14 @@ export interface SelectedZone {
   defaultDescription: string;
 }
 
+/** Emitted by VehicleZoneSelectorComponent when an issue is added or removed */
+export interface ZoneIssueEvent {
+  zoneId: string;
+  zoneLabel: string;
+  repairCode: string;
+  issueLabel: string;
+}
+
 export interface ServiceHistoryEntry {
   date: string;
   odometerReading: number;
@@ -31,8 +39,8 @@ export interface ClaimSubmission {
   inServiceDate: string;
   repairOrderDate: string;
   currentOdometerReading: number;
-  repairCode: string;
-  causalPart: string;
+  repairCodes: string[];
+  causalParts: string[];
   partsCostEur: number;
   laborHours: number;
   failureDescription: string;

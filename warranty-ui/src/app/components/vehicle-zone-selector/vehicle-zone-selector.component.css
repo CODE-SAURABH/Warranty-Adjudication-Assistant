@@ -215,22 +215,27 @@
   gap: 6px;
 }
 
-.issue-btn {
+.issue-checkbox-row {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 12px;
+  padding: 8px 12px;
   border-radius: 8px;
   background: #1e293b;
   border: 1px solid #334155;
   color: white;
   font-size: 13px;
   cursor: pointer;
-  text-align: left;
   transition: all 0.15s;
-  width: 100%;
 }
-.issue-btn:hover { background: #1e3a5f; border-color: #3b82f6; }
+.issue-checkbox-row:hover { background: #1e3a5f; border-color: #3b82f6; }
+.issue-checkbox-row input[type="checkbox"] {
+  accent-color: #3b82f6;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
 
 .issue-code {
   font-family: monospace;
@@ -245,6 +250,53 @@
 .issue-label { font-size: 12px; color: #e2e8f0; }
 
 .no-issues { font-size: 12px; color: #64748b; padding: 8px 0; }
+
+.popup-footer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.popup-apply-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.popup-apply-btn:hover { background: #1d4ed8; }
+
+/* Vehicle-change warning banner */
+.vehicle-change-warning {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: rgba(234,179,8,0.12);
+  border: 1px solid rgba(234,179,8,0.4);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.warn-icon { font-size: 16px; flex-shrink: 0; }
+.warn-text { flex: 1; color: #fde68a; line-height: 1.4; }
+.warn-actions { display: flex; gap: 8px; }
+.warn-btn {
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.warn-confirm { background: #ef4444; color: white; }
+.warn-confirm:hover { background: #dc2626; }
+.warn-cancel { background: #334155; color: #e2e8f0; }
+.warn-cancel:hover { background: #475569; }
 
 /* Popup overlay */
 .popup-overlay {
@@ -267,11 +319,28 @@
 }
 .summary-label { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 .zone-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 11px;
   background: rgba(34,197,94,0.15);
   color: #4ade80;
   border: 1px solid rgba(74,222,128,0.3);
-  padding: 2px 8px;
+  padding: 3px 4px 3px 8px;
   border-radius: 6px;
-  font-family: monospace;
 }
+.zone-tag-code { font-family: monospace; font-weight: 700; }
+.zone-tag-sep { opacity: 0.5; }
+.zone-tag-label { color: #a7f3d0; }
+.zone-tag-zone { font-size: 10px; opacity: 0.55; }
+.zone-tag-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f87171;
+  font-size: 10px;
+  padding: 0 2px;
+  line-height: 1;
+  opacity: 0.7;
+}
+.zone-tag-remove:hover { opacity: 1; }

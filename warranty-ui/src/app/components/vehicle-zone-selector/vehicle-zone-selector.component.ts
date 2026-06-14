@@ -3,9 +3,12 @@ import {
   Output,
   EventEmitter,
   HostListener,
+  Input,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { getRepairCodeEntry } from '../../data/repair-codes.data';
-import { VehicleType, VehicleView, VehicleZone, SelectedZone } from '../../models/claim.model';
+import { VehicleType, VehicleView, VehicleZone, ZoneIssueEvent } from '../../models/claim.model';
 
 interface ZoneIssue {
   repairCode: string;
@@ -38,14 +41,60 @@ function zoneIssue(repairCode: string, label: string, description: string): Zone
   templateUrl: './vehicle-zone-selector.component.html',
   styleUrls: ['./vehicle-zone-selector.component.css'],
 })
-export class VehicleZoneSelectorComponent {
-  @Output() zoneSelected = new EventEmitter<SelectedZone>();
+export class VehicleZoneSelectorComponent implements OnChanges {
+  /** Emitted each time the user applies an issue for a zone */
+  @Output() issueAdded = new EventEmitter<ZoneIssueEvent>();
+  /** Emitted when the user removes an individual issue */
+  @Output() issueRemoved = new EventEmitter<ZoneIssueEvent>();
+  /** Emitted when the vehicle type is changed and all selections are cleared */
+  @Output() allCleared = new EventEmitter<void>();
+  /** Increment from parent to clear all zone selections */
+  @Input() clearSignal = 0;
 
   vehicleType: VehicleType = 'car';
   activeView: VehicleView = 'left';
   hoveredZone: string | null = null;
+  /** Set of zone IDs that have at least one issue selected */
   selectedZones: Set<string> = new Set();
+  /** Per-zone list of selected issues (multiple allowed) */
+  selectedZoneIssues: Map<string, ZoneIssue[]> = new Map();
   popup: ZonePopup | null = null;
+  /** Repair codes currently checked in the open popup */
+  popupChecked: Set<string> = new Set();
+
+  // ── Vehicle-change warning ───────────────────────────────────────────────
+  showVehicleChangeWarning = false;
+  pendingVehicleType: VehicleType | null = null;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['clearSignal'] && !changes['clearSignal'].firstChange) {
+      this._clearAll();
+    }
+  }
+
+  /** Public — called by parent via ViewChild or clearSignal input */
+  clearAll(): void {
+    this._clearAll();
+  }
+
+  private _clearAll(): void {
+    this.selectedZones.clear();
+    this.selectedZoneIssues.clear();
+    this.popupChecked.clear();
+    this.popup = null;
+  }
+
+  /** Flat list of all selected issues for use in the summary template */
+  get selectedIssuesList(): Array<{ zoneId: string; zoneLabel: string; issue: ZoneIssue }> {
+    const result: Array<{ zoneId: string; zoneLabel: string; issue: ZoneIssue }> = [];
+    for (const [zoneId, issues] of this.selectedZoneIssues.entries()) {
+      const zoneLabel = this.getZoneLabel(zoneId);
+      for (const issue of issues) {
+        result.push({ zoneId, zoneLabel, issue });
+      }
+    }
+    return result;
+  }
 
   readonly vehicleTypes: { type: VehicleType; label: string; icon: string }[] = [
     { type: 'car', label: 'Car / Sedan', icon: '🚗' },
@@ -227,33 +276,84 @@ export class VehicleZoneSelectorComponent {
   onZoneClick(zone: VehicleZone, event: MouseEvent): void {
     const svgEl = (event.target as SVGElement).closest('svg');
     if (!svgEl) return;
-    const svgRect = svgEl.getBoundingClientRect();
     const containerRect = (svgEl.parentElement as HTMLElement).getBoundingClientRect();
+    const popupX = event.clientX - containerRect.left;
+    const popupY = event.clientY - containerRect.top;
 
-    const popupX = (event.clientX - containerRect.left);
-    const popupY = (event.clientY - containerRect.top);
+    // Pre-populate checkboxes with already-selected issues for this zone
+    const existing = this.selectedZoneIssues.get(zone.id) ?? [];
+    this.popupChecked = new Set(existing.map(i => i.repairCode));
 
     this.popup = {
       zoneId: zone.id,
       zoneLabel: zone.label,
       x: Math.min(popupX, containerRect.width - 280),
-      y: Math.min(popupY + 12, containerRect.height - 200),
+      y: Math.min(popupY + 12, containerRect.height - 220),
       issues: this.getIssuesForZone(zone.id),
     };
   }
 
-  selectIssue(issue: ZoneIssue): void {
+  /** Toggle a checkbox in the popup */
+  togglePopupIssue(repairCode: string): void {
+    if (this.popupChecked.has(repairCode)) {
+      this.popupChecked.delete(repairCode);
+    } else {
+      this.popupChecked.add(repairCode);
+    }
+  }
+
+  isIssueChecked(repairCode: string): boolean {
+    return this.popupChecked.has(repairCode);
+  }
+
+  /** Apply the current checkbox state: diff vs previous selection, emit events */
+  applyPopupIssues(): void {
     if (!this.popup) return;
-    const zoneId = this.popup.zoneId;
-    const zoneLabel = this.popup.zoneLabel;
-    this.selectedZones.add(zoneId);
-    this.zoneSelected.emit({
-      zoneId,
-      label: zoneLabel,
-      repairCode: issue.repairCode,
-      defaultDescription: issue.description,
-    });
+    const { zoneId, zoneLabel, issues } = this.popup;
+
+    const prevCodes = new Set((this.selectedZoneIssues.get(zoneId) ?? []).map(i => i.repairCode));
+    const newCodes = new Set(this.popupChecked);
+
+    // Emit added issues
+    for (const issue of issues) {
+      if (newCodes.has(issue.repairCode) && !prevCodes.has(issue.repairCode)) {
+        this.issueAdded.emit({ zoneId, zoneLabel, repairCode: issue.repairCode, issueLabel: issue.label });
+      }
+    }
+    // Emit removed issues
+    for (const issue of issues) {
+      if (prevCodes.has(issue.repairCode) && !newCodes.has(issue.repairCode)) {
+        this.issueRemoved.emit({ zoneId, zoneLabel, repairCode: issue.repairCode, issueLabel: issue.label });
+      }
+    }
+
+    // Update internal state
+    const selectedIssues = issues.filter(i => newCodes.has(i.repairCode));
+    if (selectedIssues.length > 0) {
+      this.selectedZones.add(zoneId);
+      this.selectedZoneIssues.set(zoneId, selectedIssues);
+    } else {
+      this.selectedZones.delete(zoneId);
+      this.selectedZoneIssues.delete(zoneId);
+    }
+
     this.popup = null;
+    this.popupChecked.clear();
+  }
+
+  /** Remove a single issue from a zone tag (× button in summary) */
+  removeIssue(zoneId: string, repairCode: string): void {
+    const issues = this.selectedZoneIssues.get(zoneId) ?? [];
+    const issue = issues.find(i => i.repairCode === repairCode);
+    if (!issue) return;
+    const updated = issues.filter(i => i.repairCode !== repairCode);
+    if (updated.length === 0) {
+      this.selectedZones.delete(zoneId);
+      this.selectedZoneIssues.delete(zoneId);
+    } else {
+      this.selectedZoneIssues.set(zoneId, updated);
+    }
+    this.issueRemoved.emit({ zoneId, zoneLabel: this.getZoneLabel(zoneId), repairCode, issueLabel: issue.label });
   }
 
   closePopup(): void {
@@ -266,9 +366,33 @@ export class VehicleZoneSelectorComponent {
   }
 
   setVehicleType(type: VehicleType): void {
+    if (type === this.vehicleType) return;
+    if (this.selectedZones.size > 0) {
+      // Show inline warning instead of immediately switching
+      this.pendingVehicleType = type;
+      this.showVehicleChangeWarning = true;
+      return;
+    }
+    this._applyVehicleType(type);
+  }
+
+  confirmVehicleChange(): void {
+    if (!this.pendingVehicleType) return;
+    this._clearAll();
+    this.allCleared.emit();
+    this._applyVehicleType(this.pendingVehicleType);
+    this.pendingVehicleType = null;
+    this.showVehicleChangeWarning = false;
+  }
+
+  cancelVehicleChange(): void {
+    this.pendingVehicleType = null;
+    this.showVehicleChangeWarning = false;
+  }
+
+  private _applyVehicleType(type: VehicleType): void {
     this.vehicleType = type;
     this.activeView = 'left';
-    this.selectedZones.clear();
     this.popup = null;
   }
 
@@ -288,6 +412,16 @@ export class VehicleZoneSelectorComponent {
     return this.selectedZones.has(zoneId);
   }
 
+  /** Search all views for the current vehicle type to find a zone's label */
+  getZoneLabel(zoneId: string): string {
+    const allViews = this.svgZones[this.vehicleType] ?? {};
+    for (const zones of Object.values(allViews)) {
+      const match = (zones as VehicleZone[]).find(z => z.id === zoneId);
+      if (match) return match.label;
+    }
+    return zoneId;
+  }
+
   // ─── SVG Zone Definitions ─────────────────────────────────────────────────
   readonly svgZones: Record<string, Partial<Record<VehicleView, VehicleZone[]>>> = {
     car: {
@@ -297,7 +431,7 @@ export class VehicleZoneSelectorComponent {
         { id: 'car-wheel-rl', label: 'Rear Wheel', repairCode: 'SUSP-002', description: '', view: 'left',
           svgPath: 'M 338 158 m -28 0 a 28 28 0 1 0 56 0 a 28 28 0 1 0 -56 0' },
         { id: 'car-engine', label: 'Engine Bay', repairCode: 'ENG-001', description: '', view: 'left',
-          svgPath: 'M 24 80 L 110 60 L 130 100 L 24 110 Z' },
+          svgPath: 'M 22 115 L 40 80 L 110 60 L 110 148 L 22 148 Z' },
         { id: 'car-door-fl', label: 'Front Door', repairCode: 'BODY-004', description: '', view: 'left',
           svgPath: 'M 140 68 L 220 65 L 220 148 L 140 148 Z' },
         { id: 'car-door-rl', label: 'Rear Door', repairCode: 'BODY-004', description: '', view: 'left',
@@ -313,27 +447,27 @@ export class VehicleZoneSelectorComponent {
       ],
       right: [
         { id: 'car-wheel-fr', label: 'Front Wheel', repairCode: 'SUSP-001', description: '', view: 'right',
-          svgPath: 'M 62 158 m -28 0 a 28 28 0 1 0 56 0 a 28 28 0 1 0 -56 0' },
-        { id: 'car-wheel-rr', label: 'Rear Wheel', repairCode: 'SUSP-002', description: '', view: 'right',
           svgPath: 'M 338 158 m -28 0 a 28 28 0 1 0 56 0 a 28 28 0 1 0 -56 0' },
+        { id: 'car-wheel-rr', label: 'Rear Wheel', repairCode: 'SUSP-002', description: '', view: 'right',
+          svgPath: 'M 62 158 m -28 0 a 28 28 0 1 0 56 0 a 28 28 0 1 0 -56 0' },
         { id: 'car-engine', label: 'Engine Bay', repairCode: 'ENG-001', description: '', view: 'right',
-          svgPath: 'M 24 80 L 110 60 L 130 100 L 24 110 Z' },
+          svgPath: 'M 378 115 L 360 80 L 290 60 L 290 148 L 378 148 Z' },
         { id: 'car-door-fr', label: 'Front Door', repairCode: 'BODY-004', description: '', view: 'right',
-          svgPath: 'M 140 68 L 220 65 L 220 148 L 140 148 Z' },
+          svgPath: 'M 260 68 L 180 65 L 180 148 L 260 148 Z' },
         { id: 'car-door-rr', label: 'Rear Door', repairCode: 'BODY-004', description: '', view: 'right',
-          svgPath: 'M 222 65 L 305 68 L 305 148 L 222 148 Z' },
+          svgPath: 'M 178 65 L 95 68 L 95 148 L 178 148 Z' },
         { id: 'car-windshield', label: 'Windshield', repairCode: 'BODY-002', description: '', view: 'right',
-          svgPath: 'M 108 62 L 140 48 L 140 100 L 108 108 Z' },
+          svgPath: 'M 292 62 L 260 48 L 260 100 L 292 108 Z' },
         { id: 'car-roof', label: 'Roof', repairCode: 'BODY-003', description: '', view: 'right',
-          svgPath: 'M 140 45 L 270 45 L 270 62 L 140 62 Z' },
+          svgPath: 'M 260 45 L 130 45 L 130 62 L 260 62 Z' },
         { id: 'car-trunk', label: 'Trunk', repairCode: 'BODY-006', description: '', view: 'right',
-          svgPath: 'M 305 65 L 360 78 L 360 148 L 305 148 Z' },
+          svgPath: 'M 95 65 L 40 78 L 40 148 L 95 148 Z' },
       ],
       front: [
         { id: 'car-front-bumper', label: 'Front Bumper', repairCode: 'BODY-001', description: '', view: 'front',
           svgPath: 'M 60 155 L 340 155 L 350 180 L 50 180 Z' },
         { id: 'car-front-lights', label: 'Headlights', repairCode: 'ELEC-004', description: '', view: 'front',
-          svgPath: 'M 60 100 L 140 95 L 145 140 L 60 145 Z M 260 95 L 340 100 L 340 145 L 255 140 Z' },
+          svgPath: 'M 60 95 L 140 95 L 140 145 L 60 145 Z M 260 95 L 340 95 L 340 145 L 260 145 Z' },
         { id: 'car-hood', label: 'Hood', repairCode: 'BODY-001', description: '', view: 'front',
           svgPath: 'M 80 60 L 320 60 L 340 100 L 60 100 Z' },
         { id: 'car-windshield', label: 'Windshield', repairCode: 'BODY-002', description: '', view: 'front',
@@ -349,13 +483,13 @@ export class VehicleZoneSelectorComponent {
         { id: 'car-rear-bumper', label: 'Rear Bumper', repairCode: 'BODY-001', description: '', view: 'rear',
           svgPath: 'M 60 155 L 340 155 L 350 180 L 50 180 Z' },
         { id: 'car-rear-lights', label: 'Tail Lights', repairCode: 'ELEC-009', description: '', view: 'rear',
-          svgPath: 'M 60 100 L 140 95 L 145 155 L 60 155 Z M 260 95 L 340 100 L 340 155 L 255 155 Z' },
+          svgPath: 'M 60 95 L 140 95 L 140 155 L 60 155 Z M 260 95 L 340 95 L 340 155 L 260 155 Z' },
         { id: 'car-trunk', label: 'Trunk Lid', repairCode: 'BODY-006', description: '', view: 'rear',
           svgPath: 'M 80 50 L 320 50 L 340 100 L 60 100 Z' },
         { id: 'car-windshield', label: 'Rear Window', repairCode: 'BODY-002', description: '', view: 'rear',
           svgPath: 'M 110 25 L 290 25 L 300 50 L 100 50 Z' },
         { id: 'car-exhaust', label: 'Exhaust Pipe(s)', repairCode: 'EXH-001', description: '', view: 'rear',
-          svgPath: 'M 150 165 L 200 165 L 200 180 L 150 180 Z M 220 165 L 260 165 L 260 180 L 220 180 Z' },
+          svgPath: 'M 148 162 L 198 162 L 198 177 L 148 177 Z M 202 162 L 252 162 L 252 177 L 202 177 Z' },
         { id: 'car-wheel-rl', label: 'Rear-Left Wheel', repairCode: 'SUSP-002', description: '', view: 'rear',
           svgPath: 'M 22 128 m -22 0 a 22 22 0 1 0 44 0 a 22 22 0 1 0 -44 0' },
         { id: 'car-wheel-rr', label: 'Rear-Right Wheel', repairCode: 'SUSP-002', description: '', view: 'rear',
