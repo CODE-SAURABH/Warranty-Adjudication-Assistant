@@ -1,0 +1,152 @@
+[
+  {
+    "clause_id": "1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "This Corrosion Assistance Policy applies only to vehicles with an active corrosion policy mapping recorded against the VIN."
+  },
+  {
+    "clause_id": "1.1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "Corrosion assistance applies only to eligible factory body panels affected by inside-out rust perforation."
+  },
+  {
+    "clause_id": "1.2",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "If no active corrosion policy mapping exists for the VIN, the claim is not eligible under this policy."
+  },
+  {
+    "clause_id": "2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "The Corrosion Assistance Policy covers rust-through body panel perforation for 72 months from the in-service date."
+  },
+  {
+    "clause_id": "2.1",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A corrosion claim is within the policy period when the repair order date is on or before the recorded corrosion coverage end date."
+  },
+  {
+    "clause_id": "2.2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A corrosion claim opened after the recorded policy end date is outside coverage unless referred for goodwill review."
+  },
+  {
+    "clause_id": "3",
+    "section": "Clause 3 - Covered Condition",
+    "clause_quote": "Covered corrosion must be inside-out perforation of an eligible body panel such as a rocker panel, door hem, tailgate seam, or comparable factory panel."
+  },
+  {
+    "clause_id": "3.1",
+    "section": "Clause 3 - Covered Condition",
+    "clause_quote": "Surface rust, staining, or cosmetic corrosion without panel perforation is not a covered condition."
+  },
+  {
+    "clause_id": "3.2",
+    "section": "Clause 3 - Covered Condition",
+    "clause_quote": "The claim description must identify the affected panel and state that rust perforation has occurred."
+  },
+  {
+    "clause_id": "4",
+    "section": "Clause 4 - Exclusions",
+    "clause_quote": "The corrosion policy does not cover stone chip damage, collision-repaired panels, external damage, or improper body repair."
+  },
+  {
+    "clause_id": "4.1",
+    "section": "Clause 4 - Exclusions",
+    "clause_quote": "If the rust condition is directly linked to prior collision damage or poor repair work, the claim shall be rejected."
+  },
+  {
+    "clause_id": "4.2",
+    "section": "Clause 4 - Exclusions",
+    "clause_quote": "If the evidence of an exclusion is suggestive but not conclusive, the claim shall be referred for human review."
+  },
+  {
+    "clause_id": "5",
+    "section": "Clause 5 - Documentation",
+    "clause_quote": "Every corrosion claim must include the VIN, in-service date, repair order date, affected panel, and a specific description of the perforation condition."
+  },
+  {
+    "clause_id": "5.1",
+    "section": "Clause 5 - Documentation",
+    "clause_quote": "A corrosion claim must include a dealer inspection summary confirming that the rust originated from inside the panel and progressed to perforation."
+  },
+  {
+    "clause_id": "5.2",
+    "section": "Clause 5 - Documentation",
+    "clause_quote": "Claims with missing mandatory documentation shall not be approved and require completion before payment."
+  },
+  {
+    "clause_id": "6",
+    "section": "Clause 6 - Repair Eligibility",
+    "clause_quote": "Only repairs addressing the covered perforated panel area are eligible under the corrosion policy."
+  },
+  {
+    "clause_id": "6.1",
+    "section": "Clause 6 - Repair Eligibility",
+    "clause_quote": "Associated refinishing and corrosion protection steps are eligible only when they are part of the covered panel repair."
+  },
+  {
+    "clause_id": "6.2",
+    "section": "Clause 6 - Repair Eligibility",
+    "clause_quote": "Additional body work unrelated to the covered perforation area is not payable under this policy."
+  },
+  {
+    "clause_id": "7",
+    "section": "Clause 7 - Labor Rules",
+    "clause_quote": "Labor reimbursement is evaluated against the published standard and maximum labor time for the corrosion repair code."
+  },
+  {
+    "clause_id": "7.1",
+    "section": "Clause 7 - Labor Rules",
+    "clause_quote": "A claim within the published labor limit may proceed when all other corrosion coverage conditions are satisfied."
+  },
+  {
+    "clause_id": "7.2",
+    "section": "Clause 7 - Labor Rules",
+    "clause_quote": "Labor time above the published maximum requires human review and cannot be auto-approved."
+  },
+  {
+    "clause_id": "8",
+    "section": "Clause 8 - Review Outcomes",
+    "clause_quote": "A corrosion claim shall be approved only when policy period, covered condition, documentation, and labor limits are all satisfied."
+  },
+  {
+    "clause_id": "8.1",
+    "section": "Clause 8 - Review Outcomes",
+    "clause_quote": "A corrosion claim shall be rejected when the condition is cosmetic only, caused by excluded damage, or presented outside the policy period."
+  },
+  {
+    "clause_id": "8.2",
+    "section": "Clause 8 - Review Outcomes",
+    "clause_quote": "A corrosion claim shall be referred when the origin of the rust or the extent of perforation is unclear."
+  },
+  {
+    "clause_id": "9",
+    "section": "Clause 9 - Boundary Handling",
+    "clause_quote": "A corrosion claim opened on the final covered day remains within coverage when all other eligibility conditions are satisfied."
+  },
+  {
+    "clause_id": "9.1",
+    "section": "Clause 9 - Boundary Handling",
+    "clause_quote": "If the repair order date is exactly equal to the recorded corrosion coverage end date, the claim remains within the policy period."
+  },
+  {
+    "clause_id": "9.2",
+    "section": "Clause 9 - Boundary Handling",
+    "clause_quote": "If the repair order date is after the recorded corrosion coverage end date, the claim is outside the policy period."
+  },
+  {
+    "clause_id": "10",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill assistance for corrosion claims may be considered only when the condition is otherwise eligible but the policy period has been exceeded by a small margin."
+  },
+  {
+    "clause_id": "10.1",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill requires a dealer inspection summary and a condition history that supports inside-out perforation rather than neglect or external damage."
+  },
+  {
+    "clause_id": "10.2",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill cannot be auto-approved and must be referred for human authorization."
+  }
+]

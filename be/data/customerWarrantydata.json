@@ -1,0 +1,602 @@
+[
+  {
+    "mapping_id": "MAP-0001",
+    "vin": "VCV4H7TL2XE910234",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2026-09-11",
+    "end_date": "2029-09-10",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0002",
+    "vin": "VCV4H7TL2XE910234",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2026-09-11",
+    "end_date": "2031-09-10",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0003",
+    "vin": "VCV4H7TL2XE910234",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2026-09-11",
+    "end_date": "2032-09-10",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0004",
+    "vin": "VCV6M2PK1XA110101",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2025-01-15",
+    "end_date": "2028-01-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0005",
+    "vin": "VCV6M2PK1XA110101",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2025-01-15",
+    "end_date": "2030-01-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0006",
+    "vin": "VCV6M2PK1XA110101",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2025-01-15",
+    "end_date": "2031-01-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0007",
+    "vin": "VCV6M2PK1XA110102",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2024-05-10",
+    "end_date": "2027-05-09",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0008",
+    "vin": "VCV6M2PK1XA110102",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2024-05-10",
+    "end_date": "2029-05-09",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0009",
+    "vin": "VCV6M2PK1XA110102",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2024-05-10",
+    "end_date": "2030-05-09",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0010",
+    "vin": "VCV6M2PK1XA110103",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2023-11-02",
+    "end_date": "2026-11-01",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0011",
+    "vin": "VCV6M2PK1XA110103",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2023-11-02",
+    "end_date": "2028-11-01",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0012",
+    "vin": "VCV6M2PK1XA110103",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2023-11-02",
+    "end_date": "2029-11-01",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0013",
+    "vin": "VCV6M2PK1XA110104",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2021-06-15",
+    "end_date": "2024-06-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0014",
+    "vin": "VCV6M2PK1XA110104",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2021-06-15",
+    "end_date": "2026-06-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0015",
+    "vin": "VCV6M2PK1XA110104",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2021-06-15",
+    "end_date": "2027-06-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0016",
+    "vin": "VCV6M2PK1XA110105",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2022-02-20",
+    "end_date": "2025-02-19",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0017",
+    "vin": "VCV6M2PK1XA110105",
+    "warranty_id": "WRTY-EXT-001",
+    "start_date": "2025-02-20",
+    "end_date": "2028-02-19",
+    "start_mileage_km": 60000,
+    "end_mileage_km": 140000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0018",
+    "vin": "VCV6M2PK1XA110105",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2022-02-20",
+    "end_date": "2028-02-19",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0019",
+    "vin": "VCV6M2PK1XA110106",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2020-03-05",
+    "end_date": "2023-03-04",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0020",
+    "vin": "VCV6M2PK1XA110106",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2020-03-05",
+    "end_date": "2025-03-04",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0021",
+    "vin": "VCV6M2PK1XA110106",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2020-03-05",
+    "end_date": "2026-03-04",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0022",
+    "vin": "VCV6M2PK1XA110107",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2024-12-01",
+    "end_date": "2027-11-30",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0023",
+    "vin": "VCV6M2PK1XA110107",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2024-12-01",
+    "end_date": "2029-11-30",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0024",
+    "vin": "VCV6M2PK1XA110107",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2024-12-01",
+    "end_date": "2030-11-30",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0025",
+    "vin": "VCV6M2PK1XA110108",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2023-10-30",
+    "end_date": "2026-10-29",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0026",
+    "vin": "VCV6M2PK1XA110108",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2023-10-30",
+    "end_date": "2028-10-29",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0027",
+    "vin": "VCV6M2PK1XA110108",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2023-10-30",
+    "end_date": "2029-10-29",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0028",
+    "vin": "VCV6M2PK1XA110109",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2024-01-12",
+    "end_date": "2027-01-11",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0029",
+    "vin": "VCV6M2PK1XA110109",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2024-01-12",
+    "end_date": "2029-01-11",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0030",
+    "vin": "VCV6M2PK1XA110109",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2024-01-12",
+    "end_date": "2030-01-11",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0031",
+    "vin": "VCV6M2PK1XA110110",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2022-09-18",
+    "end_date": "2025-09-17",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0032",
+    "vin": "VCV6M2PK1XA110110",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2022-09-18",
+    "end_date": "2027-09-17",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0033",
+    "vin": "VCV6M2PK1XA110110",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2022-09-18",
+    "end_date": "2028-09-17",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0034",
+    "vin": "VCV6M2PK1XA110111",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2021-08-08",
+    "end_date": "2024-08-07",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0035",
+    "vin": "VCV6M2PK1XA110111",
+    "warranty_id": "WRTY-EXT-001",
+    "start_date": "2024-08-08",
+    "end_date": "2027-08-07",
+    "start_mileage_km": 50000,
+    "end_mileage_km": 140000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0036",
+    "vin": "VCV6M2PK1XA110111",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2021-08-08",
+    "end_date": "2027-08-07",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0037",
+    "vin": "VCV6M2PK1XA110112",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2025-07-01",
+    "end_date": "2028-06-30",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0038",
+    "vin": "VCV6M2PK1XA110112",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2025-07-01",
+    "end_date": "2030-06-30",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0039",
+    "vin": "VCV6M2PK1XA110112",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2025-07-01",
+    "end_date": "2031-06-30",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0040",
+    "vin": "VCV6M2PK1XA110113",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2020-12-15",
+    "end_date": "2023-12-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0041",
+    "vin": "VCV6M2PK1XA110113",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2020-12-15",
+    "end_date": "2025-12-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0042",
+    "vin": "VCV6M2PK1XA110113",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2020-12-15",
+    "end_date": "2026-12-14",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0043",
+    "vin": "VCV6M2PK1XA110114",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2021-03-22",
+    "end_date": "2024-03-21",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0044",
+    "vin": "VCV6M2PK1XA110114",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2021-03-22",
+    "end_date": "2026-03-21",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0045",
+    "vin": "VCV6M2PK1XA110114",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2021-03-22",
+    "end_date": "2027-03-21",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0046",
+    "vin": "VCV6M2PK1XA110115",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2024-08-30",
+    "end_date": "2027-08-29",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0047",
+    "vin": "VCV6M2PK1XA110115",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2024-08-30",
+    "end_date": "2029-08-29",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0048",
+    "vin": "VCV6M2PK1XA110115",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2024-08-30",
+    "end_date": "2030-08-29",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0049",
+    "vin": "VCV6M2PK1XA110116",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2025-04-11",
+    "end_date": "2028-04-10",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0050",
+    "vin": "VCV6M2PK1XA110116",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2025-04-11",
+    "end_date": "2030-04-10",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0051",
+    "vin": "VCV6M2PK1XA110116",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2025-04-11",
+    "end_date": "2031-04-10",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0052",
+    "vin": "VCV6M2PK1XA110117",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2022-07-07",
+    "end_date": "2025-07-06",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0053",
+    "vin": "VCV6M2PK1XA110117",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2022-07-07",
+    "end_date": "2027-07-06",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0054",
+    "vin": "VCV6M2PK1XA110117",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2022-07-07",
+    "end_date": "2028-07-06",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0055",
+    "vin": "VCV6M2PK1XA110118",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2023-04-28",
+    "end_date": "2026-04-27",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0056",
+    "vin": "VCV6M2PK1XA110118",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2023-04-28",
+    "end_date": "2028-04-27",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0057",
+    "vin": "VCV6M2PK1XA110118",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2023-04-28",
+    "end_date": "2029-04-27",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  },
+  {
+    "mapping_id": "MAP-0058",
+    "vin": "VCV6M2PK1XA110119",
+    "warranty_id": "WRTY-BASE-001",
+    "start_date": "2020-10-10",
+    "end_date": "2023-10-09",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0059",
+    "vin": "VCV6M2PK1XA110119",
+    "warranty_id": "WRTY-PWR-001",
+    "start_date": "2020-10-10",
+    "end_date": "2025-10-09",
+    "start_mileage_km": 0,
+    "end_mileage_km": 100000,
+    "status": "Expired"
+  },
+  {
+    "mapping_id": "MAP-0060",
+    "vin": "VCV6M2PK1XA110119",
+    "warranty_id": "WRTY-COR-001",
+    "start_date": "2020-10-10",
+    "end_date": "2026-10-09",
+    "start_mileage_km": 0,
+    "end_mileage_km": 999999,
+    "status": "Active"
+  }
+]

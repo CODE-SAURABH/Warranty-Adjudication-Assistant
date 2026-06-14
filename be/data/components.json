@@ -1,0 +1,1675 @@
+[
+  {
+    "repair_code": "Eng-cls-01",
+    "repair_description": "Cooling system water pump replacement",
+    "causal_part": "water pump",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-02",
+    "repair_description": "Cooling system thermostat replacement",
+    "causal_part": "thermostat",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-03",
+    "repair_description": "Cooling system radiator replacement",
+    "causal_part": "radiator",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-asm-01",
+    "repair_description": "Engine assembly short block replacement",
+    "causal_part": "engine assembly",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 8.0,
+    "max_labor_hours": 10.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Trn-int-01",
+    "repair_description": "Transmission internal component overhaul",
+    "causal_part": "transmission internal parts",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.5,
+    "max_labor_hours": 6.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Ele-ecu-01",
+    "repair_description": "Engine control module replacement",
+    "causal_part": "engine control module",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.3,
+    "max_labor_hours": 1.8,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-01",
+    "repair_description": "Front brake pad replacement for manufacturing defect",
+    "causal_part": "brake pads",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-01",
+    "repair_description": "Front suspension strut replacement",
+    "causal_part": "front strut",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 2.2,
+    "max_labor_hours": 3.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-01",
+    "repair_description": "Steering rack replacement",
+    "causal_part": "steering rack",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 2.5,
+    "max_labor_hours": 3.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Acn-cmpr-01",
+    "repair_description": "Air conditioning compressor replacement",
+    "causal_part": "air conditioning compressor",
+    "component_group": "climate control",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 2.0,
+    "max_labor_hours": 2.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Cor-pan-01",
+    "repair_description": "Rocker panel corrosion perforation repair",
+    "causal_part": "rocker panel",
+    "component_group": "body corrosion",
+    "covered_under_warranty_ids": [
+      "WRTY-COR-001"
+    ],
+    "standard_labor_hours": 4.0,
+    "max_labor_hours": 6.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Tyr-001",
+    "repair_description": "Tyre replacement",
+    "causal_part": "tyre",
+    "component_group": "wheels and tyres",
+    "covered_under_warranty_ids": [],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-04",
+    "repair_description": "Cooling system heater core replacement",
+    "causal_part": "heater core",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.9,
+    "max_labor_hours": 2.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-05",
+    "repair_description": "Cooling system expansion tank replacement",
+    "causal_part": "coolant expansion tank",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.7,
+    "max_labor_hours": 1.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-06",
+    "repair_description": "Cooling system hose set replacement",
+    "causal_part": "coolant hose assembly",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.6,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-07",
+    "repair_description": "Cooling fan module replacement",
+    "causal_part": "cooling fan module",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.2,
+    "max_labor_hours": 1.7,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-08",
+    "repair_description": "Fan control relay replacement",
+    "causal_part": "fan control relay",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.6,
+    "max_labor_hours": 0.9,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-09",
+    "repair_description": "Electric coolant pump replacement",
+    "causal_part": "auxiliary coolant pump",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-cls-10",
+    "repair_description": "Coolant bypass valve replacement",
+    "causal_part": "coolant bypass valve",
+    "component_group": "cooling system",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.3,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-asm-02",
+    "repair_description": "Cylinder head replacement",
+    "causal_part": "cylinder head",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 7.0,
+    "max_labor_hours": 9.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Eng-asm-03",
+    "repair_description": "Timing chain assembly replacement",
+    "causal_part": "timing chain assembly",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.5,
+    "max_labor_hours": 5.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-asm-04",
+    "repair_description": "Oil pump replacement",
+    "causal_part": "oil pump",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.2,
+    "max_labor_hours": 5.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-asm-05",
+    "repair_description": "Crankshaft replacement",
+    "causal_part": "crankshaft",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 9.0,
+    "max_labor_hours": 11.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Eng-asm-06",
+    "repair_description": "Camshaft replacement",
+    "causal_part": "camshaft",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.5,
+    "max_labor_hours": 6.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-asm-07",
+    "repair_description": "Piston and ring set replacement",
+    "causal_part": "piston and ring set",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 8.5,
+    "max_labor_hours": 10.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Eng-asm-08",
+    "repair_description": "Connecting rod replacement",
+    "causal_part": "connecting rod",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 7.8,
+    "max_labor_hours": 9.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Eng-asm-09",
+    "repair_description": "Balance shaft module replacement",
+    "causal_part": "balance shaft module",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.5,
+    "max_labor_hours": 5.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-asm-10",
+    "repair_description": "Valve train assembly repair",
+    "causal_part": "valve train assembly",
+    "component_group": "engine",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.0,
+    "max_labor_hours": 6.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-01",
+    "repair_description": "Oil cooler replacement",
+    "causal_part": "engine oil cooler",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.8,
+    "max_labor_hours": 2.3,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-02",
+    "repair_description": "Oil filter housing replacement",
+    "causal_part": "oil filter housing",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-03",
+    "repair_description": "Oil pressure control valve replacement",
+    "causal_part": "oil pressure control valve",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-04",
+    "repair_description": "Oil pan reseal and replacement",
+    "causal_part": "oil pan",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.7,
+    "max_labor_hours": 2.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-05",
+    "repair_description": "Front crankshaft seal replacement",
+    "causal_part": "front crankshaft seal",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 2.4,
+    "max_labor_hours": 3.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-06",
+    "repair_description": "Rear main seal replacement",
+    "causal_part": "rear main seal",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.0,
+    "max_labor_hours": 6.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-07",
+    "repair_description": "PCV module replacement",
+    "causal_part": "positive crankcase ventilation module",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-lub-08",
+    "repair_description": "Oil level sensor replacement",
+    "causal_part": "oil level sensor",
+    "component_group": "engine lubrication",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-01",
+    "repair_description": "High pressure fuel pump replacement",
+    "causal_part": "high pressure fuel pump",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 2.0,
+    "max_labor_hours": 2.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-02",
+    "repair_description": "Fuel injector replacement set",
+    "causal_part": "fuel injectors",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 2.5,
+    "max_labor_hours": 3.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-03",
+    "repair_description": "Fuel rail pressure sensor replacement",
+    "causal_part": "fuel rail pressure sensor",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.1,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-04",
+    "repair_description": "Low pressure fuel pump replacement",
+    "causal_part": "low pressure fuel pump",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.6,
+    "max_labor_hours": 2.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-05",
+    "repair_description": "Fuel pressure regulator replacement",
+    "causal_part": "fuel pressure regulator",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-06",
+    "repair_description": "Throttle body replacement",
+    "causal_part": "throttle body",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.5,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-07",
+    "repair_description": "Mass air flow sensor replacement",
+    "causal_part": "mass air flow sensor",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 0.7,
+    "max_labor_hours": 1.0,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Eng-fue-08",
+    "repair_description": "Intake manifold runner replacement",
+    "causal_part": "intake manifold runner assembly",
+    "component_group": "fuel and air induction",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.8,
+    "max_labor_hours": 2.4,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Trn-int-02",
+    "repair_description": "Transmission valve body replacement",
+    "causal_part": "transmission valve body",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 3.5,
+    "max_labor_hours": 4.2,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Trn-int-03",
+    "repair_description": "Torque converter replacement",
+    "causal_part": "torque converter",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.0,
+    "max_labor_hours": 6.0,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Trn-int-04",
+    "repair_description": "Transmission oil pump replacement",
+    "causal_part": "transmission oil pump",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.0,
+    "max_labor_hours": 5.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Trn-int-05",
+    "repair_description": "Transmission control solenoid replacement",
+    "causal_part": "shift solenoid pack",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 2.2,
+    "max_labor_hours": 2.8,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Trn-int-06",
+    "repair_description": "Clutch basket replacement",
+    "causal_part": "clutch basket assembly",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.8,
+    "max_labor_hours": 5.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Trn-int-07",
+    "repair_description": "Transmission bearing replacement",
+    "causal_part": "transmission bearing set",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.2,
+    "max_labor_hours": 6.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Trn-int-08",
+    "repair_description": "Output shaft replacement",
+    "causal_part": "output shaft",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 5.6,
+    "max_labor_hours": 6.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Trn-int-09",
+    "repair_description": "Transfer case overhaul",
+    "causal_part": "transfer case internal parts",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.9,
+    "max_labor_hours": 5.8,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Trn-int-10",
+    "repair_description": "Transmission case replacement",
+    "causal_part": "transmission case",
+    "component_group": "transmission",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 6.5,
+    "max_labor_hours": 7.5,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Drv-axl-01",
+    "repair_description": "Front differential repair",
+    "causal_part": "front differential assembly",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.2,
+    "max_labor_hours": 5.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-02",
+    "repair_description": "Rear differential repair",
+    "causal_part": "rear differential assembly",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 4.3,
+    "max_labor_hours": 5.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-03",
+    "repair_description": "Drive axle bearing replacement",
+    "causal_part": "drive axle bearing",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 3.8,
+    "max_labor_hours": 4.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-04",
+    "repair_description": "Propeller shaft replacement",
+    "causal_part": "propeller shaft",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.6,
+    "max_labor_hours": 2.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-05",
+    "repair_description": "Universal joint replacement",
+    "causal_part": "universal joint",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.3,
+    "max_labor_hours": 1.7,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-06",
+    "repair_description": "CV joint replacement",
+    "causal_part": "constant velocity joint",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.8,
+    "max_labor_hours": 2.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-07",
+    "repair_description": "Half shaft replacement",
+    "causal_part": "half shaft assembly",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 1.7,
+    "max_labor_hours": 2.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Drv-axl-08",
+    "repair_description": "Axle housing replacement",
+    "causal_part": "axle housing",
+    "component_group": "driveline",
+    "covered_under_warranty_ids": [
+      "WRTY-PWR-001"
+    ],
+    "standard_labor_hours": 6.0,
+    "max_labor_hours": 7.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": true
+  },
+  {
+    "repair_code": "Ele-ecu-02",
+    "repair_description": "Body control module replacement",
+    "causal_part": "body control module",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.2,
+    "max_labor_hours": 1.7,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-03",
+    "repair_description": "Instrument cluster replacement",
+    "causal_part": "instrument cluster",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.5,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-04",
+    "repair_description": "Telematics control unit replacement",
+    "causal_part": "telematics control unit",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.6,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-05",
+    "repair_description": "Parking sensor control module replacement",
+    "causal_part": "parking assist module",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-06",
+    "repair_description": "Radar sensor replacement and calibration",
+    "causal_part": "front radar sensor",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.5,
+    "max_labor_hours": 2.0,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-07",
+    "repair_description": "Lane camera replacement and calibration",
+    "causal_part": "lane assist camera",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.6,
+    "max_labor_hours": 2.1,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-08",
+    "repair_description": "Gateway module replacement",
+    "causal_part": "vehicle gateway module",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.6,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-09",
+    "repair_description": "ABS control module replacement",
+    "causal_part": "ABS control module",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.9,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ele-ecu-10",
+    "repair_description": "Airbag control module replacement",
+    "causal_part": "airbag control module",
+    "component_group": "electronics",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.2,
+    "max_labor_hours": 1.8,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-02",
+    "repair_description": "Rear brake pad replacement for manufacturing defect",
+    "causal_part": "rear brake pads",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-03",
+    "repair_description": "Front brake disc replacement for material defect",
+    "causal_part": "front brake discs",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.9,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-04",
+    "repair_description": "Rear brake disc replacement for material defect",
+    "causal_part": "rear brake discs",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.9,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-05",
+    "repair_description": "Brake caliper replacement",
+    "causal_part": "front brake caliper",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.3,
+    "max_labor_hours": 1.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-06",
+    "repair_description": "Brake hose replacement",
+    "causal_part": "brake hose",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-07",
+    "repair_description": "Master cylinder replacement",
+    "causal_part": "brake master cylinder",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.7,
+    "max_labor_hours": 2.3,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Brk-pad-08",
+    "repair_description": "Brake booster replacement",
+    "causal_part": "brake booster",
+    "component_group": "braking",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 2.0,
+    "max_labor_hours": 2.6,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-02",
+    "repair_description": "Rear shock absorber replacement",
+    "causal_part": "rear shock absorber",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.9,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-03",
+    "repair_description": "Front lower control arm replacement",
+    "causal_part": "front lower control arm",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.8,
+    "max_labor_hours": 2.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-04",
+    "repair_description": "Rear control arm replacement",
+    "causal_part": "rear control arm",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.7,
+    "max_labor_hours": 2.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-05",
+    "repair_description": "Stabilizer link replacement",
+    "causal_part": "stabilizer link",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-06",
+    "repair_description": "Stabilizer bar bushing replacement",
+    "causal_part": "stabilizer bar bushing",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.2,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-07",
+    "repair_description": "Wheel bearing hub replacement",
+    "causal_part": "front wheel bearing hub",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.6,
+    "max_labor_hours": 2.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-08",
+    "repair_description": "Air suspension compressor replacement",
+    "causal_part": "air suspension compressor",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 2.1,
+    "max_labor_hours": 2.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-09",
+    "repair_description": "Ride height sensor replacement",
+    "causal_part": "ride height sensor",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.2,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Sus-str-10",
+    "repair_description": "Subframe bushing replacement",
+    "causal_part": "subframe bushing",
+    "component_group": "suspension",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 3.0,
+    "max_labor_hours": 3.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-02",
+    "repair_description": "Electric power steering motor replacement",
+    "causal_part": "power steering motor",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.9,
+    "max_labor_hours": 2.5,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-03",
+    "repair_description": "Steering column replacement",
+    "causal_part": "steering column",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 2.4,
+    "max_labor_hours": 3.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-04",
+    "repair_description": "Inner tie rod replacement",
+    "causal_part": "inner tie rod",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-05",
+    "repair_description": "Outer tie rod end replacement",
+    "causal_part": "outer tie rod end",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.3,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-06",
+    "repair_description": "Steering angle sensor replacement",
+    "causal_part": "steering angle sensor",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-07",
+    "repair_description": "Power steering hose replacement",
+    "causal_part": "power steering hose",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.2,
+    "max_labor_hours": 1.6,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Ste-rck-08",
+    "repair_description": "Steering intermediate shaft replacement",
+    "causal_part": "steering intermediate shaft",
+    "component_group": "steering",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.9,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Acn-cmpr-02",
+    "repair_description": "Condenser replacement",
+    "causal_part": "air conditioning condenser",
+    "component_group": "climate control",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.5,
+    "max_labor_hours": 2.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Acn-cmpr-03",
+    "repair_description": "Evaporator core replacement",
+    "causal_part": "evaporator core",
+    "component_group": "climate control",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 4.5,
+    "max_labor_hours": 5.5,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Acn-cmpr-04",
+    "repair_description": "Blower motor replacement",
+    "causal_part": "blower motor",
+    "component_group": "climate control",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.2,
+    "max_labor_hours": 1.6,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Acn-cmpr-05",
+    "repair_description": "HVAC control panel replacement",
+    "causal_part": "HVAC control panel",
+    "component_group": "climate control",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.3,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Acn-cmpr-06",
+    "repair_description": "Heater blend door actuator replacement",
+    "causal_part": "blend door actuator",
+    "component_group": "climate control",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.3,
+    "max_labor_hours": 1.7,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Inf-hu-01",
+    "repair_description": "Infotainment head unit replacement",
+    "causal_part": "infotainment head unit",
+    "component_group": "infotainment",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.6,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Inf-hu-02",
+    "repair_description": "Amplifier replacement",
+    "causal_part": "audio amplifier",
+    "component_group": "infotainment",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Inf-hu-03",
+    "repair_description": "Touch display replacement",
+    "causal_part": "center display screen",
+    "component_group": "infotainment",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.4,
+    "max_labor_hours": 1.9,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Inf-hu-04",
+    "repair_description": "Navigation antenna replacement",
+    "causal_part": "navigation antenna module",
+    "component_group": "infotainment",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.1,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Inf-hu-05",
+    "repair_description": "USB interface module replacement",
+    "causal_part": "USB interface module",
+    "component_group": "infotainment",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.7,
+    "max_labor_hours": 1.0,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Bdy-ele-01",
+    "repair_description": "Window regulator replacement",
+    "causal_part": "window regulator",
+    "component_group": "body electrical",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.0,
+    "max_labor_hours": 1.4,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Bdy-ele-02",
+    "repair_description": "Power door lock actuator replacement",
+    "causal_part": "door lock actuator",
+    "component_group": "body electrical",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.9,
+    "max_labor_hours": 1.2,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Bdy-ele-03",
+    "repair_description": "Power mirror motor replacement",
+    "causal_part": "power mirror motor",
+    "component_group": "body electrical",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.1,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Bdy-ele-04",
+    "repair_description": "Rear wiper motor replacement",
+    "causal_part": "rear wiper motor",
+    "component_group": "body electrical",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 0.7,
+    "max_labor_hours": 1.0,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Bdy-ele-05",
+    "repair_description": "Sunroof motor replacement",
+    "causal_part": "sunroof motor",
+    "component_group": "body electrical",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.5,
+    "max_labor_hours": 2.0,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Bdy-ele-06",
+    "repair_description": "Seat heater module replacement",
+    "causal_part": "seat heater module",
+    "component_group": "body electrical",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001",
+      "WRTY-EXT-001"
+    ],
+    "standard_labor_hours": 1.1,
+    "max_labor_hours": 1.5,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Cor-pan-02",
+    "repair_description": "Door hem corrosion perforation repair",
+    "causal_part": "door hem",
+    "component_group": "body corrosion",
+    "covered_under_warranty_ids": [
+      "WRTY-COR-001"
+    ],
+    "standard_labor_hours": 3.5,
+    "max_labor_hours": 5.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Cor-pan-03",
+    "repair_description": "Tailgate seam corrosion perforation repair",
+    "causal_part": "tailgate seam",
+    "component_group": "body corrosion",
+    "covered_under_warranty_ids": [
+      "WRTY-COR-001"
+    ],
+    "standard_labor_hours": 3.8,
+    "max_labor_hours": 5.4,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Cor-pan-04",
+    "repair_description": "Wheel arch corrosion perforation repair",
+    "causal_part": "wheel arch panel",
+    "component_group": "body corrosion",
+    "covered_under_warranty_ids": [
+      "WRTY-COR-001"
+    ],
+    "standard_labor_hours": 4.1,
+    "max_labor_hours": 5.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Cor-pan-05",
+    "repair_description": "Floor pan corrosion perforation repair",
+    "causal_part": "floor pan",
+    "component_group": "body corrosion",
+    "covered_under_warranty_ids": [
+      "WRTY-COR-001"
+    ],
+    "standard_labor_hours": 5.2,
+    "max_labor_hours": 6.8,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Cor-pan-06",
+    "repair_description": "Hood inner seam corrosion perforation repair",
+    "causal_part": "hood inner seam",
+    "component_group": "body corrosion",
+    "covered_under_warranty_ids": [
+      "WRTY-COR-001"
+    ],
+    "standard_labor_hours": 3.6,
+    "max_labor_hours": 5.1,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Tyr-002",
+    "repair_description": "Alloy wheel cosmetic replacement",
+    "causal_part": "alloy wheel",
+    "component_group": "wheels and tyres",
+    "covered_under_warranty_ids": [],
+    "standard_labor_hours": 0.8,
+    "max_labor_hours": 1.0,
+    "requires_diagnostic_code": false,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  },
+  {
+    "repair_code": "Tyr-003",
+    "repair_description": "Tyre pressure sensor replacement",
+    "causal_part": "tyre pressure sensor",
+    "component_group": "wheels and tyres",
+    "covered_under_warranty_ids": [
+      "WRTY-BASE-001"
+    ],
+    "standard_labor_hours": 0.6,
+    "max_labor_hours": 0.9,
+    "requires_diagnostic_code": true,
+    "requires_photo": false,
+    "requires_prior_approval": false
+  }
+]

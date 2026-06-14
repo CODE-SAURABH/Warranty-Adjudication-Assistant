@@ -1,0 +1,152 @@
+[
+  {
+    "clause_id": "1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "This Extended Mechanical Protection policy applies only to vehicles with an active extended coverage mapping recorded against the VIN."
+  },
+  {
+    "clause_id": "1.1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "Extended coverage applies to the listed steering, suspension, climate control, and infotainment components after the base warranty period has ended."
+  },
+  {
+    "clause_id": "1.2",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "If no active extended protection mapping exists for the VIN, the claim is not eligible under this policy."
+  },
+  {
+    "clause_id": "2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "Extended Mechanical Protection provides coverage through 72 months from the in-service date or 140,000 km, whichever occurs first."
+  },
+  {
+    "clause_id": "2.1",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A claim is within the time limit when the repair order date is on or before the recorded contract end date."
+  },
+  {
+    "clause_id": "2.2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A claim is within the mileage limit when the odometer reading is at or below the recorded contract mileage ceiling."
+  },
+  {
+    "clause_id": "3",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "Covered extended protection components include steering racks, front struts, rear shock absorbers, air conditioning compressors, and infotainment head units when listed in the product definition."
+  },
+  {
+    "clause_id": "3.1",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "The repair code and stated causal part must correspond to a covered extended protection component."
+  },
+  {
+    "clause_id": "3.2",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "A repair code and causal part mismatch is not eligible for automatic approval."
+  },
+  {
+    "clause_id": "4",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "Extended protection applies only to defects in material or workmanship and does not cover ordinary deterioration."
+  },
+  {
+    "clause_id": "4.1",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "The claim description must identify the complaint, the defect found, and the repair performed."
+  },
+  {
+    "clause_id": "4.2",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "If the claim description does not clearly establish a defect condition, the claim requires more information."
+  },
+  {
+    "clause_id": "5",
+    "section": "Clause 5 - Exclusions",
+    "clause_quote": "Extended Mechanical Protection does not cover engine assembly failures, corrosion, cosmetic concerns, tyres, or normal wear items."
+  },
+  {
+    "clause_id": "5.1",
+    "section": "Clause 5 - Exclusions",
+    "clause_quote": "Failures caused by abuse, collision damage, unauthorized modification, or lack of maintenance are excluded from extended protection."
+  },
+  {
+    "clause_id": "5.2",
+    "section": "Clause 5 - Exclusions",
+    "clause_quote": "If an excluded cause is indicated but not conclusively established, the claim shall be referred for human review."
+  },
+  {
+    "clause_id": "6",
+    "section": "Clause 6 - Documentation",
+    "clause_quote": "Every extended protection claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description."
+  },
+  {
+    "clause_id": "6.1",
+    "section": "Clause 6 - Documentation",
+    "clause_quote": "Electronic and infotainment claims require a diagnostic report supporting the claimed fault condition."
+  },
+  {
+    "clause_id": "6.2",
+    "section": "Clause 6 - Documentation",
+    "clause_quote": "Claims with missing mandatory documentation shall not be approved and require completion before payment."
+  },
+  {
+    "clause_id": "7",
+    "section": "Clause 7 - Labor Rules",
+    "clause_quote": "Labor reimbursement is evaluated against the published standard and maximum labor time for the repair code."
+  },
+  {
+    "clause_id": "7.1",
+    "section": "Clause 7 - Labor Rules",
+    "clause_quote": "A claim within the published labor limit may proceed when all other coverage conditions are satisfied."
+  },
+  {
+    "clause_id": "7.2",
+    "section": "Clause 7 - Labor Rules",
+    "clause_quote": "Labor time above the published maximum requires human review and cannot be auto-approved."
+  },
+  {
+    "clause_id": "8",
+    "section": "Clause 8 - Contract Status",
+    "clause_quote": "Extended protection is valid only while the contract status remains active and not cancelled or expired."
+  },
+  {
+    "clause_id": "8.1",
+    "section": "Clause 8 - Contract Status",
+    "clause_quote": "If the contract expired before the repair order date, the claim is outside coverage."
+  },
+  {
+    "clause_id": "8.2",
+    "section": "Clause 8 - Contract Status",
+    "clause_quote": "If contract status data is unclear or conflicting, the claim shall be referred for human review."
+  },
+  {
+    "clause_id": "9",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "An extended protection claim shall be approved only when coverage, failure eligibility, documentation, contract status, and labor limits are all satisfied."
+  },
+  {
+    "clause_id": "9.1",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "An extended protection claim shall be rejected when the contract period has ended, the mileage limit has been exceeded, or an exclusion applies."
+  },
+  {
+    "clause_id": "9.2",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "An extended protection claim shall be referred when the evidence is incomplete, conflicting, or unusually ambiguous."
+  },
+  {
+    "clause_id": "10",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill assistance under an expired mechanical contract may be considered only for a small time or mileage overrun when no exclusion applies."
+  },
+  {
+    "clause_id": "10.1",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill requires a service history consistent with proper maintenance and a defect pattern that resembles a warrantable failure."
+  },
+  {
+    "clause_id": "10.2",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill cannot be auto-approved and must be referred for human authorization."
+  }
+]

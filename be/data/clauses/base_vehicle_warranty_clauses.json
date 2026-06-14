@@ -1,0 +1,152 @@
+[
+  {
+    "clause_id": "1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "This Base Vehicle Limited Warranty applies only to vehicles with an active base warranty mapping recorded against the VIN."
+  },
+  {
+    "clause_id": "1.1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "The base warranty covers factory-fitted vehicle components except items assigned to another warranty product or specifically excluded."
+  },
+  {
+    "clause_id": "1.2",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "If the VIN cannot be matched to an active base warranty record, the claim is not eligible under this policy."
+  },
+  {
+    "clause_id": "2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "The Base Vehicle Limited Warranty provides coverage for 36 months from the in-service date or 100,000 km, whichever occurs first."
+  },
+  {
+    "clause_id": "2.1",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A claim remains within the time limit when the repair order date is on or before the recorded base warranty end date."
+  },
+  {
+    "clause_id": "2.2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A claim remains within the mileage limit when the odometer reading is at or below the recorded base warranty mileage ceiling."
+  },
+  {
+    "clause_id": "3",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "Covered base warranty components include factory-fitted steering, suspension, climate control, body electrical, and interior electronic systems unless otherwise excluded."
+  },
+  {
+    "clause_id": "3.1",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "A claimed repair code must match the stated causal part and the covered component category for the claim to remain eligible."
+  },
+  {
+    "clause_id": "3.2",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "A claim using a repair code for one component while naming a different causal part shall not be auto-approved."
+  },
+  {
+    "clause_id": "4",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "Base warranty coverage applies only to failures caused by defects in material or workmanship."
+  },
+  {
+    "clause_id": "4.1",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "A claim description must identify the customer complaint, the defect found, and the repair performed."
+  },
+  {
+    "clause_id": "4.2",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "If the defect condition is not clearly described, the claim requires more information before adjudication."
+  },
+  {
+    "clause_id": "5",
+    "section": "Clause 5 - Wear Items",
+    "clause_quote": "Wear items are not covered for normal consumption and are eligible only when the dealer states a specific manufacturing defect."
+  },
+  {
+    "clause_id": "5.1",
+    "section": "Clause 5 - Wear Items",
+    "clause_quote": "A wear item claim must explain the defect condition that makes the failure different from ordinary service wear."
+  },
+  {
+    "clause_id": "5.2",
+    "section": "Clause 5 - Wear Items",
+    "clause_quote": "If the claim describes only wear to service limit or normal deterioration, the wear item claim shall be rejected."
+  },
+  {
+    "clause_id": "6",
+    "section": "Clause 6 - Exclusions",
+    "clause_quote": "The base warranty does not apply to failures caused by abuse, collision damage, unauthorized modification, or lack of maintenance."
+  },
+  {
+    "clause_id": "6.1",
+    "section": "Clause 6 - Exclusions",
+    "clause_quote": "If the failure description directly attributes damage to an excluded cause, the claim shall be rejected."
+  },
+  {
+    "clause_id": "6.2",
+    "section": "Clause 6 - Exclusions",
+    "clause_quote": "If the evidence of an exclusion is incomplete or disputed, the claim shall be referred for human review."
+  },
+  {
+    "clause_id": "7",
+    "section": "Clause 7 - Documentation",
+    "clause_quote": "Every base warranty claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description."
+  },
+  {
+    "clause_id": "7.1",
+    "section": "Clause 7 - Documentation",
+    "clause_quote": "Electronic component claims require a diagnostic report that supports the claimed fault condition."
+  },
+  {
+    "clause_id": "7.2",
+    "section": "Clause 7 - Documentation",
+    "clause_quote": "Claims with missing mandatory documentation shall not be approved and require completion before payment."
+  },
+  {
+    "clause_id": "8",
+    "section": "Clause 8 - Labor Rules",
+    "clause_quote": "Labor reimbursement is evaluated against the published standard and maximum labor time for the repair code."
+  },
+  {
+    "clause_id": "8.1",
+    "section": "Clause 8 - Labor Rules",
+    "clause_quote": "A claim within the published labor limit may proceed when all other coverage conditions are satisfied."
+  },
+  {
+    "clause_id": "8.2",
+    "section": "Clause 8 - Labor Rules",
+    "clause_quote": "Labor time above the published maximum requires human review and cannot be auto-approved."
+  },
+  {
+    "clause_id": "9",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "A base warranty claim shall be approved only when coverage, failure eligibility, documentation, and labor limits are all satisfied."
+  },
+  {
+    "clause_id": "9.1",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "A base warranty claim shall be rejected when the vehicle is outside the warranty period, above the mileage limit, or subject to an exclusion."
+  },
+  {
+    "clause_id": "9.2",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "A base warranty claim shall be referred when the evidence is conflicting, incomplete, or unusually ambiguous."
+  },
+  {
+    "clause_id": "10",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill assistance is discretionary and may be considered only when the claim is outside warranty solely because of time or mileage."
+  },
+  {
+    "clause_id": "10.1",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill requires a service history consistent with proper maintenance and a failure pattern that resembles a warrantable defect."
+  },
+  {
+    "clause_id": "10.2",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill cannot be auto-approved and must be referred for human authorization."
+  }
+]

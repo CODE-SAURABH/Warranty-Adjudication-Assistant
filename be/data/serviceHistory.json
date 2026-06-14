@@ -1,0 +1,1072 @@
+[
+  {
+    "service_id": "SRV-0001",
+    "vin": "VCV4H7TL2XE910234",
+    "service_date": "2026-09-11",
+    "mileage_km": 12,
+    "dealer_id": "DLR-DE-101",
+    "service_type": "Inspection",
+    "service_code": "PDI-001",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "vehicle systems inspection",
+      "fluid level check",
+      "cooling system visual inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle passed pre-delivery inspection with no defects found.",
+    "invoice_number": "INV-SRV-0001",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0002",
+    "vin": "VCV4H7TL2XE910234",
+    "service_date": "2026-09-18",
+    "mileage_km": 10450,
+    "dealer_id": "DLR-DE-101",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-10K",
+    "service_description": "10,000 km routine maintenance service",
+    "performed_items": [
+      "oil level inspection",
+      "coolant level check",
+      "brake inspection",
+      "software health check"
+    ],
+    "parts_replaced": [
+      "cabin air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Routine maintenance completed. Coolant level within specification.",
+    "invoice_number": "INV-SRV-0002",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0003",
+    "vin": "VCV4H7TL2XE910234",
+    "service_date": "2026-09-20",
+    "mileage_km": 23210,
+    "dealer_id": "DLR-DE-101",
+    "service_type": "Coolant Service",
+    "service_code": "COOL-CHK",
+    "service_description": "Cooling system inspection and coolant top-up",
+    "performed_items": [
+      "coolant level check",
+      "pressure cap inspection",
+      "cooling system leak inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [
+      "coolant top-up"
+    ],
+    "technician_notes": "Coolant slightly below target level. System topped up and no external contamination observed.",
+    "invoice_number": "INV-SRV-0003",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0004",
+    "vin": "VCV4H7TL2XE910234",
+    "service_date": "2026-09-21",
+    "mileage_km": 23380,
+    "dealer_id": "DLR-DE-101",
+    "service_type": "Inspection",
+    "service_code": "DIAG-COOL",
+    "service_description": "Cooling system follow-up inspection",
+    "performed_items": [
+      "coolant leak trace inspection",
+      "water pump noise check",
+      "hoses inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Follow-up inspection completed before warranty claim review. No abuse or maintenance concerns identified.",
+    "invoice_number": "INV-SRV-0004",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0005",
+    "vin": "VCV6M2PK1XA110101",
+    "service_date": "2024-01-15",
+    "mileage_km": 18,
+    "dealer_id": "DLR-FR-201",
+    "service_type": "Inspection",
+    "service_code": "PDI-002",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "vehicle systems inspection",
+      "battery check",
+      "cooling system visual inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "PDI completed with all delivery checks passed.",
+    "invoice_number": "INV-SRV-0005",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0006",
+    "vin": "VCV6M2PK1XA110101",
+    "service_date": "2024-07-20",
+    "mileage_km": 11840,
+    "dealer_id": "DLR-FR-201",
+    "service_type": "Oil Service",
+    "service_code": "OIL-10K",
+    "service_description": "Scheduled oil and filter service",
+    "performed_items": [
+      "engine oil drain",
+      "coolant inspection",
+      "belt inspection"
+    ],
+    "parts_replaced": [
+      "oil filter"
+    ],
+    "fluids_replaced": [
+      "engine oil"
+    ],
+    "technician_notes": "Scheduled oil service completed on time. Coolant level and condition normal.",
+    "invoice_number": "INV-SRV-0006",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0007",
+    "vin": "VCV6M2PK1XA110101",
+    "service_date": "2025-01-24",
+    "mileage_km": 23620,
+    "dealer_id": "DLR-FR-201",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-20K",
+    "service_description": "20,000 km routine maintenance service",
+    "performed_items": [
+      "coolant level check",
+      "brake inspection",
+      "fuel filter inspection",
+      "software update"
+    ],
+    "parts_replaced": [
+      "air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "All scheduled items completed with no service gaps noted.",
+    "invoice_number": "INV-SRV-0007",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0008",
+    "vin": "VCV6M2PK1XA110101",
+    "service_date": "2025-08-05",
+    "mileage_km": 35690,
+    "dealer_id": "DLR-FR-201",
+    "service_type": "Inspection",
+    "service_code": "INSP-35K",
+    "service_description": "35,000 km scheduled inspection",
+    "performed_items": [
+      "coolant concentration check",
+      "suspension inspection",
+      "brake pad measurement"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Complete service history confirmed and vehicle remains maintenance compliant.",
+    "invoice_number": "INV-SRV-0008",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0009",
+    "vin": "VCV6M2PK1XA110102",
+    "service_date": "2024-02-10",
+    "mileage_km": 22,
+    "dealer_id": "DLR-IT-301",
+    "service_type": "Inspection",
+    "service_code": "PDI-003",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "cooling system visual inspection",
+      "battery check",
+      "electrical system inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "PDI completed. Vehicle released to customer.",
+    "invoice_number": "INV-SRV-0009",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0010",
+    "vin": "VCV6M2PK1XA110102",
+    "service_date": "2024-08-14",
+    "mileage_km": 12340,
+    "dealer_id": "DLR-IT-301",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-10K",
+    "service_description": "10,000 km routine maintenance service",
+    "performed_items": [
+      "oil level inspection",
+      "coolant level inspection",
+      "brake inspection"
+    ],
+    "parts_replaced": [
+      "air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Routine service completed. Next scheduled service advised at 20,000 km or 12 months.",
+    "invoice_number": "INV-SRV-0010",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0011",
+    "vin": "VCV6M2PK1XA110102",
+    "service_date": "2026-01-22",
+    "mileage_km": 28750,
+    "dealer_id": "DLR-IT-301",
+    "service_type": "Inspection",
+    "service_code": "INSP-DEFER",
+    "service_description": "Delayed inspection after service gap",
+    "performed_items": [
+      "coolant level check",
+      "engine oil condition review",
+      "maintenance book review"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle returned after a service gap greater than 12 months. One scheduled maintenance interval appears missed.",
+    "invoice_number": "INV-SRV-0011",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0012",
+    "vin": "VCV6M2PK1XA110102",
+    "service_date": "2026-07-30",
+    "mileage_km": 36520,
+    "dealer_id": "DLR-IT-301",
+    "service_type": "Oil Service",
+    "service_code": "OIL-RECOV",
+    "service_description": "Oil service after missed scheduled maintenance",
+    "performed_items": [
+      "engine oil change",
+      "coolant top-up",
+      "filter inspection"
+    ],
+    "parts_replaced": [
+      "oil filter"
+    ],
+    "fluids_replaced": [
+      "engine oil",
+      "coolant top-up"
+    ],
+    "technician_notes": "Maintenance plan resumed, but prior missed service interval remains on record.",
+    "invoice_number": "INV-SRV-0012",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0013",
+    "vin": "VCV6M2PK1XA110103",
+    "service_date": "2024-03-05",
+    "mileage_km": 14,
+    "dealer_id": "DLR-ES-115",
+    "service_type": "Inspection",
+    "service_code": "PDI-004",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "fluid level check",
+      "cooling system visual inspection",
+      "battery test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Delivery inspection completed at OEM-authorized dealer.",
+    "invoice_number": "INV-SRV-0013",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0014",
+    "vin": "VCV6M2PK1XA110103",
+    "service_date": "2024-11-18",
+    "mileage_km": 14100,
+    "dealer_id": "IND-WS-901",
+    "service_type": "Oil Service",
+    "service_code": "OIL-IND-01",
+    "service_description": "Independent workshop oil service",
+    "performed_items": [
+      "engine oil drain",
+      "coolant level check"
+    ],
+    "parts_replaced": [
+      "oil filter"
+    ],
+    "fluids_replaced": [
+      "engine oil"
+    ],
+    "technician_notes": "Service completed at non-authorized workshop. Basic maintenance invoice provided.",
+    "invoice_number": "INV-SRV-0014",
+    "service_status": "Completed",
+    "is_oem_authorized_service": false,
+    "maintenance_compliance": "Unknown",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0015",
+    "vin": "VCV6M2PK1XA110103",
+    "service_date": "2025-06-09",
+    "mileage_km": 26140,
+    "dealer_id": "IND-WS-901",
+    "service_type": "Brake Service",
+    "service_code": "BRK-IND-02",
+    "service_description": "Independent workshop brake service",
+    "performed_items": [
+      "brake pad inspection",
+      "brake rotor cleaning",
+      "coolant level check"
+    ],
+    "parts_replaced": [
+      "front brake pads"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Non-authorized workshop performed brake service. No OEM digital record available.",
+    "invoice_number": "INV-SRV-0015",
+    "service_status": "Completed",
+    "is_oem_authorized_service": false,
+    "maintenance_compliance": "Unknown",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0016",
+    "vin": "VCV6M2PK1XA110103",
+    "service_date": "2026-02-14",
+    "mileage_km": 38290,
+    "dealer_id": "DLR-ES-115",
+    "service_type": "Inspection",
+    "service_code": "OEM-REVIEW",
+    "service_description": "OEM maintenance history review",
+    "performed_items": [
+      "coolant condition check",
+      "service invoice review",
+      "warranty pre-check"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle has mixed OEM and non-authorized service history. Maintenance compliance cannot be fully confirmed.",
+    "invoice_number": "INV-SRV-0016",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Unknown",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0017",
+    "vin": "VCV6M2PK1XA110104",
+    "service_date": "2024-04-12",
+    "mileage_km": 16,
+    "dealer_id": "DLR-NL-401",
+    "service_type": "Inspection",
+    "service_code": "PDI-005",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "vehicle systems inspection",
+      "cooling system visual inspection",
+      "road test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "PDI completed with no delivery issues recorded.",
+    "invoice_number": "INV-SRV-0017",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0018",
+    "vin": "VCV6M2PK1XA110104",
+    "service_date": "2024-12-03",
+    "mileage_km": 16240,
+    "dealer_id": "DLR-NL-401",
+    "service_type": "Coolant Service",
+    "service_code": "COOL-FLUSH",
+    "service_description": "Cooling system flush and refill",
+    "performed_items": [
+      "coolant sample inspection",
+      "reservoir cleaning",
+      "hose inspection"
+    ],
+    "parts_replaced": [
+      "reservoir cap"
+    ],
+    "fluids_replaced": [
+      "coolant"
+    ],
+    "technician_notes": "Coolant sample showed contamination and discoloration. System flushed and refilled, follow-up monitoring advised.",
+    "invoice_number": "INV-SRV-0018",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0019",
+    "vin": "VCV6M2PK1XA110104",
+    "service_date": "2025-07-22",
+    "mileage_km": 28970,
+    "dealer_id": "DLR-NL-401",
+    "service_type": "Inspection",
+    "service_code": "COOL-RECHK",
+    "service_description": "Cooling system re-inspection",
+    "performed_items": [
+      "coolant condition check",
+      "water pump inspection",
+      "pressure test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Cooling system inspected after prior contamination event. Residual deposits noted but vehicle released for use.",
+    "invoice_number": "INV-SRV-0019",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0020",
+    "vin": "VCV6M2PK1XA110104",
+    "service_date": "2026-03-04",
+    "mileage_km": 41850,
+    "dealer_id": "DLR-NL-401",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-40K",
+    "service_description": "40,000 km maintenance service",
+    "performed_items": [
+      "coolant level check",
+      "oil filter inspection",
+      "belt inspection"
+    ],
+    "parts_replaced": [
+      "engine air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle remains in monitored maintenance program due to prior coolant quality concern.",
+    "invoice_number": "INV-SRV-0020",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0021",
+    "vin": "VCV6M2PK1XA110105",
+    "service_date": "2024-05-09",
+    "mileage_km": 10,
+    "dealer_id": "DLR-BE-501",
+    "service_type": "Inspection",
+    "service_code": "PDI-006",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "cooling system visual inspection",
+      "electrical system check",
+      "road test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle delivered after successful PDI.",
+    "invoice_number": "INV-SRV-0021",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0022",
+    "vin": "VCV6M2PK1XA110105",
+    "service_date": "2025-09-15",
+    "mileage_km": 24480,
+    "dealer_id": "IND-WS-777",
+    "service_type": "Oil Service",
+    "service_code": "OIL-LATE-01",
+    "service_description": "Late oil service at independent workshop",
+    "performed_items": [
+      "engine oil change",
+      "coolant level check"
+    ],
+    "parts_replaced": [
+      "oil filter"
+    ],
+    "fluids_replaced": [
+      "engine oil"
+    ],
+    "technician_notes": "Vehicle appears overdue for scheduled maintenance. Service history since delivery is incomplete.",
+    "invoice_number": "INV-SRV-0022",
+    "service_status": "Completed",
+    "is_oem_authorized_service": false,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0023",
+    "vin": "VCV6M2PK1XA110105",
+    "service_date": "2026-02-28",
+    "mileage_km": 31720,
+    "dealer_id": "DLR-BE-501",
+    "service_type": "Inspection",
+    "service_code": "MAINT-REVIEW",
+    "service_description": "Maintenance compliance review",
+    "performed_items": [
+      "service booklet review",
+      "coolant condition check",
+      "engine visual inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Records indicate lack of maintenance with overdue intervals and limited proof of scheduled servicing.",
+    "invoice_number": "INV-SRV-0023",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0024",
+    "vin": "VCV6M2PK1XA110105",
+    "service_date": "2026-08-11",
+    "mileage_km": 40460,
+    "dealer_id": "DLR-BE-501",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-RECOVER",
+    "service_description": "Recovery maintenance service after overdue intervals",
+    "performed_items": [
+      "engine oil change",
+      "coolant top-up",
+      "brake inspection"
+    ],
+    "parts_replaced": [
+      "air filter",
+      "fuel filter"
+    ],
+    "fluids_replaced": [
+      "engine oil",
+      "coolant top-up"
+    ],
+    "technician_notes": "Maintenance restarted, but prior lack-of-maintenance observations remain in file.",
+    "invoice_number": "INV-SRV-0024",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Non-Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0025",
+    "vin": "VCV6M2PK1XA110106",
+    "service_date": "2024-06-18",
+    "mileage_km": 20,
+    "dealer_id": "DLR-DE-205",
+    "service_type": "Inspection",
+    "service_code": "PDI-007",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "cooling system visual inspection",
+      "battery test",
+      "brake function check"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "PDI completed without defects.",
+    "invoice_number": "INV-SRV-0025",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0026",
+    "vin": "VCV6M2PK1XA110106",
+    "service_date": "2025-01-17",
+    "mileage_km": 12610,
+    "dealer_id": "DLR-DE-205",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-10K",
+    "service_description": "10,000 km routine maintenance service",
+    "performed_items": [
+      "engine oil inspection",
+      "coolant level check",
+      "software scan"
+    ],
+    "parts_replaced": [
+      "cabin air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Routine maintenance completed on schedule.",
+    "invoice_number": "INV-SRV-0026",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0027",
+    "vin": "VCV6M2PK1XA110106",
+    "service_date": "2025-09-10",
+    "mileage_km": 24880,
+    "dealer_id": "DLR-DE-205",
+    "service_type": "Coolant Service",
+    "service_code": "COOL-TOPUP",
+    "service_description": "Cooling system inspection and top-up",
+    "performed_items": [
+      "coolant level check",
+      "radiator inspection",
+      "hose clamp tightening"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [
+      "coolant top-up"
+    ],
+    "technician_notes": "Minor coolant loss addressed during scheduled service. No leak source confirmed.",
+    "invoice_number": "INV-SRV-0027",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0028",
+    "vin": "VCV6M2PK1XA110106",
+    "service_date": "2026-05-03",
+    "mileage_km": 37240,
+    "dealer_id": "DLR-DE-205",
+    "service_type": "Inspection",
+    "service_code": "OPEN-DIAG",
+    "service_description": "Open diagnostic service order for intermittent coolant lamp",
+    "performed_items": [
+      "fault code scan",
+      "coolant reservoir inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Service order remains open pending parts availability and further diagnosis.",
+    "invoice_number": "INV-SRV-0028",
+    "service_status": "Open",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Unknown",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0029",
+    "vin": "VCV6M2PK1XA110107",
+    "service_date": "2024-07-02",
+    "mileage_km": 11,
+    "dealer_id": "DLR-PL-601",
+    "service_type": "Inspection",
+    "service_code": "PDI-008",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "vehicle systems inspection",
+      "coolant level check",
+      "lighting inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle passed all pre-delivery checks.",
+    "invoice_number": "INV-SRV-0029",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0030",
+    "vin": "VCV6M2PK1XA110107",
+    "service_date": "2025-02-01",
+    "mileage_km": 13440,
+    "dealer_id": "DLR-PL-601",
+    "service_type": "Tire Service",
+    "service_code": "TIRE-ROT",
+    "service_description": "Scheduled tire rotation and inspection",
+    "performed_items": [
+      "tire rotation",
+      "brake visual inspection",
+      "coolant level check"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Tire service completed and maintenance status remains compliant.",
+    "invoice_number": "INV-SRV-0030",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0031",
+    "vin": "VCV6M2PK1XA110107",
+    "service_date": "2025-11-15",
+    "mileage_km": 26870,
+    "dealer_id": "DLR-PL-601",
+    "service_type": "Brake Service",
+    "service_code": "BRK-REAR",
+    "service_description": "Rear brake service",
+    "performed_items": [
+      "rear brake inspection",
+      "caliper cleaning",
+      "coolant level inspection"
+    ],
+    "parts_replaced": [
+      "rear brake pads"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Brake service completed with no follow-up concerns.",
+    "invoice_number": "INV-SRV-0031",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0032",
+    "vin": "VCV6M2PK1XA110107",
+    "service_date": "2026-04-08",
+    "mileage_km": 33110,
+    "dealer_id": "DLR-PL-601",
+    "service_type": "Other",
+    "service_code": "CS-CAN-01",
+    "service_description": "Customer-requested diagnostic appointment",
+    "performed_items": [
+      "booking review",
+      "preliminary symptom capture"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Appointment cancelled by customer before vehicle inspection started.",
+    "invoice_number": "INV-SRV-0032",
+    "service_status": "Cancelled",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Unknown",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0033",
+    "vin": "VCV6M2PK1XA110108",
+    "service_date": "2024-08-12",
+    "mileage_km": 15,
+    "dealer_id": "DLR-AT-701",
+    "service_type": "Inspection",
+    "service_code": "PDI-009",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "cooling system visual inspection",
+      "battery check",
+      "road test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle released after successful PDI.",
+    "invoice_number": "INV-SRV-0033",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0034",
+    "vin": "VCV6M2PK1XA110108",
+    "service_date": "2025-03-27",
+    "mileage_km": 11880,
+    "dealer_id": "DLR-AT-701",
+    "service_type": "Recall",
+    "service_code": "RC-COOL-24",
+    "service_description": "Recall for coolant hose clamp update",
+    "performed_items": [
+      "coolant hose clamp replacement",
+      "coolant level check",
+      "campaign completion validation"
+    ],
+    "parts_replaced": [
+      "coolant hose clamp kit"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Recall completed successfully under OEM campaign instructions.",
+    "invoice_number": "INV-SRV-0034",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0035",
+    "vin": "VCV6M2PK1XA110108",
+    "service_date": "2025-09-19",
+    "mileage_km": 24170,
+    "dealer_id": "DLR-AT-701",
+    "service_type": "Campaign",
+    "service_code": "CMP-SW-11",
+    "service_description": "Service campaign for engine control software update",
+    "performed_items": [
+      "software update",
+      "coolant temperature sensor verification",
+      "post-update scan"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Campaign completed and ECU updated to current calibration.",
+    "invoice_number": "INV-SRV-0035",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0036",
+    "vin": "VCV6M2PK1XA110108",
+    "service_date": "2026-06-21",
+    "mileage_km": 36640,
+    "dealer_id": "DLR-AT-701",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-30K",
+    "service_description": "30,000 km routine maintenance service",
+    "performed_items": [
+      "coolant level check",
+      "oil level inspection",
+      "brake and tire inspection"
+    ],
+    "parts_replaced": [
+      "fuel filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Maintenance completed with campaign and recall history properly closed.",
+    "invoice_number": "INV-SRV-0036",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0037",
+    "vin": "VCV6M2PK1XA110109",
+    "service_date": "2024-09-01",
+    "mileage_km": 19,
+    "dealer_id": "DLR-CZ-801",
+    "service_type": "Inspection",
+    "service_code": "PDI-010",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "fluid level check",
+      "cooling system visual inspection",
+      "road test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Vehicle cleared for delivery.",
+    "invoice_number": "INV-SRV-0037",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0038",
+    "vin": "VCV6M2PK1XA110109",
+    "service_date": "2025-03-11",
+    "mileage_km": 15000,
+    "dealer_id": "DLR-CZ-801",
+    "service_type": "Oil Service",
+    "service_code": "OIL-15K",
+    "service_description": "15,000 km oil service",
+    "performed_items": [
+      "engine oil change",
+      "coolant level check",
+      "air filter inspection"
+    ],
+    "parts_replaced": [
+      "oil filter"
+    ],
+    "fluids_replaced": [
+      "engine oil"
+    ],
+    "technician_notes": "Scheduled oil service completed.",
+    "invoice_number": "INV-SRV-0038",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0039",
+    "vin": "VCV6M2PK1XA110109",
+    "service_date": "2025-09-28",
+    "mileage_km": 30200,
+    "dealer_id": "DLR-CZ-801",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-30K",
+    "service_description": "30,000 km routine maintenance service",
+    "performed_items": [
+      "coolant inspection",
+      "brake inspection",
+      "software diagnostics"
+    ],
+    "parts_replaced": [
+      "cabin air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "All maintenance tasks completed and recorded.",
+    "invoice_number": "INV-SRV-0039",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0040",
+    "vin": "VCV6M2PK1XA110109",
+    "service_date": "2026-02-17",
+    "mileage_km": 29850,
+    "dealer_id": "DLR-CZ-801",
+    "service_type": "Inspection",
+    "service_code": "ODO-VERIFY",
+    "service_description": "Mileage verification inspection",
+    "performed_items": [
+      "odometer reading verification",
+      "service history cross-check",
+      "coolant level check"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Mileage reading lower than previous recorded service. Odometer anomaly flagged for manual review.",
+    "invoice_number": "INV-SRV-0040",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Unknown",
+    "related_to_current_claim": true
+  },
+  {
+    "service_id": "SRV-0041",
+    "vin": "VCV6M2PK1XA110110",
+    "service_date": "2024-10-06",
+    "mileage_km": 13,
+    "dealer_id": "DLR-SE-901",
+    "service_type": "Inspection",
+    "service_code": "PDI-011",
+    "service_description": "Pre-delivery inspection",
+    "performed_items": [
+      "vehicle systems inspection",
+      "cooling system visual inspection",
+      "battery test"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Pre-delivery inspection completed with no findings.",
+    "invoice_number": "INV-SRV-0041",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0042",
+    "vin": "VCV6M2PK1XA110110",
+    "service_date": "2025-04-02",
+    "mileage_km": 10980,
+    "dealer_id": "DLR-SE-901",
+    "service_type": "Routine Maintenance",
+    "service_code": "MAIN-10K",
+    "service_description": "10,000 km routine maintenance service",
+    "performed_items": [
+      "coolant level inspection",
+      "brake check",
+      "oil level inspection",
+      "software scan"
+    ],
+    "parts_replaced": [
+      "cabin air filter"
+    ],
+    "fluids_replaced": [],
+    "technician_notes": "Scheduled service completed at OEM dealer with full digital record.",
+    "invoice_number": "INV-SRV-0042",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0043",
+    "vin": "VCV6M2PK1XA110110",
+    "service_date": "2025-10-14",
+    "mileage_km": 22440,
+    "dealer_id": "DLR-SE-901",
+    "service_type": "Coolant Service",
+    "service_code": "COOL-20K",
+    "service_description": "Cooling system service and concentration check",
+    "performed_items": [
+      "coolant concentration test",
+      "coolant level check",
+      "thermostat inspection"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [
+      "coolant top-up"
+    ],
+    "technician_notes": "Cooling system service completed and coolant concentration is within OEM specification.",
+    "invoice_number": "INV-SRV-0043",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  },
+  {
+    "service_id": "SRV-0044",
+    "vin": "VCV6M2PK1XA110110",
+    "service_date": "2026-04-19",
+    "mileage_km": 33890,
+    "dealer_id": "DLR-SE-901",
+    "service_type": "Inspection",
+    "service_code": "INSP-30K",
+    "service_description": "30,000 km scheduled inspection",
+    "performed_items": [
+      "coolant system visual inspection",
+      "suspension inspection",
+      "brake pad measurement"
+    ],
+    "parts_replaced": [],
+    "fluids_replaced": [],
+    "technician_notes": "Complete OEM-authorized service history on file with no maintenance exceptions.",
+    "invoice_number": "INV-SRV-0044",
+    "service_status": "Completed",
+    "is_oem_authorized_service": true,
+    "maintenance_compliance": "Compliant",
+    "related_to_current_claim": false
+  }
+]

@@ -1,0 +1,346 @@
+{
+  "1.1": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "This Warranty Policy Manual (\"the Policy\") governs the adjudication of all warranty claims submitted by authorized Vantara Commercial Vehicles (\"VCV\") dealers for vehicles sold and operated within the covered territory. In the event of conflict between this Policy and any verbal representation, this Policy prevails."
+  },
+  "1.2": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "\"In-Service Date\" means the date of retail delivery to the first owner, or the date of first registration, whichever occurs earlier. Where a vehicle is placed into dealer demonstrator service, the In-Service Date is the date demonstrator service begins."
+  },
+  "1.3": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "\"Coverage Period\" means the period during which a component is eligible for warranty repair, expressed as a duration from the In-Service Date and a maximum odometer reading, whichever occurs first. Both conditions are measured at the date of repair order opening, not the date of claim submission."
+  },
+  "1.4": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "\"Failure\" means the inability of a component to perform its intended function due to a defect in material or workmanship present at the time of manufacture. Gradual reduction in performance arising from normal use does not constitute a Failure."
+  },
+  "1.5": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "\"Wear Item\" means a component whose service life is consumed by normal operation, as listed in Section 5. Wear Items are covered only against manufacturing defects and only within the limits stated in Section 5."
+  },
+  "1.6": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "\"Authorized Dealer\" means a dealer holding a current VCV sales and service agreement. Warranty repairs must be performed by an Authorized Dealer to be eligible for reimbursement, except as provided in clause 9.8 (emergency repairs)."
+  },
+  "1.7": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "\"Gross Vehicle Weight Rating (GVWR)\" means the maximum permissible laden weight of the vehicle as stated on the manufacturer's plate. \"Overloading\" means operation of the vehicle at a weight exceeding the GVWR."
+  },
+  "1.8": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "The warranty is attached to the vehicle and transfers automatically to subsequent owners for the remainder of the Coverage Period. No transfer fee applies."
+  },
+  "1.9": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "All limits in this Policy are expressed in months and kilometres. Where a claim falls on the exact boundary (the odometer reading equals the limit, or the repair order is opened on the final day of the duration), the claim is within coverage."
+  },
+  "1.10": {
+    "s": "Section 1 — General Provisions and Definitions",
+    "t": "The remedy under this warranty is limited to repair or replacement of the defective component at VCV's option, including associated labor at published standard repair times. Consequential costs — including towing beyond clause 9.9, vehicle downtime, driver costs, cargo loss, and loss of revenue — are not covered."
+  },
+  "2.1": {
+    "s": "Section 2 — Base Vehicle Warranty",
+    "t": "The Base Vehicle Warranty covers all components of the vehicle as manufactured and delivered by VCV, except components expressly excluded in Section 6, Wear Items as limited in Section 5, and components subject to the separate coverage periods in Sections 3 and 4."
+  },
+  "2.2": {
+    "s": "Section 2 — Base Vehicle Warranty",
+    "t": "The Base Vehicle Warranty Coverage Period is 36 months from the In-Service Date or 100,000 km, whichever occurs first."
+  },
+  "2.3": {
+    "s": "Section 2 — Base Vehicle Warranty",
+    "t": "The Base Vehicle Warranty covers the diagnosis, repair, or replacement of any covered component that experiences a Failure as defined in clause 1.4, including required fluids, seals, and gaskets consumed in the course of the warranty repair."
+  },
+  "2.4": {
+    "s": "Section 2 — Base Vehicle Warranty",
+    "t": "Repairs under the Base Vehicle Warranty must use genuine VCV parts or VCV-approved remanufactured parts. Use of non-genuine parts in a warranty repair renders the labor and parts of that repair ineligible for reimbursement."
+  },
+  "2.5": {
+    "s": "Section 2 — Base Vehicle Warranty",
+    "t": "Software updates to vehicle control units are covered under the Base Vehicle Warranty when performed to correct a Failure or in response to a published VCV Service Bulletin. Software updates requested by the customer for feature enhancement are not warrantable."
+  },
+  "2.6": {
+    "s": "Section 2 — Base Vehicle Warranty",
+    "t": "Paint and exterior corrosion are covered for 36 months from the In-Service Date, without kilometre limit, against defects in material or workmanship. Surface corrosion arising from stone chips, abrasion, or third-party damage is excluded. Corrosion perforation (rust-through of body panels from the inside) is covered for 72 months without kilometre limit."
+  },
+  "3.1": {
+    "s": "Section 3 — Powertrain Warranty",
+    "t": "The Powertrain Warranty covers the components listed in clause 3.3 for 60 months from the In-Service Date or 300,000 km, whichever occurs first."
+  },
+  "3.2": {
+    "s": "Section 3 — Powertrain Warranty",
+    "t": "Powertrain Warranty coverage from 100,001 km onward, or from month 37 onward, is conditional upon documented compliance with the VCV maintenance schedule per Section 7. Claims within the Base Vehicle Warranty limits (clause 2.2) do not require maintenance records unless clause 8.6 applies."
+  },
+  "3.3": {
+    "s": "Section 3 — Powertrain Warranty",
+    "t": "Covered powertrain components are: engine cylinder block and all internal lubricated parts; cylinder head and valvetrain; crankshaft, camshaft, pistons, and connecting rods; oil pump; fuel injection pump and injectors; turbocharger; engine control unit (ECU); flywheel housing; transmission case and all internal parts; transmission control unit; clutch housing (excluding clutch friction components per Section 5); propeller shaft and universal joints; drive axle housing and all internal parts; differential assembly."
+  },
+  "3.4": {
+    "s": "Section 3 — Powertrain Warranty",
+    "t": "The following are not powertrain components and remain subject to the Base Vehicle Warranty limits: engine cooling system (radiator, water pump, thermostat), air intake system, exhaust system downstream of the turbocharger, fuel tank and fuel lines, engine mounts, and all electrical components other than the ECU and transmission control unit."
+  },
+  "3.5": {
+    "s": "Section 3 — Powertrain Warranty",
+    "t": "Turbocharger failures attributable to lubrication starvation are warrantable only where engine oil analysis or oil service records demonstrate that the prescribed oil specification and change intervals were observed. Where records are absent, the claim shall be adjudicated under clause 6.7."
+  },
+  "4.1": {
+    "s": "Section 4 — Component-Specific Coverage Periods",
+    "t": "Emissions aftertreatment system — Diesel Particulate Filter (DPF), Selective Catalytic Reduction (SCR) catalyst, Diesel Exhaust Fluid (DEF) dosing unit, and NOx sensors are covered for 60 months or 250,000 km, whichever occurs first. DPF failures caused by repeated interrupted regeneration cycles attributable to duty cycle, or by use of non-compliant fuel or DEF, are excluded per clauses 6.9 and 6.10."
+  },
+  "4.2": {
+    "s": "Section 4 — Component-Specific Coverage Periods",
+    "t": "High-voltage and starter batteries — The starter battery is covered for 24 months without kilometre limit. Battery failure must be demonstrated by a printed conductance test report showing the battery below the failure threshold. A battery that tests serviceable but is alleged to underperform is not warrantable."
+  },
+  "4.3": {
+    "s": "Section 4 — Component-Specific Coverage Periods",
+    "t": "Telematics and infotainment — The telematics control unit, instrument cluster, and infotainment head unit are covered under the Base Vehicle Warranty (clause 2.2). Claims for these components require the diagnostic fault report per clause 8.4. Intermittent faults that cannot be reproduced and produce no stored fault code shall be referred per clause 9.6."
+  },
+  "4.4": {
+    "s": "Section 4 — Component-Specific Coverage Periods",
+    "t": "Air conditioning and cab climate system — Covered under the Base Vehicle Warranty. Refrigerant recharge is warrantable only when performed in conjunction with the repair of a verified leak or component Failure."
+  },
+  "4.5": {
+    "s": "Section 4 — Component-Specific Coverage Periods",
+    "t": "Suspension air bellows — Covered for 24 months or 200,000 km, whichever occurs first. Failures showing evidence of chafing against foreign objects, or operation in a deflated condition, are excluded."
+  },
+  "4.6": {
+    "s": "Section 4 — Component-Specific Coverage Periods",
+    "t": "Fifth wheel and coupling equipment (where factory-fitted) — Covered under the Base Vehicle Warranty. Wear of the fifth wheel lock mechanism and wear plates is subject to Section 5."
+  },
+  "5.1": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Wear Items are covered against defects in material or workmanship only, within the limits of this Section. The progressive consumption of a Wear Item through normal operation is not a Failure and is not warrantable at any mileage."
+  },
+  "5.2": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Wear Item limits:"
+  },
+  "5.2.1": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Brake pads, brake linings, and brake discs/drums: 12 months or 50,000 km, whichever occurs first, and only where the wear pattern or material evidence demonstrates a manufacturing defect (e.g., friction material delamination, disc material inclusion). Wear to minimum thickness within these limits without such evidence is not warrantable."
+  },
+  "5.2.2": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Clutch friction disc, pressure plate, and release bearing: 12 months or 50,000 km, whichever occurs first, subject to clause 5.4."
+  },
+  "5.2.3": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Wiper blades, bulbs (other than LED units), fuses, and filter elements: 6 months or 25,000 km, whichever occurs first."
+  },
+  "5.2.4": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Tyres are warranted by the tyre manufacturer and are not covered by this Policy under any circumstances. Dealers shall direct tyre claims to the tyre manufacturer's process."
+  },
+  "5.2.5": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Fifth wheel wear plates and lock jaw wear components: 12 months or 100,000 km, whichever occurs first."
+  },
+  "5.3": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Wear Item claims must include the photographic evidence required by clause 8.3 demonstrating the alleged defect. Claims submitted without such evidence shall be rejected for incomplete documentation, without prejudice to resubmission per clause 9.5."
+  },
+  "5.4": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Clutch failures within the limits of clause 5.2.2 that show evidence of thermal overload (blued pressure plate surfaces, heat cracking consistent with slipping under load) shall be treated as operational damage and adjudicated under clause 6.6."
+  },
+  "5.5": {
+    "s": "Section 5 — Wear and Maintenance Items",
+    "t": "Brake components on vehicles documented in predominantly urban distribution duty (more than 60% urban operation per telematics data, where available) are subject to the same limits in clause 5.2.1; duty cycle does not extend Wear Item coverage."
+  },
+  "6.1": {
+    "s": "Section 6 — Exclusions",
+    "t": "The following are excluded from all coverage under this Policy. Where an exclusion in this Section applies, the claim shall be rejected regardless of the Coverage Period status."
+  },
+  "6.2": {
+    "s": "Section 6 — Exclusions",
+    "t": "Accident and external damage — Damage resulting from collision, impact, fire, theft, vandalism, flood, hail, lightning, or other external events."
+  },
+  "6.3": {
+    "s": "Section 6 — Exclusions",
+    "t": "Overloading — Failures where the evidence indicates operation of the vehicle beyond its GVWR or beyond rated axle loads. Indicators include, without limitation: deformed suspension components, axle housing distortion, tachograph or telematics records showing laden weights above rating, or cargo documentation inconsistent with rated capacity. Where overloading is suspected but the evidence is not conclusive, the claim shall be referred per clause 9.6 with the supporting indicators documented."
+  },
+  "6.4": {
+    "s": "Section 6 — Exclusions",
+    "t": "Unauthorized modification — Failures caused by or contributed to by modification of the vehicle outside VCV-published guidelines, including: ECU remapping or emissions defeat devices; alteration of the fuel system; installation of non-approved power take-off equipment; chassis alteration not performed under a VCV body-builder approval. The presence of an emissions defeat device or evidence of ECU remapping voids the Powertrain Warranty (Section 3) and the aftertreatment coverage (clause 4.1) for the affected systems in their entirety, including for failures not directly caused by the modification."
+  },
+  "6.5": {
+    "s": "Section 6 — Exclusions",
+    "t": "Racing and abnormal use — Use of the vehicle in motorsport, off-road operation for vehicles not designated by VCV as off-road capable, or use materially inconsistent with the vehicle's design application."
+  },
+  "6.6": {
+    "s": "Section 6 — Exclusions",
+    "t": "Operational damage and abuse — Failures caused by operator action or operating practice rather than a defect, including: clutch thermal overload per clause 5.4; engine over-speed recorded by the ECU; driving through standing water resulting in hydraulic lock; continued operation after a warning lamp or audible alarm indicated a fault, where the continued operation worsened the damage. Where continued operation after warning is alleged, the ECU fault log timestamps and odometer stamps shall be the primary evidence."
+  },
+  "6.7": {
+    "s": "Section 6 — Exclusions",
+    "t": "Lack of maintenance — Failures caused by or contributed to by non-compliance with the VCV maintenance schedule per Section 7. A service interval exceeded by no more than 1,000 km or 30 days, whichever is more favourable to the customer, shall not by itself constitute non-compliance. Where the causal link between the missed maintenance and the Failure is not evident, the claim shall be referred per clause 9.6."
+  },
+  "6.8": {
+    "s": "Section 6 — Exclusions",
+    "t": "Contamination and incorrect fluids — Failures caused by contaminated fuel, incorrect fuel grade, contaminated or incorrect oil or coolant specification, or contaminated DEF. Fuel system claims where fuel contamination is suspected must include the fuel sample analysis per clause 8.5."
+  },
+  "6.9": {
+    "s": "Section 6 — Exclusions",
+    "t": "Non-compliant fuel and DEF — Use of fuel or DEF not meeting the specifications in the vehicle Operator's Manual. Crystallization damage to the DEF dosing system resulting from prolonged vehicle storage without system purge is excluded."
+  },
+  "6.10": {
+    "s": "Section 6 — Exclusions",
+    "t": "Duty-cycle DPF loading — DPF blockage arising from duty cycles that prevent passive or active regeneration completion (e.g., exclusively short urban trips), where the ECU regeneration history shows repeated interrupted regenerations and no underlying component Failure exists."
+  },
+  "6.11": {
+    "s": "Section 6 — Exclusions",
+    "t": "Glass — Glass breakage is excluded unless a manufacturing defect (stress crack originating from an edge defect, with no impact point) is demonstrated by photographic evidence."
+  },
+  "6.12": {
+    "s": "Section 6 — Exclusions",
+    "t": "Normal characteristics — Noise, vibration, or harshness within VCV published norms; cosmetic deterioration consistent with age and use; odours; and conditions that do not affect function are not Failures."
+  },
+  "6.13": {
+    "s": "Section 6 — Exclusions",
+    "t": "Pre-delivery and storage damage — Damage occurring prior to retail delivery is a dealer responsibility under the sales agreement and is not claimable under this Policy."
+  },
+  "6.14": {
+    "s": "Section 6 — Exclusions",
+    "t": "Where multiple causes contribute to a Failure and at least one cause is an excluded cause, the claim shall be referred per clause 9.6 with an apportionment recommendation, unless the excluded cause is clearly the predominant cause, in which case the claim shall be rejected."
+  },
+  "7.1": {
+    "s": "Section 7 — Owner Maintenance Obligations",
+    "t": "The owner must maintain the vehicle in accordance with the VCV maintenance schedule applicable to the vehicle's duty classification (Long Haul, Distribution, Construction) as stated in the Operator's Manual."
+  },
+  "7.2": {
+    "s": "Section 7 — Owner Maintenance Obligations",
+    "t": "Maintenance may be performed by any competent repairer; however, the owner bears the burden of demonstrating compliance through itemised invoices or service records showing dates, odometer readings, operations performed, and parts/fluid specifications used."
+  },
+  "7.3": {
+    "s": "Section 7 — Owner Maintenance Obligations",
+    "t": "For Powertrain Warranty claims beyond the Base Vehicle Warranty limits (per clause 3.2), the complete maintenance history from the In-Service Date is required. For all other claims, maintenance records are required only where clause 6.7 or clause 8.6 applies."
+  },
+  "7.4": {
+    "s": "Section 7 — Owner Maintenance Obligations",
+    "t": "Oil specification compliance: engine oil must meet the VCV LubeSpec class stated in the Operator's Manual. Use of oil one viscosity class adjacent to the prescribed class with the correct quality class is acceptable where ambient conditions justify it; use of an inferior quality class is non-compliance."
+  },
+  "8.1": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Every claim must include: VIN; In-Service Date; odometer reading at repair order opening; repair order number and date; causal part number; failure code per the VCV coding manual; labor operation codes and times; a failure description stating the customer complaint, the cause found, and the correction performed (\"three Cs\")."
+  },
+  "8.2": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Failure descriptions must be specific. \"Replaced turbocharger\" without a stated cause is an incomplete description and the claim shall be returned for correction per clause 9.5."
+  },
+  "8.3": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Photographic evidence is required for: all Wear Item claims (clause 5.3); all claims where the causal part value exceeds EUR 1,000; corrosion claims; glass claims under clause 6.11; and any claim where the failure is alleged to be visible. Photographs must show the defect, the part identification, and the VIN plate or chassis number in at least one frame."
+  },
+  "8.4": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Diagnostic fault report (full ECU fault memory printout or electronic equivalent) is required for: all electrical and electronic component claims; all aftertreatment claims; all claims involving warning lamp complaints; and all ECU/TCU replacement claims. ECU and TCU replacements additionally require the pre-replacement programming log demonstrating that reprogramming was attempted and failed, except where the unit is unresponsive."
+  },
+  "8.5": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Fuel sample analysis from an accredited laboratory is required for fuel injection system claims exceeding EUR 2,000 in total value, and for any claim where fuel contamination is suspected."
+  },
+  "8.6": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Maintenance records are required for: all Powertrain Warranty claims beyond 100,000 km or 36 months (clause 3.2); all turbocharger lubrication-related failures (clause 3.5); all claims where lack of maintenance is a plausible cause of the Failure; and all goodwill requests (Section 11)."
+  },
+  "8.7": {
+    "s": "Section 8 — Claim Documentation Requirements",
+    "t": "Claims with missing documentation shall not be approved. The adjudicator shall identify each missing item with reference to the requiring clause, and the claim shall be returned for completion per clause 9.5 or referred per clause 9.6."
+  },
+  "9.1": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Claims must be submitted within 30 days of repair order closure. Claims submitted between 31 and 90 days are subject to a 20% reimbursement reduction. Claims submitted after 90 days are rejected as time-barred."
+  },
+  "9.2": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Repairs with a total estimated value exceeding EUR 5,000, and all engine, transmission, or axle assembly replacements regardless of value, require prior authorization from the VCV regional warranty office before the repair commences. Repairs performed without required prior authorization are reimbursable at a maximum of 50% of the otherwise eligible amount."
+  },
+  "9.3": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "The adjudicator shall first verify objective eligibility: Coverage Period per the component's applicable Section, In-Service Date validity, odometer plausibility, and documentation completeness per Section 8."
+  },
+  "9.4": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Where objective eligibility fails (Coverage Period exceeded, component excluded, documentation time-barred), the claim shall be rejected with the applicable clauses cited. Goodwill consideration per Section 11 does not alter the warranty disposition."
+  },
+  "9.5": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Return for correction — Claims that are incomplete but otherwise potentially valid shall be returned to the dealer with a list of the missing items and requiring clauses. A returned claim may be resubmitted once within 14 days without penalty under clause 9.1."
+  },
+  "9.6": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Referral — A claim shall be referred to a senior assessor where: the evidence of an exclusion is indicative but not conclusive; multiple causes per clause 6.14 require apportionment; the policy does not address the scenario; the failure description conflicts with the documentary evidence; or fraud indicators per clause 9.7 are present. Referral is a required outcome in these circumstances, not a discretionary one."
+  },
+  "9.7": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Fraud indicators include, without limitation: odometer readings inconsistent with telematics or service history; duplicate claims for the same VIN and failure; photographs inconsistent with the claimed VIN; labor times materially exceeding standard repair times without justification; and patterns of boundary-mileage claims from a single dealer. Suspected fraud shall be referred, never adjudicated by the standard process."
+  },
+  "9.8": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Emergency repairs performed by a non-authorized repairer to render the vehicle mobile are reimbursable up to EUR 1,500 where an Authorized Dealer was not reasonably accessible, subject to itemised invoices and the failed parts being retained for inspection."
+  },
+  "9.9": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Towing to the nearest Authorized Dealer is covered where the Failure of a covered component immobilised the vehicle, up to EUR 750 per event."
+  },
+  "9.10": {
+    "s": "Section 9 — Claim Submission and Adjudication",
+    "t": "Failed parts must be retained by the dealer for 90 days from claim settlement and surrendered to VCV on request. Claims where the failed part was not retained are subject to full recovery (debit) if selected for audit."
+  },
+  "10.1": {
+    "s": "Section 10 — Repeat Repairs and Replacement Parts Warranty",
+    "t": "A warranty repair carries a Repair Warranty of 12 months without kilometre limit from the repair date, covering the replaced part and the associated labor, even where the vehicle's underlying Coverage Period expires in the interim."
+  },
+  "10.2": {
+    "s": "Section 10 — Repeat Repairs and Replacement Parts Warranty",
+    "t": "Genuine VCV parts purchased and fitted outside a warranty repair carry a Parts Warranty of 24 months, covering the part and, where fitted by an Authorized Dealer, the fitting labor."
+  },
+  "10.3": {
+    "s": "Section 10 — Repeat Repairs and Replacement Parts Warranty",
+    "t": "A repeat failure of the same component within the Repair Warranty period shall be adjudicated under the Repair Warranty, and the prior repair's documentation forms part of the claim file. The adjudicator shall verify whether the repeat failure indicates a misdiagnosis of the original Failure; labor for repairs arising from dealer misdiagnosis is chargeable to the dealer, not the warranty."
+  },
+  "10.4": {
+    "s": "Section 10 — Repeat Repairs and Replacement Parts Warranty",
+    "t": "Three or more failures of the same component on the same vehicle within any 24-month period shall be referred for engineering review per clause 9.6 before further repairs are authorized."
+  },
+  "11.1": {
+    "s": "Section 11 — Goodwill Assistance",
+    "t": "Goodwill assistance is a discretionary commercial contribution by VCV toward repairs that fall outside warranty coverage. Goodwill is never an entitlement, and eligibility under this Section does not convert a rejected claim into an approved warranty claim."
+  },
+  "11.2": {
+    "s": "Section 11 — Goodwill Assistance",
+    "t": "Goodwill may be considered only where all of the following hold: the claim fails warranty solely on Coverage Period grounds (not on any Section 6 exclusion); the Coverage Period is exceeded by no more than 10% in kilometres or 3 months in duration; the vehicle has a complete documented maintenance history per Section 7; and the failed component shows a defect pattern rather than wear-out."
+  },
+  "11.3": {
+    "s": "Section 11 — Goodwill Assistance",
+    "t": "Goodwill contribution scale: Coverage Period exceeded by up to 5% (kilometres) or 6 weeks — up to 75% of parts and labor. Exceeded by more than 5% and up to 10%, or more than 6 weeks and up to 3 months — up to 50% of parts and labor."
+  },
+  "11.4": {
+    "s": "Section 11 — Goodwill Assistance",
+    "t": "All goodwill requires regional warranty office approval. Dealers and automated adjudication shall not approve goodwill. The adjudicator's role is limited to verifying the eligibility conditions in clause 11.2 and referring eligible cases with a recommended contribution per clause 11.3."
+  },
+  "11.5": {
+    "s": "Section 11 — Goodwill Assistance",
+    "t": "Goodwill shall not be considered where the customer declined a VCV service contract offer at point of sale and the failure relates to a maintenance-sensitive component, except by exception of the regional warranty director."
+  },
+  "12.1": {
+    "s": "Section 12 — Reimbursement",
+    "t": "Labor is reimbursed at the dealer's approved warranty labor rate multiplied by the VCV Standard Repair Time (SRT) for the claimed labor operation codes. Time exceeding SRT requires a punch-time justification and is approved only by a senior assessor."
+  },
+  "12.2": {
+    "s": "Section 12 — Reimbursement",
+    "t": "Parts are reimbursed at dealer net price plus the published warranty parts handling allowance of 15%."
+  },
+  "12.3": {
+    "s": "Section 12 — Reimbursement",
+    "t": "Diagnosis time is reimbursable up to 1.0 hour per claim at the warranty labor rate, and beyond that only with the diagnostic fault report per clause 8.4 and a written justification."
+  },
+  "12.4": {
+    "s": "Section 12 — Reimbursement",
+    "t": "Consumables (oils, coolant, refrigerant, DEF) are reimbursable where their replacement was necessitated by the warranty repair, at dealer net price without handling allowance."
+  },
+  "12.5": {
+    "s": "Section 12 — Reimbursement",
+    "t": "Claims are settled in the next dealer credit cycle following approval. Settled claims remain subject to audit and recovery for 24 months per clause 9.10."
+  }
+}

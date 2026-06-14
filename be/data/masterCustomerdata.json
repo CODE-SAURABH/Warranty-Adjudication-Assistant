@@ -1,0 +1,222 @@
+[
+  {
+    "vin": "VCV4H7TL2XE910234",
+    "customer_id": "CUST-001",
+    "customer_name": "Anika Muller",
+    "make": "Volta",
+    "model": "XC40 Hybrid",
+    "model_year": 2026,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-101"
+  },
+  {
+    "vin": "VCV6M2PK1XA110101",
+    "customer_id": "CUST-002",
+    "customer_name": "Jonas Becker",
+    "make": "Volta",
+    "model": "XC60 Diesel",
+    "model_year": 2025,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-102"
+  },
+  {
+    "vin": "VCV6M2PK1XA110102",
+    "customer_id": "CUST-003",
+    "customer_name": "Sofia Kramer",
+    "make": "Volta",
+    "model": "S90 Sedan",
+    "model_year": 2024,
+    "vehicle_type": "Passenger Sedan",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-103"
+  },
+  {
+    "vin": "VCV6M2PK1XA110103",
+    "customer_id": "CUST-004",
+    "customer_name": "Marta Logistics GmbH",
+    "make": "Volta",
+    "model": "TransitMax",
+    "model_year": 2024,
+    "vehicle_type": "Commercial Van",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-104"
+  },
+  {
+    "vin": "VCV6M2PK1XA110104",
+    "customer_id": "CUST-005",
+    "customer_name": "Erik Schneider",
+    "make": "Volta",
+    "model": "Terra Pickup",
+    "model_year": 2021,
+    "vehicle_type": "Pickup",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-105"
+  },
+  {
+    "vin": "VCV6M2PK1XA110105",
+    "customer_id": "CUST-006",
+    "customer_name": "Helios Service Fleet",
+    "make": "Volta",
+    "model": "CityVan EV",
+    "model_year": 2022,
+    "vehicle_type": "Light Commercial Van",
+    "country": "Netherlands",
+    "selling_dealer_id": "DLR-NL-201"
+  },
+  {
+    "vin": "VCV6M2PK1XA110106",
+    "customer_id": "CUST-007",
+    "customer_name": "Lena Hoffmann",
+    "make": "Volta",
+    "model": "XC40 Hybrid",
+    "model_year": 2020,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-106"
+  },
+  {
+    "vin": "VCV6M2PK1XA110107",
+    "customer_id": "CUST-008",
+    "customer_name": "NordCargo BV",
+    "make": "Volta",
+    "model": "CargoPro Diesel",
+    "model_year": 2025,
+    "vehicle_type": "Commercial Truck",
+    "country": "Netherlands",
+    "selling_dealer_id": "DLR-NL-202"
+  },
+  {
+    "vin": "VCV6M2PK1XA110108",
+    "customer_id": "CUST-009",
+    "customer_name": "Paul Richter",
+    "make": "Volta",
+    "model": "XC60 Diesel",
+    "model_year": 2024,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-107"
+  },
+  {
+    "vin": "VCV6M2PK1XA110109",
+    "customer_id": "CUST-010",
+    "customer_name": "Clara Neumann",
+    "make": "Volta",
+    "model": "S90 Sedan",
+    "model_year": 2024,
+    "vehicle_type": "Passenger Sedan",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-108"
+  },
+  {
+    "vin": "VCV6M2PK1XA110110",
+    "customer_id": "CUST-011",
+    "customer_name": "RheinBuild Contractors",
+    "make": "Volta",
+    "model": "Terra Pickup",
+    "model_year": 2023,
+    "vehicle_type": "Pickup",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-109"
+  },
+  {
+    "vin": "VCV6M2PK1XA110111",
+    "customer_id": "CUST-012",
+    "customer_name": "UrbanLoop Delivery GmbH",
+    "make": "Volta",
+    "model": "CityVan EV",
+    "model_year": 2021,
+    "vehicle_type": "Light Commercial Van",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-110"
+  },
+  {
+    "vin": "VCV6M2PK1XA110112",
+    "customer_id": "CUST-013",
+    "customer_name": "Nikhil Shah",
+    "make": "Volta",
+    "model": "XC40 Hybrid",
+    "model_year": 2025,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-111"
+  },
+  {
+    "vin": "VCV6M2PK1XA110113",
+    "customer_id": "CUST-014",
+    "customer_name": "Hanse Transit KG",
+    "make": "Volta",
+    "model": "TransitMax",
+    "model_year": 2021,
+    "vehicle_type": "Commercial Van",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-112"
+  },
+  {
+    "vin": "VCV6M2PK1XA110114",
+    "customer_id": "CUST-015",
+    "customer_name": "AeroFreight Europe",
+    "make": "Volta",
+    "model": "CargoPro Diesel",
+    "model_year": 2021,
+    "vehicle_type": "Commercial Truck",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-113"
+  },
+  {
+    "vin": "VCV6M2PK1XA110115",
+    "customer_id": "CUST-016",
+    "customer_name": "Mira Kohler",
+    "make": "Volta",
+    "model": "S90 Sedan",
+    "model_year": 2024,
+    "vehicle_type": "Passenger Sedan",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-114"
+  },
+  {
+    "vin": "VCV6M2PK1XA110116",
+    "customer_id": "CUST-017",
+    "customer_name": "Atlas Field Services",
+    "make": "Volta",
+    "model": "Terra Pickup",
+    "model_year": 2025,
+    "vehicle_type": "Pickup",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-115"
+  },
+  {
+    "vin": "VCV6M2PK1XA110117",
+    "customer_id": "CUST-018",
+    "customer_name": "Felix Braun",
+    "make": "Volta",
+    "model": "XC60 Diesel",
+    "model_year": 2022,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-116"
+  },
+  {
+    "vin": "VCV6M2PK1XA110118",
+    "customer_id": "CUST-019",
+    "customer_name": "PrimeLane Logistics",
+    "make": "Volta",
+    "model": "CargoPro Diesel",
+    "model_year": 2023,
+    "vehicle_type": "Commercial Truck",
+    "country": "Belgium",
+    "selling_dealer_id": "DLR-BE-301"
+  },
+  {
+    "vin": "VCV6M2PK1XA110119",
+    "customer_id": "CUST-020",
+    "customer_name": "Eva Schuster",
+    "make": "Volta",
+    "model": "XC40 Hybrid",
+    "model_year": 2021,
+    "vehicle_type": "Passenger SUV",
+    "country": "Germany",
+    "selling_dealer_id": "DLR-DE-117"
+  }
+]

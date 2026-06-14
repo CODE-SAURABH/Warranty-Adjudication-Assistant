@@ -1,0 +1,137 @@
+[
+  {
+    "warranty_id": "WRTY-BASE-001",
+    "warranty_name": "Base Vehicle Limited Warranty",
+    "warranty_type": "Base",
+    "duration_months": 36,
+    "mileage_limit_km": 100000,
+    "included_parts": [
+      "body electrical",
+      "air conditioning compressor",
+      "steering rack",
+      "suspension strut",
+      "interior electronics",
+      "factory fitted accessories"
+    ],
+    "excluded_parts": [
+      "tyres",
+      "glass breakage without manufacturing defect",
+      "wear items subject to normal consumption"
+    ],
+    "excluded_failure_modes": [
+      "abuse",
+      "collision damage",
+      "normal wear",
+      "lack of maintenance"
+    ],
+    "required_documents": [
+      "repair order",
+      "failure description",
+      "odometer reading",
+      "inspection summary for visible defects when requested",
+      "diagnostic report for electronic faults"
+    ],
+    "clauses_doc_ref": "base_vehicle_warranty_clauses.json"
+  },
+  {
+    "warranty_id": "WRTY-PWR-001",
+    "warranty_name": "Powertrain Warranty",
+    "warranty_type": "Powertrain",
+    "duration_months": 60,
+    "mileage_limit_km": 100000,
+    "included_parts": [
+      "engine assembly",
+      "cooling system",
+      "water pump",
+      "thermostat",
+      "radiator",
+      "transmission internal parts",
+      "drive axle assembly"
+    ],
+    "excluded_parts": [
+      "clutch friction disc",
+      "brake pads",
+      "tyres"
+    ],
+    "excluded_failure_modes": [
+      "abuse",
+      "racing",
+      "unauthorized modification",
+      "collision damage",
+      "normal wear",
+      "contaminated fluids"
+    ],
+    "required_documents": [
+      "repair order",
+      "failure description",
+      "odometer reading",
+      "maintenance records for claims beyond 36 months",
+      "prior approval for engine or transmission assembly replacement"
+    ],
+    "clauses_doc_ref": "powertrain_warranty_clauses.json"
+  },
+  {
+    "warranty_id": "WRTY-EXT-001",
+    "warranty_name": "Extended Mechanical Protection",
+    "warranty_type": "Extended",
+    "duration_months": 72,
+    "mileage_limit_km": 140000,
+    "included_parts": [
+      "steering rack",
+      "front strut",
+      "rear shock absorber",
+      "air conditioning compressor",
+      "infotainment head unit"
+    ],
+    "excluded_parts": [
+      "engine assembly",
+      "corrosion body panels",
+      "wear items",
+      "trim squeaks"
+    ],
+    "excluded_failure_modes": [
+      "abuse",
+      "collision damage",
+      "unauthorized modification",
+      "normal wear"
+    ],
+    "required_documents": [
+      "repair order",
+      "failure description",
+      "odometer reading",
+      "diagnostic report for electronic faults",
+      "inspection summary for visible leaks or damage"
+    ],
+    "clauses_doc_ref": "extended_mechanical_protection_clauses.json"
+  },
+  {
+    "warranty_id": "WRTY-COR-001",
+    "warranty_name": "Corrosion Assistance Policy",
+    "warranty_type": "Corrosion",
+    "duration_months": 72,
+    "mileage_limit_km": 999999,
+    "included_parts": [
+      "rocker panels",
+      "door hems",
+      "tailgate seams",
+      "body panels with inside-out perforation"
+    ],
+    "excluded_parts": [
+      "surface rust",
+      "stone chip damage",
+      "collision repaired panels"
+    ],
+    "excluded_failure_modes": [
+      "external damage",
+      "improper body repair",
+      "cosmetic corrosion only"
+    ],
+    "required_documents": [
+      "repair order",
+      "failure description",
+      "VIN verification record",
+      "dealer corrosion inspection summary confirming perforation"
+    ],
+    "clauses_doc_ref": "corrosion_assistance_policy_clauses.json"
+  }
+]

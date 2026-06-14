@@ -1,0 +1,729 @@
+[
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.96
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6.2",
+        "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "clause_link": "powertrain_warranty_clauses.json#6.2",
+        "justification": "The rule engine marks documents_valid as false and identifies a missing failure description, so the claim cannot be approved in its current state."
+      },
+      {
+        "clause_id": "6",
+        "clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "clause_link": "powertrain_warranty_clauses.json#6",
+        "justification": "The submitted claim includes VIN, dates, mileage, repair code, and causal part, but failure_description is missing."
+      },
+      {
+        "clause_id": "4.2",
+        "clause_quote": "A generic statement that a part was replaced, without the defect found and the correction performed, is incomplete and requires more information.",
+        "clause_link": "powertrain_warranty_clauses.json#4.2",
+        "justification": "The rule summary states additional supporting information is required, and the missing Complaint-Cause-Correction failure story prevents confirmation of a warrantable defect."
+      },
+      {
+        "clause_id": "9",
+        "clause_quote": "A powertrain claim shall be approved only when coverage, component mapping, failure eligibility, documentation, and labor limits are all satisfied.",
+        "clause_link": "powertrain_warranty_clauses.json#9",
+        "justification": "Coverage window, mileage, and component mapping pass, but documentation is incomplete, so approval criteria are not fully met."
+      },
+      {
+        "clause_id": "3",
+        "clause_quote": "Covered powertrain components include the engine assembly, cooling system, water pump, thermostat, radiator, transmission internal parts, and drive axle assembly.",
+        "clause_link": "powertrain_warranty_clauses.json#3",
+        "justification": "The claimed causal part is water pump in the cooling system, which is a covered component under the active Powertrain Warranty."
+      },
+      {
+        "clause_id": "2",
+        "clause_quote": "The Powertrain Warranty provides coverage for 60 months from the in-service date or 100,000 km, whichever occurs first.",
+        "clause_link": "powertrain_warranty_clauses.json#2",
+        "justification": "The rule engine confirms the repair order date and mileage are within warranty limits, with 1814 days and 76,544 km remaining."
+      },
+      {
+        "clause_id": "9.2",
+        "clause_quote": "A powertrain claim shall be referred to human review when the evidence is conflicting, ambiguous, or suggests a possible exception outside strict rules.",
+        "clause_link": "powertrain_warranty_clauses.json#9.2",
+        "justification": "Because the claim is within coverage but lacks mandatory defect narrative and has a related prior cooling-system repair warning, referral is appropriate until supporting information is completed."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "failure_description",
+        "message": "Failure description must include Complaint, Cause, and Correction.",
+        "required_clause_id": "6",
+        "required_clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-095335",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "HIGH"
+      },
+      "decision_detail": {
+        "summary": "Within active powertrain warranty and mapped to a covered water pump repair, but mandatory failure documentation is missing. Related prior cooling-system repairs exist and should be reviewed for context, though they are not duplicates.",
+        "rule_summary": "Rule engine status PASS_WITH_WARNINGS with recommended disposition MORE_INFO. Coverage, mileage, component mapping, labor/cost validations, and exclusion checks passed; documents_valid failed due to missing failure description.",
+        "flags": [
+          "FAILURE_STORY_INCOMPLETE",
+          "RELATED_PRIOR_REPAIR"
+        ],
+        "citations": [
+          {
+            "clause_id": "6.2",
+            "clause_link": "powertrain_warranty_clauses.json#6.2"
+          },
+          {
+            "clause_id": "6",
+            "clause_link": "powertrain_warranty_clauses.json#6"
+          },
+          {
+            "clause_id": "4.2",
+            "clause_link": "powertrain_warranty_clauses.json#4.2"
+          },
+          {
+            "clause_id": "9",
+            "clause_link": "powertrain_warranty_clauses.json#9"
+          },
+          {
+            "clause_id": "9.2",
+            "clause_link": "powertrain_warranty_clauses.json#9.2"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.99
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6",
+        "clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "clause_link": "powertrain_warranty_clauses.json#6",
+        "justification": "The rule engine confirms VIN, dates, mileage, repair code, and causal part, but the specific failure description is missing, so the documentation set is incomplete."
+      },
+      {
+        "clause_id": "6.2",
+        "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "clause_link": "powertrain_warranty_clauses.json#6.2",
+        "justification": "Because the mandatory failure description is missing and documents_valid=false, the claim cannot be approved and should be returned for completion or referred."
+      },
+      {
+        "clause_id": "4.2",
+        "clause_quote": "A generic statement that a part was replaced, without the defect found and the correction performed, is incomplete and requires more information.",
+        "clause_link": "powertrain_warranty_clauses.json#4.2",
+        "justification": "The missing failure story prevents confirming the defect found and correction performed; the rule engine flag FAILURE_STORY_INCOMPLETE aligns with this requirement."
+      },
+      {
+        "clause_id": "9",
+        "clause_quote": "A powertrain claim shall be approved only when coverage, component mapping, failure eligibility, documentation, and labor limits are all satisfied.",
+        "clause_link": "powertrain_warranty_clauses.json#9",
+        "justification": "Coverage window, mileage, and component mapping are satisfied for the water pump cooling-system repair, but the documentation condition is not satisfied, preventing approval."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "failure_description",
+        "message": "Provide a specific failure description including Complaint, Cause, and Correction so warrantable defect eligibility can be assessed.",
+        "required_clause_id": "6",
+        "required_clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-100010",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "NORMAL"
+      },
+      "decision_detail": {
+        "summary": "Within active powertrain warranty and covered component, but mandatory failure description is missing; claim needs additional information before any approval decision.",
+        "rule_summary": "PASS_WITH_WARNINGS / MORE_INFO. Warranty time and mileage remain active; repair code Eng-cls-01 maps correctly to covered water pump/cooling system. documents_valid=false due to missing failure description.",
+        "flags": [
+          "FAILURE_STORY_INCOMPLETE"
+        ],
+        "citations": [
+          {
+            "clause_id": "6",
+            "clause_link": "powertrain_warranty_clauses.json#6"
+          },
+          {
+            "clause_id": "6.2",
+            "clause_link": "powertrain_warranty_clauses.json#6.2"
+          },
+          {
+            "clause_id": "4.2",
+            "clause_link": "powertrain_warranty_clauses.json#4.2"
+          },
+          {
+            "clause_id": "9",
+            "clause_link": "powertrain_warranty_clauses.json#9"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.96
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6.2",
+        "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "clause_link": "powertrain_warranty_clauses.json#6.2",
+        "justification": "The claim is missing the mandatory failure description, and documents_valid is false. The rule engine recommends additional information, so the claim cannot be approved."
+      },
+      {
+        "clause_id": "6",
+        "clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "clause_link": "powertrain_warranty_clauses.json#6",
+        "justification": "The payload explicitly lists failure_description as missing; a specific failure description is mandatory."
+      },
+      {
+        "clause_id": "4.2",
+        "clause_quote": "A generic statement that a part was replaced, without the defect found and the correction performed, is incomplete and requires more information.",
+        "clause_link": "powertrain_warranty_clauses.json#4.2",
+        "justification": "The missing Complaint/Cause/Correction narrative prevents confirmation of a warrantable defect condition."
+      },
+      {
+        "clause_id": "9.2",
+        "clause_quote": "A powertrain claim shall be referred to human review when the evidence is conflicting, ambiguous, or suggests a possible exception outside strict rules.",
+        "clause_link": "powertrain_warranty_clauses.json#9.2",
+        "justification": "A duplicate candidate exists for the same VIN, repair code, and causal part within 30 days, including across dealers, creating ambiguity that warrants human review."
+      },
+      {
+        "clause_id": "3",
+        "clause_quote": "Covered powertrain components include the engine assembly, cooling system, water pump, thermostat, radiator, transmission internal parts, and drive axle assembly.",
+        "clause_link": "powertrain_warranty_clauses.json#3",
+        "justification": "The claimed causal part, water pump, is a covered component under the Powertrain Warranty, so coverage itself is not the blocking issue."
+      },
+      {
+        "clause_id": "2",
+        "clause_quote": "The Powertrain Warranty provides coverage for 60 months from the in-service date or 100,000 km, whichever occurs first.",
+        "clause_link": "powertrain_warranty_clauses.json#2",
+        "justification": "The claim remains within warranty limits based on the rule engine's computed remaining days and mileage."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "failure_description",
+        "message": "Failure description must include Complaint, Cause, and Correction.",
+        "required_clause_id": "6",
+        "required_clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-100222",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "HIGH"
+      },
+      "decision_detail": {
+        "summary": "Refer for human review: warranty coverage and component eligibility pass, but the claim is missing the mandatory failure description and has a duplicate-claim warning within 30 days.",
+        "rule_summary": "Business-rule validation requires additional supporting information. Within warranty limits; water pump/cooling system is covered; documents invalid due to missing failure story; duplicate candidate detected for same VIN/repair/casual part.",
+        "flags": [
+          "FAILURE_STORY_INCOMPLETE",
+          "POSSIBLE_DUPLICATE"
+        ],
+        "citations": [
+          {
+            "clause_id": "6.2",
+            "clause_link": "powertrain_warranty_clauses.json#6.2"
+          },
+          {
+            "clause_id": "6",
+            "clause_link": "powertrain_warranty_clauses.json#6"
+          },
+          {
+            "clause_id": "4.2",
+            "clause_link": "powertrain_warranty_clauses.json#4.2"
+          },
+          {
+            "clause_id": "9.2",
+            "clause_link": "powertrain_warranty_clauses.json#9.2"
+          },
+          {
+            "clause_id": "3",
+            "clause_link": "powertrain_warranty_clauses.json#3"
+          },
+          {
+            "clause_id": "2",
+            "clause_link": "powertrain_warranty_clauses.json#2"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.9
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6.1",
+        "clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "clause_link": "powertrain_warranty_clauses.json#6.1",
+        "justification": "The repair order date is beyond 36 months from the in-service date, so complete maintenance records are required before approval; none are provided in the payload."
+      },
+      {
+        "clause_id": "6.2",
+        "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "clause_link": "powertrain_warranty_clauses.json#6.2",
+        "justification": "Because the required maintenance records are missing, the claim cannot be auto-approved and should be referred for completion or review."
+      },
+      {
+        "clause_id": "9.2",
+        "clause_quote": "A powertrain claim shall be referred to human review when the evidence is conflicting, ambiguous, or suggests a possible exception outside strict rules.",
+        "clause_link": "powertrain_warranty_clauses.json#9.2",
+        "justification": "The backend passed general validations, but the documentation requirement for >36 months creates a missing-evidence condition that requires human review."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "Complete maintenance records",
+        "message": "This claim is beyond 36 months from in-service and requires complete maintenance records before approval.",
+        "required_clause_id": "6.1",
+        "required_clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6.1"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-100338",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "NORMAL"
+      },
+      "decision_detail": {
+        "summary": "Claim is within warranty time and mileage and maps to a covered water pump repair, but it is beyond 36 months from in-service and lacks the maintenance records required for approval.",
+        "rule_summary": "Backend validations passed for warranty window, mileage, component mapping, and risk flags; however, policy requires maintenance records for claims beyond 36 months from in-service before approval.",
+        "flags": [
+          "MISSING_MAINTENANCE_RECORDS_FOR_OVER_36_MONTH_CLAIM"
+        ],
+        "citations": [
+          {
+            "clause_id": "6.1",
+            "clause_link": "powertrain_warranty_clauses.json#6.1"
+          },
+          {
+            "clause_id": "6.2",
+            "clause_link": "powertrain_warranty_clauses.json#6.2"
+          },
+          {
+            "clause_id": "9.2",
+            "clause_link": "powertrain_warranty_clauses.json#9.2"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.93
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6.1",
+        "clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "clause_link": "powertrain_warranty_clauses.json#6.1",
+        "justification": "The repair order date is approximately 35 months after in-service date? Wait\u20142023-10-30 to 2026-09-22 is within 36 months, so maintenance records are not triggered. Coverage timing itself remains valid."
+      },
+      {
+        "clause_id": "3",
+        "clause_quote": "Covered powertrain components include the engine assembly, cooling system, water pump, thermostat, radiator, transmission internal parts, and drive axle assembly.",
+        "clause_link": "powertrain_warranty_clauses.json#3",
+        "justification": "The claimed causal part is the water pump in the cooling system, which is a covered component under the powertrain warranty."
+      },
+      {
+        "clause_id": "3.1",
+        "clause_quote": "A claimed repair code must map to the stated causal part and to a covered powertrain component for the claim to remain eligible.",
+        "clause_link": "powertrain_warranty_clauses.json#3.1",
+        "justification": "Repair code Eng-cls-01 maps to cooling system water pump replacement and matches the stated causal part water pump."
+      },
+      {
+        "clause_id": "2",
+        "clause_quote": "The Powertrain Warranty provides coverage for 60 months from the in-service date or 100,000 km, whichever occurs first.",
+        "clause_link": "powertrain_warranty_clauses.json#2",
+        "justification": "The claim is within both warranty limits, with 768 days and 76,544 km remaining per the rule-engine payload."
+      },
+      {
+        "clause_id": "6",
+        "clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "clause_link": "powertrain_warranty_clauses.json#6",
+        "justification": "The payload includes all mandatory baseline claim identifiers and a specific failure description."
+      },
+      {
+        "clause_id": "8",
+        "clause_quote": "Labor reimbursement is evaluated against the published standard and maximum labor time for the repair code.",
+        "clause_link": "powertrain_warranty_clauses.json#8",
+        "justification": "Published labor and cost thresholds exist for this repair code, but the submitted claim has null labor hours and null parts cost, so reimbursement cannot be fully validated against those thresholds in the assessor-facing pack."
+      },
+      {
+        "clause_id": "6.2",
+        "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "clause_link": "powertrain_warranty_clauses.json#6.2",
+        "justification": "Because labor hours and parts cost are not populated, the monetary reimbursement basis is incomplete for final claim handling even though rule-engine validations passed."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "labor_hours",
+        "message": "Submitted labor hours are missing; final reimbursement comparison to the published labor threshold cannot be evidenced in the claim pack.",
+        "required_clause_id": "8",
+        "required_clause_quote": "Labor reimbursement is evaluated against the published standard and maximum labor time for the repair code.",
+        "required_clause_link": "powertrain_warranty_clauses.json#8"
+      },
+      {
+        "item": "parts_cost_eur",
+        "message": "Submitted parts cost is missing; final reimbursement amount and threshold comparison cannot be evidenced in the claim pack.",
+        "required_clause_id": "6.2",
+        "required_clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6.2"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-100456",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "NORMAL"
+      },
+      "decision_detail": {
+        "summary": "Covered water pump claim within time and mileage limits, but reimbursement fields for labor and parts are missing from the submitted claim details.",
+        "rule_summary": "All business-rule validations passed.",
+        "flags": [],
+        "citations": [
+          {
+            "clause_id": "2",
+            "clause_link": "powertrain_warranty_clauses.json#2"
+          },
+          {
+            "clause_id": "3",
+            "clause_link": "powertrain_warranty_clauses.json#3"
+          },
+          {
+            "clause_id": "3.1",
+            "clause_link": "powertrain_warranty_clauses.json#3.1"
+          },
+          {
+            "clause_id": "6",
+            "clause_link": "powertrain_warranty_clauses.json#6"
+          },
+          {
+            "clause_id": "6.2",
+            "clause_link": "powertrain_warranty_clauses.json#6.2"
+          },
+          {
+            "clause_id": "8",
+            "clause_link": "powertrain_warranty_clauses.json#8"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.96
+    },
+    "cited_justification": [
+      {
+        "clause_id": "9.2",
+        "clause_quote": "A powertrain claim shall be referred to human review when the evidence is conflicting, ambiguous, or suggests a possible exception outside strict rules.",
+        "clause_link": "powertrain_warranty_clauses.json#9.2",
+        "justification": "The deterministic rule engine is authoritative and recommended REFER_TO_HUMAN because a possible duplicate was identified for the same VIN, repair code, and causal part within 30 days, creating conflicting/ambiguous claim history that requires assessor review."
+      },
+      {
+        "clause_id": "3",
+        "clause_quote": "Covered powertrain components include the engine assembly, cooling system, water pump, thermostat, radiator, transmission internal parts, and drive axle assembly.",
+        "clause_link": "powertrain_warranty_clauses.json#3",
+        "justification": "The claimed causal part is a water pump in the cooling system, which is a covered powertrain component."
+      },
+      {
+        "clause_id": "2",
+        "clause_quote": "The Powertrain Warranty provides coverage for 60 months from the in-service date or 100,000 km, whichever occurs first.",
+        "clause_link": "powertrain_warranty_clauses.json#2",
+        "justification": "The claim is within warranty limits based on the rule-engine result and computed remaining coverage of 1299 days and 70,650 km."
+      },
+      {
+        "clause_id": "6.1",
+        "clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "clause_link": "powertrain_warranty_clauses.json#6.1",
+        "justification": "The repair order date is about 17 months after in-service, so the >36-month maintenance-record requirement does not apply and is not the reason for referral."
+      }
+    ],
+    "missing_information": [],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-100730",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "HIGH"
+      },
+      "decision_detail": {
+        "summary": "Refer for human review due to a strong duplicate-claim indicator on the same VIN, repair code, and water pump concern within 30 days, including cross-dealer prior submissions.",
+        "rule_summary": "PASS_WITH_WARNINGS. Coverage, mileage, component mapping, and eligibility checks passed, but POSSIBLE_DUPLICATE warning triggered manual review.",
+        "flags": [
+          "POSSIBLE_DUPLICATE"
+        ],
+        "citations": [
+          {
+            "clause_id": "9.2",
+            "clause_link": "powertrain_warranty_clauses.json#9.2"
+          },
+          {
+            "clause_id": "3",
+            "clause_link": "powertrain_warranty_clauses.json#3"
+          },
+          {
+            "clause_id": "2",
+            "clause_link": "powertrain_warranty_clauses.json#2"
+          },
+          {
+            "clause_id": "6.1",
+            "clause_link": "powertrain_warranty_clauses.json#6.1"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.93
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6.1",
+        "clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "clause_link": "powertrain_warranty_clauses.json#6.1",
+        "justification": "The repair order date is 2026-09-22 and the in-service date is 2023-10-30, placing the claim beyond 36 months in service. Complete maintenance records are required before approval, but no attachments are provided."
+      },
+      {
+        "clause_id": "6.2",
+        "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review.",
+        "clause_link": "powertrain_warranty_clauses.json#6.2",
+        "justification": "Because required maintenance documentation for a >36-month claim is not present, the claim cannot be auto-approved and should be referred for completion/review."
+      },
+      {
+        "clause_id": "1.1",
+        "clause_quote": "The powertrain policy covers warrantable defects in listed powertrain components when the repair order date and mileage fall within the applicable limits.",
+        "clause_link": "powertrain_warranty_clauses.json#1.1",
+        "justification": "The deterministic engine confirms the repair date and mileage are within warranty limits."
+      },
+      {
+        "clause_id": "3.1",
+        "clause_quote": "A claimed repair code must map to the stated causal part and to a covered powertrain component for the claim to remain eligible.",
+        "clause_link": "powertrain_warranty_clauses.json#3.1",
+        "justification": "Repair code Eng-cls-01 maps to water pump in the cooling system, which is a covered component under the Powertrain Warranty."
+      },
+      {
+        "clause_id": "8.1",
+        "clause_quote": "A claim within the published labor limit may proceed to standard adjudication when all other conditions are satisfied.",
+        "clause_link": "powertrain_warranty_clauses.json#8.1",
+        "justification": "Although the rule engine marked labor_valid and cost_valid as true, labor hours and parts cost were not supplied in the payload, so standard adjudication cannot be finalized without the required >36-month maintenance documentation."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "Complete maintenance records",
+        "message": "This powertrain claim is beyond 36 months from in-service and requires complete maintenance records before approval. No attachments were provided.",
+        "required_clause_id": "6.1",
+        "required_clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6.1"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-100932",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "HIGH"
+      },
+      "decision_detail": {
+        "summary": "Within core warranty limits and component coverage, but claim is beyond 36 months in service and lacks required maintenance records, so it cannot be auto-approved.",
+        "rule_summary": "Deterministic rules passed for VIN, warranty, time, mileage, component mapping, and exclusion screening; referral is required due to missing mandatory maintenance documentation for >36-month claims.",
+        "flags": [
+          "MISSING_MAINTENANCE_RECORDS_FOR_GT_36_MONTH_CLAIM"
+        ],
+        "citations": [
+          {
+            "clause_id": "6.1",
+            "clause_link": "powertrain_warranty_clauses.json#6.1"
+          },
+          {
+            "clause_id": "6.2",
+            "clause_link": "powertrain_warranty_clauses.json#6.2"
+          },
+          {
+            "clause_id": "1.1",
+            "clause_link": "powertrain_warranty_clauses.json#1.1"
+          },
+          {
+            "clause_id": "3.1",
+            "clause_link": "powertrain_warranty_clauses.json#3.1"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  },
+  {
+    "disposition_per_claim": {
+      "decision": "REFER_TO_HUMAN",
+      "confidence": 0.92
+    },
+    "cited_justification": [
+      {
+        "clause_id": "6.1",
+        "clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "clause_link": "powertrain_warranty_clauses.json#6.1",
+        "justification": "The repair order date is 2026-09-22 and the in-service date is 2023-10-30, placing the claim beyond 36 months. No maintenance records are present in the payload attachments, so approval cannot be issued without this documentation."
+      },
+      {
+        "clause_id": "6",
+        "clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description.",
+        "clause_link": "powertrain_warranty_clauses.json#6",
+        "justification": "Core claim data is present, including VIN, dates, mileage, repair code, causal part, and a specific failure description."
+      },
+      {
+        "clause_id": "1.1",
+        "clause_quote": "The powertrain policy covers warrantable defects in listed powertrain components when the repair order date and mileage fall within the applicable limits.",
+        "clause_link": "powertrain_warranty_clauses.json#1.1",
+        "justification": "The rule engine confirmed the claim is within warranty time and mileage limits and that component coverage checks passed."
+      },
+      {
+        "clause_id": "3.1",
+        "clause_quote": "A claimed repair code must map to the stated causal part and to a covered powertrain component for the claim to remain eligible.",
+        "clause_link": "powertrain_warranty_clauses.json#3.1",
+        "justification": "Repair code Eng-cls-01 maps to water pump in the cooling system, and the causal part stated is water pump."
+      },
+      {
+        "clause_id": "4.1",
+        "clause_quote": "Leakage, internal breakage, bearing failure, or seal failure may be warrantable when the description identifies the failed part and the defect condition.",
+        "clause_link": "powertrain_warranty_clauses.json#4.1",
+        "justification": "The failure description identifies a leaking water pump shaft seal and the corrective action performed, supporting a potentially warrantable defect condition."
+      },
+      {
+        "clause_id": "8.1",
+        "clause_quote": "A claim within the published labor limit may proceed to standard adjudication when all other conditions are satisfied.",
+        "clause_link": "powertrain_warranty_clauses.json#8.1",
+        "justification": "Claimed labor is 1.0 hour, which is within the published standard and below the 1.5 hour maximum for this repair code."
+      }
+    ],
+    "missing_information": [
+      {
+        "item": "Complete maintenance records",
+        "message": "This claim is beyond 36 months from the in-service date and cannot be approved without complete maintenance records.",
+        "required_clause_id": "6.1",
+        "required_clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval.",
+        "required_clause_link": "powertrain_warranty_clauses.json#6.1"
+      }
+    ],
+    "assessor_ui": {
+      "claim_queue": {
+        "claim_id": "CLM-20260613-135445",
+        "recommended_action": "REFER_TO_HUMAN",
+        "priority": "HIGH"
+      },
+      "decision_detail": {
+        "summary": "Refer for human review because the claim is within coverage and labor limits, but approval is blocked pending complete maintenance records required for powertrain claims beyond 36 months in service.",
+        "rule_summary": "Engine rules passed for warranty term, mileage, component mapping, exclusions, and labor; however, policy documentation requirements for >36 months in service require maintenance records before approval.",
+        "flags": [
+          "MISSING_MAINTENANCE_RECORDS_OVER_36_MONTHS"
+        ],
+        "citations": [
+          {
+            "clause_id": "6.1",
+            "clause_link": "powertrain_warranty_clauses.json#6.1"
+          },
+          {
+            "clause_id": "1.1",
+            "clause_link": "powertrain_warranty_clauses.json#1.1"
+          },
+          {
+            "clause_id": "3.1",
+            "clause_link": "powertrain_warranty_clauses.json#3.1"
+          },
+          {
+            "clause_id": "4.1",
+            "clause_link": "powertrain_warranty_clauses.json#4.1"
+          },
+          {
+            "clause_id": "8.1",
+            "clause_link": "powertrain_warranty_clauses.json#8.1"
+          }
+        ]
+      },
+      "override_capability": {
+        "allowed": true,
+        "required_fields": [
+          "assessor_decision",
+          "assessor_rationale"
+        ],
+        "audit_message": "Override rationale must be logged."
+      }
+    }
+  }
+]

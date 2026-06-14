@@ -1,0 +1,526 @@
+[
+  {
+    "claim_id": "CLM-DEMO-0001",
+    "vin": "VCV4H7TL2XE910234",
+    "in_service_date": "2026-09-11",
+    "repair_order_date": "2026-09-22",
+    "mileage_km": 23456,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1,
+    "failure_description": "Complaint: coolant loss and low coolant warning. Cause: water pump shaft seal failed, coolant leaking from weep hole. Correction: replaced water pump, pressure tested system, refilled coolant.",
+    "attachments": [],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "Vehicle is within powertrain warranty time and mileage limits; water pump is covered; failure is a warrantable defect; labor hours are within allowed limit; no mandatory attachment is required for this repair."
+  },
+  {
+    "claim_id": "CLM-APP-0002",
+    "vin": "VCV6M2PK1XA110101",
+    "in_service_date": "2025-01-15",
+    "repair_order_date": "2026-03-04",
+    "mileage_km": 18750,
+    "repair_code": "Eng-cls-02",
+    "causal_part": "thermostat",
+    "parts_cost_eur": 140,
+    "labor_hours": 0.8,
+    "failure_description": "Complaint: engine took excessive time to reach operating temperature. Cause: thermostat stuck open and leaking at housing. Correction: replaced thermostat and coolant seal, verified operating temperature.",
+    "attachments": [],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "Thermostat is covered under the active powertrain warranty and the claimed labor is within the allowed limit."
+  },
+  {
+    "claim_id": "CLM-APP-0003",
+    "vin": "VCV6M2PK1XA110108",
+    "in_service_date": "2023-10-30",
+    "repair_order_date": "2026-10-29",
+    "mileage_km": 100000,
+    "repair_code": "Eng-cls-03",
+    "causal_part": "radiator",
+    "parts_cost_eur": 420,
+    "labor_hours": 1.4,
+    "failure_description": "Complaint: coolant smell after driving. Cause: radiator core seam crack caused external coolant leak. Correction: replaced radiator, vacuum filled cooling system, road tested vehicle.",
+    "attachments": [],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "This is a mileage boundary case on the exact warranty limit and final covered day, so the claim remains within coverage."
+  },
+  {
+    "claim_id": "CLM-APP-0004",
+    "vin": "VCV6M2PK1XA110107",
+    "in_service_date": "2024-12-01",
+    "repair_order_date": "2026-05-18",
+    "mileage_km": 45200,
+    "repair_code": "Trn-int-01",
+    "causal_part": "transmission internal parts",
+    "parts_cost_eur": 1680,
+    "labor_hours": 5.8,
+    "failure_description": "Complaint: harsh shift into third gear. Cause: internal transmission bearing failure produced metal debris and damaged synchronizer components. Correction: obtained prior approval, overhauled transmission internals, flushed cooler lines, and road tested vehicle.",
+    "attachments": [
+      "prior_approval_email.pdf",
+      "teardown_photos.zip"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "Transmission internals are covered under the active powertrain warranty and the claim includes the required prior approval and technical support for the repair."
+  },
+  {
+    "claim_id": "CLM-APP-0005",
+    "vin": "VCV6M2PK1XA110119",
+    "in_service_date": "2020-10-10",
+    "repair_order_date": "2026-08-30",
+    "mileage_km": 88120,
+    "repair_code": "Cor-pan-01",
+    "causal_part": "rocker panel",
+    "parts_cost_eur": 690,
+    "labor_hours": 4.5,
+    "failure_description": "Complaint: rust bubbling at lower rocker seam. Cause: corrosion progressed from inside out and perforated the left rocker panel. Correction: confirmed perforation, repaired affected section, and applied approved corrosion protection.",
+    "attachments": [
+      "corrosion_photos.zip"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "The corrosion policy is active for this VIN and the claim describes an eligible rust-through body panel condition rather than cosmetic surface rust."
+  },
+  {
+    "claim_id": "CLM-APP-0006",
+    "vin": "VCV6M2PK1XA110105",
+    "in_service_date": "2022-02-20",
+    "repair_order_date": "2026-04-16",
+    "mileage_km": 76500,
+    "repair_code": "Ste-rck-01",
+    "causal_part": "steering rack",
+    "parts_cost_eur": 520,
+    "labor_hours": 2.7,
+    "failure_description": "Complaint: power steering fluid leaking and steering effort increased. Cause: steering rack inner seal failed. Correction: replaced steering rack, bled system, and performed wheel alignment.",
+    "attachments": [
+      "alignment_report.pdf",
+      "rack_leak_photos.zip"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "The base warranty is expired, but the extended mechanical protection is active and covers steering rack failures."
+  },
+  {
+    "claim_id": "CLM-APP-0007",
+    "vin": "VCV6M2PK1XA110112",
+    "in_service_date": "2025-07-01",
+    "repair_order_date": "2026-02-11",
+    "mileage_km": 12400,
+    "repair_code": "Acn-cmpr-01",
+    "causal_part": "air conditioning compressor",
+    "parts_cost_eur": 610,
+    "labor_hours": 2.0,
+    "failure_description": "Complaint: no cabin cooling. Cause: air conditioning compressor seized internally and would not engage. Correction: replaced compressor, evacuated and recharged system, verified vent temperature.",
+    "attachments": [
+      "diagnostic_summary.pdf"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "The A/C compressor is a covered base warranty component and the claim is fully within time, mileage, and labor limits."
+  },
+  {
+    "claim_id": "CLM-APP-0008",
+    "vin": "VCV6M2PK1XA110109",
+    "in_service_date": "2024-01-12",
+    "repair_order_date": "2025-11-08",
+    "mileage_km": 21800,
+    "repair_code": "Brk-pad-01",
+    "causal_part": "brake pads",
+    "parts_cost_eur": 160,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: brake pulsation and scraping noise. Cause: front brake pad friction material delaminated from backing plate. Correction: replaced front brake pads and inspected brake discs for damage.",
+    "attachments": [
+      "pad_photos.zip"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "This wear item claim describes a specific manufacturing defect and the vehicle is still within the base warranty window."
+  },
+  {
+    "claim_id": "CLM-REJ-0009",
+    "vin": "VCV6M2PK1XA110108",
+    "in_service_date": "2023-10-30",
+    "repair_order_date": "2026-11-02",
+    "mileage_km": 100001,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 235,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: coolant warning lamp on. Cause: water pump weep hole leaking. Correction: replaced water pump and refilled coolant.",
+    "attachments": [],
+    "expected_disposition": "REJECT",
+    "expected_reason": "The claim is just over the mileage limit, so it fails objective warranty eligibility."
+  },
+  {
+    "claim_id": "CLM-REJ-0010",
+    "vin": "VCV6M2PK1XA110114",
+    "in_service_date": "2021-03-22",
+    "repair_order_date": "2026-03-22",
+    "mileage_km": 94300,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: coolant leak from front cover area. Cause: water pump bearing play caused shaft seal leak. Correction: replaced water pump and pressure tested system.",
+    "attachments": [],
+    "expected_disposition": "REJECT",
+    "expected_reason": "The repair order date is one day after the powertrain warranty end date for this VIN."
+  },
+  {
+    "claim_id": "CLM-REJ-0011",
+    "vin": "VCV6M2PK1XA110101",
+    "in_service_date": "2025-01-15",
+    "repair_order_date": "2026-06-21",
+    "mileage_km": 29200,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: overheating after track event. Cause: cooling system over-stressed during amateur racing session and water pump seal failed. Correction: replaced water pump and refilled coolant.",
+    "attachments": [
+      "dealer_notes.pdf"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "The failure description ties the damage to racing, which is an excluded failure mode under the powertrain warranty."
+  },
+  {
+    "claim_id": "CLM-REJ-0012",
+    "vin": "VCV6M2PK1XA110110",
+    "in_service_date": "2022-09-18",
+    "repair_order_date": "2026-05-05",
+    "mileage_km": 68400,
+    "repair_code": "Eng-asm-01",
+    "causal_part": "engine assembly",
+    "parts_cost_eur": 3250,
+    "labor_hours": 8.2,
+    "failure_description": "Complaint: engine knocking under load. Cause: aftermarket ECU remap and boosted turbo pressure caused piston damage. Correction: engine short block replaced after teardown.",
+    "attachments": [
+      "teardown_photos.zip"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "Unauthorized modification voids powertrain coverage for the affected system."
+  },
+  {
+    "claim_id": "CLM-MOR-0013",
+    "vin": "VCV6M2PK1XA110109",
+    "in_service_date": "2024-01-12",
+    "repair_order_date": "2026-01-05",
+    "mileage_km": 31850,
+    "repair_code": "Ele-ecu-01",
+    "causal_part": "engine control module",
+    "parts_cost_eur": 980,
+    "labor_hours": 1.6,
+    "failure_description": "Complaint: check engine lamp illuminated and vehicle entered reduced power mode. Cause: engine control module lost communication intermittently. Correction: replaced engine control module and programmed module to latest calibration.",
+    "attachments": [],
+    "expected_disposition": "MORE_INFO",
+    "expected_reason": "Electronic component claims require a diagnostic report, and no diagnostic evidence is attached."
+  },
+  {
+    "claim_id": "CLM-REF-0014",
+    "vin": "VCV6M2PK1XA110115",
+    "in_service_date": "2024-08-30",
+    "repair_order_date": "2026-04-09",
+    "mileage_km": 26880,
+    "repair_code": "Acn-cmpr-01",
+    "causal_part": "air conditioning compressor",
+    "parts_cost_eur": 610,
+    "labor_hours": 2.0,
+    "failure_description": "Complaint: intermittent clicking noise from A/C system. Cause: not confirmed; noise was not present during inspection and cooling performance was normal. Correction: compressor replaced based on customer concern.",
+    "attachments": [
+      "job_card.pdf"
+    ],
+    "expected_disposition": "REFER_TO_HUMAN",
+    "expected_reason": "The failure description is ambiguous and does not establish a confirmed warrantable defect."
+  },
+  {
+    "claim_id": "CLM-REF-0015",
+    "vin": "VCV6M2PK1XA110104",
+    "in_service_date": "2021-06-15",
+    "repair_order_date": "2026-07-20",
+    "mileage_km": 103500,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: coolant warning and visible drip. Cause: water pump shaft seal leaking. Correction: replaced water pump and refilled coolant.",
+    "attachments": [
+      "maintenance_records.pdf"
+    ],
+    "expected_disposition": "REFER_TO_HUMAN",
+    "expected_reason": "The claim fails only on coverage period grounds by a small margin, so it is a goodwill-eligible referral rather than a warranty approval."
+  },
+  {
+    "claim_id": "CLM-REF-0016",
+    "vin": "VCV6M2PK1XA110101",
+    "in_service_date": "2025-01-15",
+    "repair_order_date": "2026-07-02",
+    "mileage_km": 31110,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 2.1,
+    "failure_description": "Complaint: coolant loss and squeal from accessory drive area. Cause: water pump bearing noisy and seal leaking. Correction: replaced water pump and refilled cooling system.",
+    "attachments": [],
+    "expected_disposition": "REFER_TO_HUMAN",
+    "expected_reason": "Claimed labor exceeds the component maximum, so manual review is required."
+  },
+  {
+    "claim_id": "CLM-REJ-0017",
+    "vin": "VCV6M2PK1XA110112",
+    "in_service_date": "2025-07-01",
+    "repair_order_date": "2026-03-19",
+    "mileage_km": 14600,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "alternator",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: battery warning lamp on. Cause: alternator output low. Correction: alternator replaced, but claim was coded as water pump replacement.",
+    "attachments": [],
+    "expected_disposition": "REJECT",
+    "expected_reason": "The repair code and causal part do not match, so the claim data is inconsistent with covered component logic."
+  },
+  {
+    "claim_id": "CLM-REJ-0018",
+    "vin": "VCV0ZZZZ0ZZ000999",
+    "in_service_date": "2025-05-01",
+    "repair_order_date": "2026-02-01",
+    "mileage_km": 14000,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: coolant dripping under front of engine. Cause: water pump leak. Correction: replaced water pump and bled system.",
+    "attachments": [],
+    "expected_disposition": "REJECT",
+    "expected_reason": "The VIN does not exist in the customer master data, so warranty coverage cannot be established."
+  },
+  {
+    "claim_id": "CLM-REJ-0019",
+    "vin": "VCV6M2PK1XA110116",
+    "in_service_date": "2025-04-11",
+    "repair_order_date": "2026-01-14",
+    "mileage_km": 18800,
+    "repair_code": "Eng-cls-03",
+    "causal_part": "radiator",
+    "parts_cost_eur": 420,
+    "labor_hours": 1.5,
+    "failure_description": "Complaint: coolant leak after minor front-end crash. Cause: radiator core crushed by collision damage. Correction: replaced radiator and refilled coolant.",
+    "attachments": [
+      "accident_photo.jpg"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "Collision damage is excluded even when the covered component itself is otherwise listed under warranty."
+  },
+  {
+    "claim_id": "CLM-REJ-0020",
+    "vin": "VCV6M2PK1XA110117",
+    "in_service_date": "2022-07-07",
+    "repair_order_date": "2026-08-10",
+    "mileage_km": 62200,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: overheating and coolant leak. Cause: contaminated non-approved coolant damaged water pump seal and bearing. Correction: replaced water pump and flushed system.",
+    "attachments": [
+      "coolant_analysis.pdf"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "Contaminated fluids are an explicit excluded failure mode under the powertrain warranty."
+  },
+  {
+    "claim_id": "CLM-MOR-0021",
+    "vin": "VCV6M2PK1XA110110",
+    "in_service_date": "2022-09-18",
+    "repair_order_date": "2025-06-10",
+    "mileage_km": 27500,
+    "repair_code": "Brk-pad-01",
+    "causal_part": "brake pads",
+    "parts_cost_eur": 150,
+    "labor_hours": 0.9,
+    "failure_description": "Complaint: scraping noise under braking. Cause: front pad friction material separated from backing plate. Correction: replaced front brake pads and road tested vehicle.",
+    "attachments": [],
+    "expected_disposition": "MORE_INFO",
+    "expected_reason": "Wear item claims require a clear dealer statement of the manufacturing defect, and the submitted details are not sufficient to confirm that defect."
+  },
+  {
+    "claim_id": "CLM-MOR-0022",
+    "vin": "VCV6M2PK1XA110107",
+    "in_service_date": "2024-12-01",
+    "repair_order_date": "2026-06-02",
+    "mileage_km": 50100,
+    "repair_code": "Eng-asm-01",
+    "causal_part": "engine assembly",
+    "parts_cost_eur": 3460,
+    "labor_hours": 8.0,
+    "failure_description": "Complaint: lower engine knock under load. Cause: connecting rod bearing failure. Correction: engine assembly replaced after teardown.",
+    "attachments": [
+      "teardown_photos.zip"
+    ],
+    "expected_disposition": "MORE_INFO",
+    "expected_reason": "Engine assembly replacement is covered only with prior approval, and no approval document is attached."
+  },
+  {
+    "claim_id": "CLM-MOR-0023",
+    "vin": "VCV6M2PK1XA110104",
+    "in_service_date": "2021-06-15",
+    "repair_order_date": "2026-02-18",
+    "mileage_km": 81200,
+    "repair_code": "Cor-pan-01",
+    "causal_part": "rocker panel",
+    "parts_cost_eur": 680,
+    "labor_hours": 4.2,
+    "failure_description": "Complaint: rust hole visible on lower rocker. Cause: inside-out corrosion perforated rocker panel. Correction: body shop repaired affected area and applied cavity wax.",
+    "attachments": [],
+    "expected_disposition": "MORE_INFO",
+    "expected_reason": "Corrosion claims require a dealer inspection summary confirming inside-out perforation and the affected panel, and that confirmation is missing."
+  },
+  {
+    "claim_id": "CLM-APP-0024",
+    "vin": "VCV6M2PK1XA110104",
+    "in_service_date": "2021-06-15",
+    "repair_order_date": "2027-06-14",
+    "mileage_km": 90800,
+    "repair_code": "Cor-pan-01",
+    "causal_part": "rocker panel",
+    "parts_cost_eur": 700,
+    "labor_hours": 4.8,
+    "failure_description": "Complaint: rust-through at left rocker seam. Cause: corrosion progressed from the inside and perforated the panel. Correction: repaired rocker panel and refinished affected area using approved corrosion materials.",
+    "attachments": [
+      "corrosion_photos.zip"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "This is an exact final-day boundary case under the corrosion policy and the submitted claim describes an eligible rust-through perforation."
+  },
+  {
+    "claim_id": "CLM-REJ-0025",
+    "vin": "VCV6M2PK1XA110102",
+    "in_service_date": "2024-05-10",
+    "repair_order_date": "2026-04-28",
+    "mileage_km": 41200,
+    "repair_code": "Brk-pad-01",
+    "causal_part": "brake pads",
+    "parts_cost_eur": 165,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: brake warning for pad wear. Cause: brake pads worn to service limit from normal use with no defect evidence. Correction: replaced front brake pads.",
+    "attachments": [
+      "pad_photos.zip"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "Brake pad wear from normal use is excluded because it is not a manufacturing defect."
+  },
+  {
+    "claim_id": "CLM-REF-0026",
+    "vin": "VCV6M2PK1XA110111",
+    "in_service_date": "2021-08-08",
+    "repair_order_date": "2026-09-03",
+    "mileage_km": 83400,
+    "repair_code": "Sus-str-01",
+    "causal_part": "front strut",
+    "parts_cost_eur": 460,
+    "labor_hours": 2.5,
+    "failure_description": "Complaint: front suspension noise and oil leak. Cause: left front strut leaking, but vehicle also shows signs of repeated overload use and bent hardware. Correction: strut removed for inspection pending warranty decision.",
+    "attachments": [
+      "inspection_photos.zip"
+    ],
+    "expected_disposition": "REFER_TO_HUMAN",
+    "expected_reason": "Possible overloading is an exclusion, but the evidence is not conclusive enough for an automatic rejection."
+  },
+  {
+    "claim_id": "CLM-MOR-0027",
+    "vin": "VCV6M2PK1XA110117",
+    "in_service_date": "2022-07-07",
+    "repair_order_date": "2026-09-12",
+    "mileage_km": 65500,
+    "repair_code": "Eng-cls-02",
+    "causal_part": "thermostat",
+    "parts_cost_eur": 140,
+    "labor_hours": 0.8,
+    "failure_description": "Complaint: overheating after highway driving. Cause: thermostat stuck closed. Correction: thermostat replaced and cooling system bled.",
+    "attachments": [],
+    "expected_disposition": "MORE_INFO",
+    "expected_reason": "This is a powertrain claim beyond 36 months, so maintenance records are required before approval."
+  },
+  {
+    "claim_id": "CLM-APP-0028",
+    "vin": "VCV6M2PK1XA110103",
+    "in_service_date": "2023-11-02",
+    "repair_order_date": "2026-03-15",
+    "mileage_km": 58750,
+    "repair_code": "Eng-asm-01",
+    "causal_part": "engine assembly",
+    "parts_cost_eur": 3180,
+    "labor_hours": 8.6,
+    "failure_description": "Complaint: deep lower-end knock and metal in oil filter. Cause: connecting rod bearing material failed and damaged crank journal. Correction: obtained prior approval, replaced short block, and completed oil system flush.",
+    "attachments": [
+      "prior_approval_email.pdf",
+      "teardown_photos.zip"
+    ],
+    "expected_disposition": "APPROVE",
+    "expected_reason": "The engine assembly is covered by the active powertrain warranty and the required prior approval and technical teardown support are attached."
+  },
+  {
+    "claim_id": "CLM-REJ-0029",
+    "vin": "VCV6M2PK1XA110113",
+    "in_service_date": "2020-12-15",
+    "repair_order_date": "2026-05-22",
+    "mileage_km": 97200,
+    "repair_code": "Tyr-001",
+    "causal_part": "tyre",
+    "parts_cost_eur": 210,
+    "labor_hours": 0.8,
+    "failure_description": "Complaint: tread separation on right rear tyre. Cause: tyre carcass failure. Correction: replaced tyre and balanced wheel.",
+    "attachments": [
+      "tyre_photos.zip"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "Tyres are excluded from all listed warranty products and must be handled through the tyre manufacturer."
+  },
+  {
+    "claim_id": "CLM-REF-0030",
+    "vin": "VCV6M2PK1XA110103",
+    "in_service_date": "2023-11-02",
+    "repair_order_date": "2026-09-20",
+    "mileage_km": 72110,
+    "repair_code": "Eng-cls-01",
+    "causal_part": "water pump",
+    "parts_cost_eur": 230,
+    "labor_hours": 1.0,
+    "failure_description": "Complaint: repeat coolant loss. Cause: third water pump leak in fourteen months; prior repair history suggests possible misdiagnosis or related cooling system issue. Correction: dealer replaced water pump again and requested claim review.",
+    "attachments": [
+      "repair_history.pdf"
+    ],
+    "expected_disposition": "REFER_TO_HUMAN",
+    "expected_reason": "A repeat repair pattern suggests possible misdiagnosis and requires human review rather than automatic approval."
+  },
+  {
+    "claim_id": "CLM-MOR-0031",
+    "vin": "VCV6M2PK1XA110118",
+    "in_service_date": "2023-04-28",
+    "repair_order_date": "2026-02-07",
+    "mileage_km": 54400,
+    "repair_code": "Eng-asm-01",
+    "causal_part": "engine assembly",
+    "parts_cost_eur": 3320,
+    "labor_hours": 8.4,
+    "failure_description": "Complaint: engine knock and low oil pressure warning. Cause: main bearing damage inside short block. Correction: approved replacement requested and short block ordered.",
+    "attachments": [
+      "prior_approval_email.pdf"
+    ],
+    "expected_disposition": "MORE_INFO",
+    "expected_reason": "Major engine assembly claims require a technical teardown summary identifying the failed internal condition, and only the prior approval file is attached."
+  },
+  {
+    "claim_id": "CLM-REJ-0032",
+    "vin": "VCV6M2PK1XA110111",
+    "in_service_date": "2021-08-08",
+    "repair_order_date": "2027-08-08",
+    "mileage_km": 110200,
+    "repair_code": "Ste-rck-01",
+    "causal_part": "steering rack",
+    "parts_cost_eur": 540,
+    "labor_hours": 2.8,
+    "failure_description": "Complaint: steering fluid leak and play at center. Cause: steering rack internal seal leak. Correction: replaced steering rack and aligned vehicle.",
+    "attachments": [
+      "alignment_report.pdf",
+      "rack_leak_photos.zip"
+    ],
+    "expected_disposition": "REJECT",
+    "expected_reason": "The extended warranty expired before the repair order date, so the steering rack claim is outside coverage."
+  }
+]

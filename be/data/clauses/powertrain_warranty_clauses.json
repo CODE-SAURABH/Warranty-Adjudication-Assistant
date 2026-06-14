@@ -1,0 +1,152 @@
+[
+  {
+    "clause_id": "1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "This Powertrain Warranty applies only to vehicles with an active powertrain warranty mapping recorded against the VIN at the time of claim review."
+  },
+  {
+    "clause_id": "1.1",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "The powertrain policy covers warrantable defects in listed powertrain components when the repair order date and mileage fall within the applicable limits."
+  },
+  {
+    "clause_id": "1.2",
+    "section": "Clause 1 - Policy Scope",
+    "clause_quote": "If no active VIN-to-warranty mapping exists for the claimed vehicle, the claim is not eligible for powertrain coverage."
+  },
+  {
+    "clause_id": "2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "The Powertrain Warranty provides coverage for 60 months from the in-service date or 100,000 km, whichever occurs first."
+  },
+  {
+    "clause_id": "2.1",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A claim is within the time limit when the repair order date is on or before the warranty end date recorded for the VIN."
+  },
+  {
+    "clause_id": "2.2",
+    "section": "Clause 2 - Coverage Period",
+    "clause_quote": "A claim is within the mileage limit when the odometer reading at repair order opening is at or below the recorded mileage ceiling."
+  },
+  {
+    "clause_id": "3",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "Covered powertrain components include the engine assembly, cooling system, water pump, thermostat, radiator, transmission internal parts, and drive axle assembly."
+  },
+  {
+    "clause_id": "3.1",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "A claimed repair code must map to the stated causal part and to a covered powertrain component for the claim to remain eligible."
+  },
+  {
+    "clause_id": "3.2",
+    "section": "Clause 3 - Covered Components",
+    "clause_quote": "A repair code and causal part mismatch is a data integrity failure and the claim shall not be auto-approved."
+  },
+  {
+    "clause_id": "4",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "Powertrain coverage applies only when the failure results from a defect in material or workmanship."
+  },
+  {
+    "clause_id": "4.1",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "Leakage, internal breakage, bearing failure, or seal failure may be warrantable when the description identifies the failed part and the defect condition."
+  },
+  {
+    "clause_id": "4.2",
+    "section": "Clause 4 - Warrantable Failure Standard",
+    "clause_quote": "A generic statement that a part was replaced, without the defect found and the correction performed, is incomplete and requires more information."
+  },
+  {
+    "clause_id": "5",
+    "section": "Clause 5 - Exclusions",
+    "clause_quote": "Powertrain coverage does not apply to failures caused by abuse, racing, unauthorized modification, collision damage, normal wear, or contaminated fluids."
+  },
+  {
+    "clause_id": "5.1",
+    "section": "Clause 5 - Exclusions",
+    "clause_quote": "If the failure description directly attributes damage to an excluded cause, the claim shall be rejected under this policy."
+  },
+  {
+    "clause_id": "5.2",
+    "section": "Clause 5 - Exclusions",
+    "clause_quote": "When exclusion evidence is suggestive but not conclusive, the claim shall be referred for human review rather than automatically approved."
+  },
+  {
+    "clause_id": "6",
+    "section": "Clause 6 - Claim Documentation",
+    "clause_quote": "Every powertrain claim must include the VIN, in-service date, repair order date, odometer reading, repair code, causal part, and a specific failure description."
+  },
+  {
+    "clause_id": "6.1",
+    "section": "Clause 6 - Claim Documentation",
+    "clause_quote": "Powertrain claims beyond 36 months from the in-service date require complete maintenance records before approval."
+  },
+  {
+    "clause_id": "6.2",
+    "section": "Clause 6 - Claim Documentation",
+    "clause_quote": "Claims with missing mandatory documentation shall not be approved and must be returned for completion or referred for review."
+  },
+  {
+    "clause_id": "7",
+    "section": "Clause 7 - Major Repair Controls",
+    "clause_quote": "Engine assembly and transmission internal assembly replacements require prior approval before the claim may be approved."
+  },
+  {
+    "clause_id": "7.1",
+    "section": "Clause 7 - Major Repair Controls",
+    "clause_quote": "A major assembly replacement claim must include a teardown summary or equivalent technical explanation identifying the failed internal condition."
+  },
+  {
+    "clause_id": "7.2",
+    "section": "Clause 7 - Major Repair Controls",
+    "clause_quote": "If prior approval or the required technical explanation is missing for a major repair, the claim requires more information."
+  },
+  {
+    "clause_id": "8",
+    "section": "Clause 8 - Labor Rules",
+    "clause_quote": "Labor reimbursement is evaluated against the published standard and maximum labor time for the repair code."
+  },
+  {
+    "clause_id": "8.1",
+    "section": "Clause 8 - Labor Rules",
+    "clause_quote": "A claim within the published labor limit may proceed to standard adjudication when all other conditions are satisfied."
+  },
+  {
+    "clause_id": "8.2",
+    "section": "Clause 8 - Labor Rules",
+    "clause_quote": "Labor time above the published maximum requires human review and cannot be auto-approved."
+  },
+  {
+    "clause_id": "9",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "A powertrain claim shall be approved only when coverage, component mapping, failure eligibility, documentation, and labor limits are all satisfied."
+  },
+  {
+    "clause_id": "9.1",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "A powertrain claim shall be rejected when objective eligibility fails because the vehicle is outside the warranty period, above the mileage limit, or excluded by cause."
+  },
+  {
+    "clause_id": "9.2",
+    "section": "Clause 9 - Review Outcomes",
+    "clause_quote": "A powertrain claim shall be referred to human review when the evidence is conflicting, ambiguous, or suggests a possible exception outside strict rules."
+  },
+  {
+    "clause_id": "10",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill may be considered only when the claim fails warranty solely on time or mileage limits by a small margin and no exclusion applies."
+  },
+  {
+    "clause_id": "10.1",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill consideration requires complete maintenance history and a defect pattern consistent with a warrantable failure."
+  },
+  {
+    "clause_id": "10.2",
+    "section": "Clause 10 - Goodwill",
+    "clause_quote": "Goodwill does not convert a rejected warranty claim into an approved warranty claim and must be referred for human authorization."
+  }
+]
