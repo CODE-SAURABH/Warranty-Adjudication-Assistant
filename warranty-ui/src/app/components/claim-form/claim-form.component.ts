@@ -93,11 +93,8 @@ export class ClaimFormComponent implements OnInit {
 
   addRepairCode(code: string): void {
     if (this.repairCodesValue.includes(code)) return;
-    const wasFirst = this.repairCodesArray.length === 0;
     this.repairCodesArray.push(this.fb.control(code));
-    if (wasFirst) {
-      this.applyRepairCodeDefaults(code);
-    }
+    this.applyRepairCodeDefaults(code);
   }
 
   removeRepairCode(index: number): void {
@@ -206,12 +203,14 @@ export class ClaimFormComponent implements OnInit {
   private applyRepairCodeDefaults(repairCode: string): void {
     const selectedRepair = getRepairCodeEntry(repairCode);
     if (!selectedRepair) return;
+    // Always add causal part if not already present
     if (selectedRepair.causalPart && !this.causalPartsValue.includes(selectedRepair.causalPart)) {
       this.causalPartsArray.push(this.fb.control(selectedRepair.causalPart));
     }
-    this.claimForm.patchValue({
-      laborHours: selectedRepair.standardLaborHours ?? this.claimForm.get('laborHours')?.value,
-    });
+    // Only fill labor hours if the field is still empty
+    if (!this.claimForm.get('laborHours')?.value && selectedRepair.standardLaborHours) {
+      this.claimForm.patchValue({ laborHours: selectedRepair.standardLaborHours });
+    }
   }
 
   private getTodayDate(): string {
