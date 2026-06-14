@@ -1,5 +1,5 @@
 .form-page {
-  background: #f1f5f9;
+  background: var(--bg);
   min-height: calc(100vh - 64px);
   padding: 32px 24px;
 }
@@ -16,7 +16,7 @@
 .btn-back {
   background: none;
   border: none;
-  color: #2563eb;
+  color: var(--primary);
   font-size: 14px;
   cursor: pointer;
   padding: 0;
@@ -30,19 +30,19 @@
 .page-header h1 {
   font-size: 26px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text);
   margin: 0 0 4px;
 }
-.subtitle { color: #64748b; font-size: 14px; margin: 0; }
+.subtitle { color: var(--text-muted); font-size: 14px; margin: 0; }
 
 /* Cards */
 .form-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   padding: 24px;
   margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
 }
 
 .card-header {
@@ -55,7 +55,7 @@
 .card-header h2 {
   font-size: 16px;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text);
   margin: 0;
   flex: 1;
 }
@@ -74,32 +74,32 @@ app-repair-code-combobox { display: block; }
 label {
   font-size: 13px;
   font-weight: 600;
-  color: #374151;
+  color: var(--text);
 }
 .required { color: #ef4444; }
-.optional { color: #94a3b8; font-size: 12px; font-weight: 400; }
+.optional { color: var(--text-light); font-size: 12px; font-weight: 400; }
 
 input, select, textarea {
   padding: 10px 12px;
-  border: 1.5px solid #d1d5db;
+  border: 1.5px solid var(--border);
   border-radius: 8px;
   font-size: 14px;
-  color: #1e293b;
-  background: white;
+  color: var(--text);
+  background: var(--bg-card);
   transition: border-color 0.2s, box-shadow 0.2s;
   font-family: inherit;
 }
 input:focus, select:focus, textarea:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0,118,168,0.15);
 }
 input.invalid, select.invalid, textarea.invalid {
   border-color: #ef4444;
 }
 textarea { resize: vertical; min-height: 100px; }
 
-.field-hint { font-size: 11px; color: #94a3b8; }
+.field-hint { font-size: 11px; color: var(--text-light); }
 .field-error { font-size: 11px; color: #ef4444; font-weight: 500; }
 
 /* Repair codes multi-picker */
@@ -120,7 +120,7 @@ textarea { resize: vertical; min-height: 100px; }
 .btn-add-part {
   white-space: nowrap;
   padding: 8px 16px;
-  background: #1e40af;
+  background: var(--primary);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -129,15 +129,15 @@ textarea { resize: vertical; min-height: 100px; }
   cursor: pointer;
   transition: background 0.15s;
 }
-.btn-add-part:hover { background: #1d4ed8; }
+.btn-add-part:hover { background: var(--primary-dark); }
 .repair-codes-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 4px;
   padding: 8px 10px;
-  background: rgba(59,130,246,0.06);
-  border: 1px solid rgba(59,130,246,0.2);
+  background: var(--primary-light);
+  border: 1px solid rgba(0,118,168,0.2);
   border-radius: 8px;
   min-height: 40px;
 }
@@ -146,11 +146,11 @@ textarea { resize: vertical; min-height: 100px; }
   align-items: center;
   gap: 4px;
   padding: 3px 4px 3px 10px;
-  background: rgba(59,130,246,0.15);
-  border: 1px solid rgba(59,130,246,0.35);
+  background: rgba(0,118,168,0.12);
+  border: 1px solid rgba(0,118,168,0.30);
   border-radius: 20px;
   font-size: 12px;
-  color: #93c5fd;
+  color: var(--primary);
 }
 .rc-chip-code { font-family: monospace; font-weight: 700; letter-spacing: 0.3px; }
 .rc-chip-remove {
@@ -167,7 +167,7 @@ textarea { resize: vertical; min-height: 100px; }
 }
 .rc-chip-remove:hover { opacity: 1; background: rgba(248,113,113,0.15); }
 
-/* Zone-contributed repair code chips (legacy, keep for CSS safety) */
+/* Zone-contributed repair code chips */
 .zone-codes-panel {
   display: flex;
   flex-wrap: wrap;
@@ -175,34 +175,34 @@ textarea { resize: vertical; min-height: 100px; }
   gap: 6px;
   margin-top: 6px;
   padding: 8px 10px;
-  background: rgba(34,197,94,0.07);
-  border: 1px solid rgba(74,222,128,0.2);
+  background: var(--accent-light);
+  border: 1px solid rgba(122,201,67,0.25);
   border-radius: 8px;
 }
-.zone-codes-label { font-size: 10px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+.zone-codes-label { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
 .zone-code-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-size: 11px;
-  background: rgba(34,197,94,0.12);
-  color: #4ade80;
-  border: 1px solid rgba(74,222,128,0.3);
+  background: rgba(122,201,67,0.15);
+  color: var(--accent-dark);
+  border: 1px solid rgba(122,201,67,0.3);
   padding: 2px 8px;
   border-radius: 6px;
 }
 .zcc-code { font-family: monospace; font-weight: 700; }
 .zcc-sep { opacity: 0.45; }
-.zcc-label { color: #a7f3d0; }
+.zcc-label { color: var(--accent-dark); }
 .zcc-zone { font-size: 10px; opacity: 0.5; margin-left: 2px; }
 
-.section-hint { font-size: 13px; color: #64748b; margin: -12px 0 16px; }
+.section-hint { font-size: 13px; color: var(--text-muted); margin: -12px 0 16px; }
 
 /* Service history */
 .btn-add-history {
-  background: #eff6ff;
-  color: #2563eb;
-  border: 1px solid #bfdbfe;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid rgba(0,118,168,0.2);
   padding: 6px 14px;
   border-radius: 8px;
   font-size: 13px;
@@ -210,11 +210,11 @@ textarea { resize: vertical; min-height: 100px; }
   cursor: pointer;
   white-space: nowrap;
 }
-.btn-add-history:hover { background: #dbeafe; }
+.btn-add-history:hover { background: rgba(0,118,168,0.12); }
 
 .history-entry {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 12px;
@@ -225,7 +225,7 @@ textarea { resize: vertical; min-height: 100px; }
   align-items: center;
   margin-bottom: 14px;
 }
-.history-entry-num { font-size: 13px; font-weight: 600; color: #475569; }
+.history-entry-num { font-size: 13px; font-weight: 600; color: var(--text-muted); }
 .btn-remove {
   background: none;
   border: 1px solid #fca5a5;
@@ -241,10 +241,10 @@ textarea { resize: vertical; min-height: 100px; }
 
 .empty-history {
   text-align: center;
-  color: #94a3b8;
+  color: var(--text-light);
   font-size: 13px;
   padding: 20px;
-  border: 2px dashed #e2e8f0;
+  border: 2px dashed var(--border);
   border-radius: 10px;
 }
 
@@ -282,18 +282,18 @@ textarea { resize: vertical; min-height: 100px; }
   transition: all 0.2s;
 }
 .btn-primary {
-  background: #2563eb;
+  background: var(--primary);
   color: white;
 }
-.btn-primary:hover:not(:disabled) { background: #1d4ed8; }
-.btn-primary:disabled { background: #93c5fd; cursor: not-allowed; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-dark); }
+.btn-primary:disabled { background: rgba(0,118,168,0.4); cursor: not-allowed; }
 
 .btn-secondary {
-  background: white;
-  color: #374151;
-  border: 1.5px solid #d1d5db;
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1.5px solid var(--border);
 }
-.btn-secondary:hover:not(:disabled) { background: #f9fafb; }
+.btn-secondary:hover:not(:disabled) { background: var(--bg); }
 .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* Zone card override */
@@ -309,18 +309,18 @@ textarea { resize: vertical; min-height: 100px; }
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  background: #1d4ed8;
-  color: #bfdbfe;
+  background: var(--primary);
+  color: white;
   padding: 3px 10px;
   border-radius: 20px;
 }
 .zone-instruction {
   font-size: 13px;
-  color: #64748b;
+  color: rgba(255,255,255,0.55);
   margin: -12px 0 16px;
   line-height: 1.6;
 }
-.zone-instruction strong { color: #93c5fd; }
+.zone-instruction strong { color: #b8e48a; }
 
 /* Spinner */
 .spinner {

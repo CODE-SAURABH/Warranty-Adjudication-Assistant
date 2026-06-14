@@ -1,5 +1,5 @@
 .dashboard-page {
-  background: #f1f5f9;
+  background: var(--bg);
   min-height: calc(100vh - 64px);
   padding: 32px 24px;
 }
@@ -17,12 +17,12 @@
   margin-bottom: 28px;
   gap: 16px;
 }
-.page-header h1 { font-size: 26px; font-weight: 700; color: #0f172a; margin: 0 0 4px; }
-.subtitle { color: #64748b; font-size: 14px; margin: 0; }
+.page-header h1 { font-size: 26px; font-weight: 700; color: var(--text); margin: 0 0 4px; }
+.subtitle { color: var(--text-muted); font-size: 14px; margin: 0; }
 
 .btn-new-claim {
-  background: #2563eb;
-  color: white;
+  background: var(--accent);
+  color: #1a3a00;
   border: none;
   padding: 10px 20px;
   border-radius: 9px;
@@ -32,7 +32,7 @@
   white-space: nowrap;
   transition: background 0.2s;
 }
-.btn-new-claim:hover { background: #1d4ed8; }
+.btn-new-claim:hover { background: var(--accent-dark); color: white; }
 
 /* Stats Row */
 .stats-row {
@@ -43,23 +43,23 @@
 }
 
 .stat-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   padding: 20px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-sm);
 }
-.stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .stat-card.active-filter { border-width: 2px; }
 
 .stat-total  { cursor: default; }
-.stat-total.active-filter { border-color: #64748b; }
-.stat-approved.active-filter { border-color: #059669; }
+.stat-total.active-filter    { border-color: var(--text-muted); }
+.stat-approved.active-filter { border-color: var(--accent); }
 .stat-rejected.active-filter { border-color: #dc2626; }
-.stat-pending.active-filter  { border-color: #d97706; }
+.stat-pending.active-filter  { border-color: var(--support); }
 
 .stat-number {
   font-size: 32px;
@@ -67,12 +67,12 @@
   line-height: 1;
   margin-bottom: 6px;
 }
-.stat-total .stat-number    { color: #1e293b; }
-.stat-approved .stat-number { color: #059669; }
+.stat-total .stat-number    { color: var(--text); }
+.stat-approved .stat-number { color: var(--accent-dark); }
 .stat-rejected .stat-number { color: #dc2626; }
-.stat-pending .stat-number  { color: #d97706; }
+.stat-pending .stat-number  { color: var(--support); }
 
-.stat-label { font-size: 13px; color: #64748b; font-weight: 500; }
+.stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; }
 
 /* Filters */
 .filters-bar {
@@ -84,7 +84,7 @@
   flex-wrap: wrap;
 }
 
-.filter-tabs { display: flex; gap: 4px; background: white; padding: 4px; border-radius: 10px; border: 1px solid #e2e8f0; }
+.filter-tabs { display: flex; gap: 4px; background: var(--bg-card); padding: 4px; border-radius: 10px; border: 1px solid var(--border); }
 .filter-tab {
   padding: 7px 16px;
   border: none;
@@ -92,19 +92,19 @@
   border-radius: 7px;
   font-size: 13px;
   font-weight: 500;
-  color: #64748b;
+  color: var(--text-muted);
   cursor: pointer;
   transition: all 0.15s;
 }
-.filter-tab:hover { background: #f8fafc; color: #1e293b; }
-.filter-tab.active { background: #2563eb; color: white; font-weight: 600; }
+.filter-tab:hover { background: var(--bg); color: var(--text); }
+.filter-tab.active { background: var(--primary); color: white; font-weight: 600; }
 
 .search-box {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: white;
-  border: 1.5px solid #d1d5db;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
   border-radius: 9px;
   padding: 8px 14px;
   min-width: 220px;
@@ -114,7 +114,7 @@
   border: none;
   outline: none;
   font-size: 13px;
-  color: #1e293b;
+  color: var(--text);
   width: 100%;
   background: transparent;
 }
@@ -123,7 +123,7 @@
 .loading-state { display: flex; flex-direction: column; gap: 10px; }
 .skeleton-row {
   height: 56px;
-  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background: linear-gradient(90deg, var(--border) 25%, var(--bg) 50%, var(--border) 75%);
   background-size: 200% 100%;
   border-radius: 10px;
   animation: shimmer 1.4s infinite;
@@ -147,34 +147,34 @@
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: #64748b;
-  background: white;
+  color: var(--text-muted);
+  background: var(--bg-card);
   border-radius: 14px;
-  border: 1px dashed #d1d5db;
+  border: 1px dashed var(--border);
 }
 .empty-icon { font-size: 48px; margin-bottom: 12px; }
-.empty-state h3 { font-size: 18px; font-weight: 600; color: #1e293b; margin: 0 0 6px; }
+.empty-state h3 { font-size: 18px; font-weight: 600; color: var(--text); margin: 0 0 6px; }
 .empty-state p { margin: 0 0 20px; font-size: 14px; }
 
 .btn-clear-filter {
   background: none;
-  border: 1.5px solid #d1d5db;
-  color: #374151;
+  border: 1.5px solid var(--border);
+  color: var(--text);
   padding: 8px 20px;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
-.btn-clear-filter:hover { background: #f9fafb; }
+.btn-clear-filter:hover { background: var(--bg); }
 
 /* Table */
 .claims-table-wrapper {
-  background: white;
+  background: var(--bg-card);
   border-radius: 14px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border);
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
 }
 
 .claims-table {
@@ -183,49 +183,49 @@
 }
 
 .claims-table th {
-  background: #f8fafc;
+  background: var(--bg);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  color: #64748b;
+  color: var(--text-muted);
   padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border);
 }
 
 .claim-row {
   cursor: pointer;
   transition: background 0.15s;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg);
 }
 .claim-row:last-child { border-bottom: none; }
-.claim-row:hover { background: #f8fafc; }
+.claim-row:hover { background: var(--bg); }
 
-.claims-table td { padding: 14px 16px; vertical-align: middle; font-size: 13px; color: #374151; }
+.claims-table td { padding: 14px 16px; vertical-align: middle; font-size: 13px; color: var(--text); }
 
 .cell-id { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .claim-id-badge {
   font-family: monospace;
   font-size: 12px;
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--bg);
+  color: var(--text-muted);
   padding: 3px 8px;
   border-radius: 6px;
   font-weight: 600;
 }
 .override-tag {
   font-size: 10px;
-  background: #f3e8ff;
-  color: #7c3aed;
+  background: var(--secondary-light);
+  color: var(--secondary);
   padding: 2px 7px;
   border-radius: 6px;
   font-weight: 600;
 }
-.mono { font-family: monospace; font-size: 12px; color: #475569; }
-.cell-date { font-size: 12px; color: #94a3b8; white-space: nowrap; }
+.mono { font-family: monospace; font-size: 12px; color: var(--text-muted); }
+.cell-date { font-size: 12px; color: var(--text-light); white-space: nowrap; }
 .cell-action { text-align: right; }
-.view-link { font-size: 13px; color: #2563eb; font-weight: 600; }
+.view-link { font-size: 13px; color: var(--primary); font-weight: 600; }
 
 /* Confidence bar */
 .confidence-bar-wrap { display: flex; align-items: center; gap: 8px; }
@@ -236,10 +236,10 @@
   min-width: 8px;
   transition: width 0.3s;
 }
-.bar-high { background: #10b981; }
-.bar-med  { background: #f59e0b; }
+.bar-high { background: var(--accent); }
+.bar-med  { background: var(--support); }
 .bar-low  { background: #ef4444; }
-.confidence-pct { font-size: 12px; color: #64748b; font-weight: 600; white-space: nowrap; }
+.confidence-pct { font-size: 12px; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
 
 @media (max-width: 768px) {
   .stats-row { grid-template-columns: repeat(2, 1fr); }

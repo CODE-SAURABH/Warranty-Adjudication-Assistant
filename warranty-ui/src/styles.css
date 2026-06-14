@@ -1,16 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/* ── KlaimIQ Design Tokens ───────────────────────────────────────────── */
+:root {
+  --primary:       #0076A8;   /* Primary Blue */
+  --primary-dark:  #005f88;
+  --primary-light: #e6f4fa;
+  --accent:        #7AC943;   /* Accent Green */
+  --accent-dark:   #5fa32e;
+  --accent-light:  #f0f9e8;
+  --secondary:     #5A2D82;   /* Secondary Purple */
+  --secondary-light: #f3eefa;
+  --support:       #0096D6;   /* Support Bright Blue */
+  --support-light: #e0f4fd;
+  --text:          #333333;   /* Dark Text */
+  --text-muted:    #6b7280;
+  --text-light:    #9ca3af;
+  --bg:            #F5F7FA;   /* Background Light Grey */
+  --bg-card:       #ffffff;
+  --border:        #dde3ea;
+  --border-focus:  #0076A8;
+  --shadow-sm:     0 1px 3px rgba(0,118,168,0.08);
+  --shadow-md:     0 4px 14px rgba(0,118,168,0.12);
+  --radius:        10px;
+  --radius-lg:     14px;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #f1f5f9;
-  color: #1e293b;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #c5cdd8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #9aa5b4; }
