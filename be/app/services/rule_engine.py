@@ -411,6 +411,7 @@ def _collect_prior_repair_signals(
     duplicate_records: list[dict[str, Any]] = []
     repeat_repairs: list[dict[str, Any]] = []
     related_repairs: list[dict[str, Any]] = []
+    same_part_claim_records: list[dict[str, Any]] = []
     mileage_anomaly = False
 
     for record in prior_repairs:
@@ -422,6 +423,8 @@ def _collect_prior_repair_signals(
             continue
         if float(record.get("mileage_km", 0) or 0) > mileage:
             mileage_anomaly = True
+        if record.get("causal_part") == claim.get("causal_part") and str(record.get("disposition", "")).strip().upper() not in {"REJECT", "REJECTED"}:
+            same_part_claim_records.append(record)
         if record.get("repair_code") == claim.get("repair_code") and record.get("causal_part") == claim.get("causal_part") and delta_days <= 30:
             duplicate_records.append(record)
         elif record.get("causal_part") == claim.get("causal_part") and delta_days <= 365:
@@ -433,6 +436,8 @@ def _collect_prior_repair_signals(
         "duplicate_records": duplicate_records,
         "repeat_repairs": repeat_repairs,
         "related_repairs": related_repairs,
+        "same_part_claim_records": same_part_claim_records,
+        "same_part_claim_count": len(same_part_claim_records),
         "mileage_anomaly": mileage_anomaly,
     }
 
@@ -892,23 +897,31 @@ def run_full_claim_validation(
     duplicate_records = prior_repair_signals["duplicate_records"]
     repeat_repairs = prior_repair_signals["repeat_repairs"]
     related_repairs = prior_repair_signals["related_repairs"]
+    same_part_claim_records = prior_repair_signals["same_part_claim_records"]
+    same_part_claim_count = prior_repair_signals["same_part_claim_count"]
     mileage_anomaly = prior_repair_signals["mileage_anomaly"]
 
     refs["prior_repair_history_ids"] = sorted(
         {
             record.get("history_id")
-            for record in duplicate_records + repeat_repairs + related_repairs
+            for record in duplicate_records + repeat_repairs + related_repairs + same_part_claim_records
             if record.get("history_id")
         }
     )
 
     validation_summary["duplicate_risk"] = bool(duplicate_records)
-    validation_summary["prior_repair_risk"] = bool(repeat_repairs)
+    validation_summary["prior_repair_risk"] = bool(repeat_repairs or same_part_claim_records)
     validation_summary["mileage_anomaly"] = mileage_anomaly
     if duplicate_records:
         warn("POSSIBLE_DUPLICATE", "A duplicate candidate was found for the same VIN, repair code, and causal part within 30 days.", "POSSIBLE_DUPLICATE")
     if repeat_repairs:
         warn("REPEAT_REPAIR_CANDIDATE", "A repeat repair candidate was found for the same causal part within 12 months.", "REPEAT_REPAIR_CANDIDATE")
+    if same_part_claim_count >= 3:
+        fail(
+            "SAME_PART_CLAIM_LIMIT_EXCEEDED",
+            f"The same causal part has already been claimed {same_part_claim_count} times for this VIN; a fourth claim is not allowed.",
+            "SAME_PART_CLAIM_LIMIT_EXCEEDED",
+        )
     if related_repairs and not duplicate_records and not repeat_repairs:
         warn("RELATED_PRIOR_REPAIR", "A related prior repair exists for the same VIN and component group.", "RELATED_PRIOR_REPAIR")
     if mileage_anomaly:

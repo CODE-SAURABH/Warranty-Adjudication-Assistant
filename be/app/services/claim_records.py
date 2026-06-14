@@ -102,6 +102,112 @@ def build_claim_result_record(
     return ClaimResultSchema.model_validate(payload).model_dump()
 
 
+def normalize_claim_result_record(
+    claim_record: dict[str, Any],
+    *,
+    record_created_at: str | None = None,
+) -> dict[str, Any]:
+    if claim_record.get("claimId") and isinstance(claim_record.get("submission"), dict):
+        return ClaimResultSchema.model_validate(claim_record).model_dump()
+
+    submission_payload = claim_record.get("submission", {})
+    if not isinstance(submission_payload, dict):
+        submission_payload = {}
+
+    legacy_claim = claim_record.get("claim", {})
+    if not isinstance(legacy_claim, dict):
+        legacy_claim = {}
+
+    decision_detail = (
+        claim_record.get("assessor_ui", {}).get("decision_detail", {})
+        if isinstance(claim_record.get("assessor_ui"), dict)
+        else {}
+    )
+    flags = decision_detail.get("flags", []) if isinstance(decision_detail.get("flags"), list) else []
+    justification_parts = [
+        str(decision_detail.get("summary", "")).strip(),
+        str(decision_detail.get("rule_summary", "")).strip(),
+        f"Flags: {', '.join(flags)}" if flags else "",
+    ]
+
+    normalized = {
+        "claimId": str(claim_record.get("claimId") or claim_record.get("claim_id") or "").strip(),
+        "disposition": _map_decision_to_disposition(
+            claim_record.get("disposition")
+            or claim_record.get("decision")
+            or claim_record.get("disposition_per_claim", {}).get("decision")
+        ),
+        "confidenceScore": float(
+            claim_record.get("confidenceScore")
+            or claim_record.get("confidence")
+            or claim_record.get("disposition_per_claim", {}).get("confidence")
+            or 0
+        ),
+        "justification": "\n\n".join(part for part in justification_parts if part) or "No decision summary was returned.",
+        "citedClauses": [
+            {
+                "clauseId": str(item.get("clauseId") or item.get("clause_id") or "").strip(),
+                "section": str(item.get("section") or item.get("clause_link") or "Policy Clause").strip(),
+                "text": str(item.get("text") or item.get("clause_quote") or item.get("justification") or "No clause quote provided.").strip(),
+            }
+            for item in claim_record.get("citedClauses", claim_record.get("cited_justification", []))
+            if isinstance(item, dict)
+        ],
+        "missingInfo": [
+            {
+                "field": str(item.get("field") or item.get("item") or "").strip(),
+                "description": str(item.get("description") or item.get("message") or "").strip(),
+                "clauseReference": str(item.get("clauseReference") or item.get("required_clause_id") or "").strip() or None,
+            }
+            for item in claim_record.get("missingInfo", claim_record.get("missing_information", []))
+            if isinstance(item, dict)
+        ],
+        "assessorNotes": claim_record.get("assessorNotes"),
+        "timestamp": str(claim_record.get("timestamp") or record_created_at or datetime.utcnow().isoformat()),
+        "submission": {
+            "vin": str(
+                submission_payload.get("vin")
+                or claim_record.get("vin")
+                or legacy_claim.get("vin")
+                or ""
+            ).strip(),
+            "inServiceDate": str(
+                submission_payload.get("inServiceDate")
+                or legacy_claim.get("in_service_date")
+                or ""
+            ).strip(),
+            "repairOrderDate": str(
+                submission_payload.get("repairOrderDate")
+                or legacy_claim.get("repair_order_date")
+                or ""
+            ).strip(),
+            "currentOdometerReading": _coerce_number(
+                submission_payload.get("currentOdometerReading", legacy_claim.get("mileage_km"))
+            ),
+            "repairCode": _primary_string(
+                submission_payload.get("repairCode", legacy_claim.get("repair_code"))
+            ),
+            "causalPart": _primary_string(
+                submission_payload.get("causalPart", legacy_claim.get("causal_part"))
+            ),
+            "partsCostEur": _coerce_number(
+                submission_payload.get("partsCostEur", legacy_claim.get("parts_cost_eur"))
+            ),
+            "laborHours": _coerce_number(
+                submission_payload.get("laborHours", legacy_claim.get("labor_hours"))
+            ),
+            "failureDescription": str(
+                submission_payload.get("failureDescription")
+                or legacy_claim.get("failure_description")
+                or ""
+            ).strip(),
+            "serviceHistory": submission_payload.get("serviceHistory", []),
+        },
+        "assessorOverridden": bool(claim_record.get("assessorOverridden")),
+    }
+    return ClaimResultSchema.model_validate(normalized).model_dump()
+
+
 def apply_override_to_claim_record(claim_record: dict[str, Any], override_payload: dict[str, Any]) -> dict[str, Any]:
     updated = dict(claim_record)
     override_history = updated.get("overrideHistory", [])
@@ -126,40 +232,14 @@ def apply_override_to_claim_record(claim_record: dict[str, Any], override_payloa
 
 
 def build_queue_item(claim_record: dict[str, Any]) -> dict[str, Any]:
-    # Handle both new format (from build_claim_result_record) and legacy database format
-    submission = claim_record.get("submission", {}) or {}
-    
-    # Try new format first, fallback to legacy format
-    claim_id = claim_record.get("claimId") or claim_record.get("claim_id", "")
-    vin = submission.get("vin", "") or claim_record.get("vin", "")
-    disposition = claim_record.get("disposition", "")
-    confidence = claim_record.get("confidenceScore", 0) or claim_record.get("confidence", 0)
-    repair_code = submission.get("repairCode", "") or _primary_string(claim_record.get("repair_code", ""))
-    timestamp = claim_record.get("timestamp", "")
-    
-    # Map legacy disposition format if needed
-    if not disposition:
-        decision = claim_record.get("decision", "")
-        disposition_per_claim = claim_record.get("disposition_per_claim", {})
-        if isinstance(disposition_per_claim, dict):
-            decision = disposition_per_claim.get("decision", decision)
-        disposition = _map_decision_to_disposition(decision)
-    
-    # Ensure we have a valid disposition
-    if disposition not in {"APPROVED", "REJECTED", "PENDING"}:
-        disposition = "PENDING"
-    
-    # Coerce confidence to float
-    if isinstance(confidence, str):
-        confidence = _coerce_number(confidence) or 0
-    
+    normalized = normalize_claim_result_record(claim_record)
     payload = {
-        "claimId": str(claim_id).strip(),
-        "vin": str(vin).strip(),
-        "disposition": disposition,
-        "confidenceScore": float(confidence or 0),
-        "repairCode": str(repair_code).strip(),
-        "timestamp": str(timestamp).strip(),
-        "assessorOverridden": bool(claim_record.get("assessorOverridden")),
+        "claimId": normalized["claimId"],
+        "vin": normalized["submission"]["vin"],
+        "disposition": normalized["disposition"],
+        "confidenceScore": normalized["confidenceScore"],
+        "repairCode": normalized["submission"]["repairCode"],
+        "timestamp": normalized["timestamp"],
+        "assessorOverridden": normalized["assessorOverridden"],
     }
     return ClaimQueueItemSchema.model_validate(payload).model_dump()

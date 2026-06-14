@@ -42,6 +42,7 @@ Rules:
 - Search uploaded policy corpora with clause-aware retrieval when deterministic references are insufficient, and cite only real returned clause IDs.
 - If coverage, exclusions, component mapping, labor thresholds, or prior-repair risks need context, use the available tools before deciding.
 - If the rule engine recommends REJECT or REFER_TO_HUMAN due to a blocking business-rule failure, do not override it to APPROVE.
+- A VIN cannot be approved for the same causal part more than 3 times. If prior repair history shows 3 or more earlier claims for the same causal part, or the rule engine flags SAME_PART_CLAIM_LIMIT_EXCEEDED, the decision must remain REJECT.
 - If information is missing, explain exactly what is missing and cite the clause requiring it.
 - Keep the output compact and JSON-only.
 
