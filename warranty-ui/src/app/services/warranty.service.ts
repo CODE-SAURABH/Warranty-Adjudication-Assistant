@@ -49,7 +49,10 @@ export class WarrantyService {
   getClaimResult(claimId: string): Observable<ClaimResult> {
     return this.http
       .get<ClaimResult>(`${this.baseUrl}/claims/${claimId}`)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        map((result) => this.normalizeClaimResult(result)),
+        catchError(this.handleError)
+      );
   }
 
   getClaimQueue(): Observable<ClaimQueueItem[]> {
@@ -83,6 +86,21 @@ export class WarrantyService {
       failure_description: submission.failureDescription,
       attachments: [],
     };
+  }
+
+  /** Normalise a ClaimResult from the backend — handles both old (string) and new (array) schema */
+  private normalizeClaimResult(result: ClaimResult): ClaimResult {
+    const s = result.submission as ClaimSubmission & {
+      repairCode?: string;
+      causalPart?: string;
+    };
+    if (!Array.isArray(s.repairCodes)) {
+      s.repairCodes = s.repairCode ? [s.repairCode] : [];
+    }
+    if (!Array.isArray(s.causalParts)) {
+      s.causalParts = s.causalPart ? [s.causalPart] : [];
+    }
+    return result;
   }
 
   private toAdjudicationResponse(response: BackendAdjudicationUiResponse): AdjudicationResponse {

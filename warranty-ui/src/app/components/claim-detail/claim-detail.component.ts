@@ -23,7 +23,6 @@ export class ClaimDetailComponent implements OnInit {
   readonly dispositionOptions: { value: ClaimDisposition; label: string }[] = [
     { value: 'APPROVED', label: 'Approve' },
     { value: 'REJECTED', label: 'Reject' },
-    { value: 'PENDING', label: 'Refer to Human' },
   ];
 
   constructor(
